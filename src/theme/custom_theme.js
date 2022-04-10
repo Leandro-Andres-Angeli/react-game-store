@@ -18,4 +18,5 @@ export const custom_theme = createTheme({
 			fontSize: '2.5rem',
 		},
 	},
+	slider_height: '80vh',
 });

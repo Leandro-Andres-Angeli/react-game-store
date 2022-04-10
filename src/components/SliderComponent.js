@@ -7,7 +7,7 @@ import { useTheme } from '@mui/system';
 import SliderItem from './SliderItem';
 export default function SliderComponent() {
 	const theme = useTheme();
-	const [gamesId, setGamesId] = useState([11, 2, 33, 294, 211]);
+	const [gamesId, setGamesId] = useState([3, 6, 33, 22, 59]);
 
 	var settings = {
 		dots: true,
@@ -27,14 +27,15 @@ export default function SliderComponent() {
 			}}
 		>
 			{gamesId.map((gameId, i) => (
-				<SliderItem component="div" key={i} gameId={gameId}>
+				<SliderItem
+					component="div"
+					key={i}
+					title={'upcoming stock'}
+					gameId={gameId}
+				>
 					{' '}
 				</SliderItem>
 			))}
-			{/* <Box component="div"> 2</Box>
-				<Box component="div"> 2</Box>
-				<Box component="div"> 2</Box>
-				<Box component="div"> 2</Box> */}
 		</Box>
 	);
 }

@@ -1,27 +1,17 @@
 import React, { memo, useEffect, useState } from 'react';
 import Container from '@mui/material/Container';
-import { useFetch } from '../customHooks/useFetch';
+import { useFetch } from '../customHooks/useFetch2';
 import SliderComponent from '../components/SliderComponent';
+import { useTheme } from '@mui/system';
 
 const Home = () => {
-	const KEY = process.env.REACT_APP_API_KEY;
-	const URI = process.env.REACT_APP_API_BASE_URL;
-	const API_URI = `${URI}/games/1?key=${KEY}`;
-	const [data, setData] = useState({ data: 1 });
-	const fetched = useFetch(API_URI);
-
-	//FETCH FUNCTION WORKING
-	// console.log(fetched);
-	//FETCH FUNCTION WORKING
-	useEffect(() => {
-		console.log('redn');
-	}, []);
-	console.log(data);
+	const theme = useTheme();
 
 	return (
 		<Container maxWidth="lg">
-			Home
-			<SliderComponent></SliderComponent>
+			<SliderComponent
+				sx={{ height: `${theme.slider_height}` }}
+			></SliderComponent>
 		</Container>
 	);
 };
