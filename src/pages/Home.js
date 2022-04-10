@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import Container from '@mui/material/Container';
 import { useFetch } from '../customHooks/useFetch';
 import SliderComponent from '../components/SliderComponent';
@@ -11,15 +11,11 @@ const Home = () => {
 	const fetched = useFetch(API_URI);
 
 	//FETCH FUNCTION WORKING
-	console.log(fetched);
+	// console.log(fetched);
 	//FETCH FUNCTION WORKING
 	useEffect(() => {
 		console.log('redn');
-		if (fetched) {
-			const { name } = fetched;
-			setData({ ...data, name });
-		}
-	}, [fetched]);
+	}, []);
 	console.log(data);
 
 	return (
