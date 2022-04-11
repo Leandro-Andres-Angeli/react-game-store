@@ -4,17 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material';
+import { CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
 import { custom_theme } from './theme/custom_theme';
+import { AppContext } from './context/AppContext';
+//WRAP APP FIRST WITH CSSBASELINE COMPONENT AND THEN WITH CUSTOM THEME TO OVERRIDE GLOBAL STYLES
 
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<ThemeProvider theme={custom_theme}>
-				<App />
+				<CssBaseline>
+					<App />
+				</CssBaseline>
 			</ThemeProvider>
 		</BrowserRouter>
 	</React.StrictMode>,
+
 	document.getElementById('root')
 );
 

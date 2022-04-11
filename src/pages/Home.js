@@ -1,18 +1,21 @@
-import React, { memo, useEffect, useState } from 'react';
-import Container from '@mui/material/Container';
-import { useFetch } from '../customHooks/useFetch2';
+import React from 'react';
+
 import SliderComponent from '../components/SliderComponent';
 import { useTheme } from '@mui/system';
+import { Box } from '@mui/material';
+import PoliciesComponent from '../components/PoliciesComponent';
+import BreadcrumbsComponent from '../components/BreadcrumbsComponent';
 
 const Home = () => {
 	const theme = useTheme();
-
+	console.log(theme);
 	return (
-		<Container maxWidth="lg">
+		<Box sx={{ p: 0 }}>
 			<SliderComponent
-				sx={{ height: `${theme.slider_height}` }}
+				sx={{ height: `${theme.slider_height}`, p: 0, width: '100vw' }}
 			></SliderComponent>
-		</Container>
+			<PoliciesComponent></PoliciesComponent>
+		</Box>
 	);
 };
 

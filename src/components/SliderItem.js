@@ -1,8 +1,14 @@
-import { Box, Button, Container, Typography } from '@mui/material';
+import {
+	Box,
+	Button,
+	CircularProgress,
+	Container,
+	Typography,
+} from '@mui/material';
 import { useTheme } from '@mui/system';
 import React, { useEffect } from 'react';
 import { useFetch } from '../customHooks/useFetch';
-
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 const SliderItem = ({ gameId, title }) => {
 	const KEY = process.env.REACT_APP_API_KEY;
 	const URI = process.env.REACT_APP_API_BASE_URL;
@@ -15,13 +21,15 @@ const SliderItem = ({ gameId, title }) => {
 	// console.log(name);
 	// console.log(isLoaded);
 	const theme = useTheme();
+	const { grey } = theme.palette;
+
 	useEffect(() => {
 		console.log('render');
 	});
 
 	return (
 		<>
-			{isLoaded ? (
+			{isLoaded && data.background_image ? (
 				<>
 					<Box
 						component="div"
@@ -31,17 +39,20 @@ const SliderItem = ({ gameId, title }) => {
 							backgroundSize: 'cover',
 							backgroundPosition: 'center',
 							position: 'relative',
+							display: 'flex',
+							alignItems: 'center',
 						}}
 					>
-						<Container>
+						<Container sx={{ mx: theme.spacing(5) }}>
 							<Box
 								sx={{
 									textTransform: 'capitalize',
 									fontStyle: 'italic',
 									display: 'inline-block',
-									padding: '.3rem .5rem',
+									padding: '.3rem 2rem',
 									transform: 'skewX(-30deg)',
 									backgroundColor: `${theme.palette.secondary.main}`,
+									boxShadow: 10,
 								}}
 							>
 								<Typography
@@ -58,19 +69,43 @@ const SliderItem = ({ gameId, title }) => {
 							<Typography
 								variant="h2"
 								sx={{
-									fontSize: '1.5rem',
+									mt: theme.spacing(3),
 									color: 'white',
 									fontWeight: 'bolder',
+									letterSpacing: theme.spacing(2),
 								}}
 							>
 								{name}{' '}
 							</Typography>
-							<Button>Shop now</Button>
+							<Button
+								sx={{
+									bgcolor: [grey[500]],
+									'&:hover': { bgcolor: [grey[50]] },
+									my: theme.spacing(5),
+									boxShadow: 10,
+								}}
+								endIcon={<AddShoppingCartIcon sx={{ color: 'black' }} />}
+							>
+								Shop now
+							</Button>
 						</Container>
 					</Box>
 				</>
 			) : (
-				<Box component="div">Loading...</Box>
+				<Box
+					component="div"
+					sx={{
+						height: `${theme.slider_height}`,
+						bgcolor: [theme.palette.primary.main],
+						color: 'white',
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+				>
+					<Typography sx={{ mr: 3 }}>Loading...</Typography>{' '}
+					<CircularProgress color="secondary" />
+				</Box>
 			)}
 		</>
 	);

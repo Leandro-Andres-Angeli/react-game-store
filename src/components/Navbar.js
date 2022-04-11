@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -6,10 +6,12 @@ import { useTheme } from '@mui/system';
 import { Box, Button, Container } from '@mui/material';
 import { routes } from '../utils/routes';
 import { NavLink } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 
 const Navbar = () => {
 	const theme = useTheme();
 	const navbarRoutes = routes;
+
 	return (
 		<>
 			<AppBar position="static" color="primary">
