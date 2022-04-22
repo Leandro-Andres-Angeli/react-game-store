@@ -1,10 +1,13 @@
-import { Box, Breadcrumbs, Link, Stack } from '@mui/material';
+import { Breadcrumbs, Link } from '@mui/material';
 import React from 'react';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useTheme } from '@mui/styles';
 const BreadcrumbsComponent = ({ route }) => {
 	const theme = useTheme();
+	const params = useParams();
+
+	const lengthLink = route.length;
 	console.log(theme);
 	return (
 		<Breadcrumbs
@@ -24,8 +27,11 @@ const BreadcrumbsComponent = ({ route }) => {
 			<Link component={NavLink} to="/">
 				Home
 			</Link>
+			<Link component={NavLink} to={`/${route.replace(params.genre, '')}`}>
+				{route.slice(0, 5)}
+			</Link>
 			<Link component={NavLink} to={`/${route}`}>
-				{route}
+				{route.slice(7, lengthLink)}
 			</Link>
 		</Breadcrumbs>
 	);

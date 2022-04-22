@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const useFetch = (url) => {
 	const [data, setData] = useState({});
 	const [loading, setLoading] = useState(true);
-	// const [params, setParams] = useState(parameters);
+	
 
 	const fetchData = useCallback(() => {
 		axios
