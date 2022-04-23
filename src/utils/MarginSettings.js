@@ -1,10 +1,14 @@
-export const marginSettingsGenerator = (themeFromDefault, propertyToChange) => {
-	let result;
-
-	result = JSON.stringify(themeFromDefault).replace(
+import { useTheme } from '@mui/system';
+import { makeStyles } from '@mui/styles';
+export const MarginSettings = () => {
+	const theme = useTheme();
+	let customMargin = JSON.stringify(theme.mixins.toolbar).replace(
 		/minHeight/g,
-		propertyToChange
+		'marginTop'
 	);
-	result = JSON.parse(result);
-	return result;
+	customMargin = JSON.parse(customMargin);
+	const marginStyles = makeStyles({
+		customMargin,
+	});
+	return marginStyles;
 };

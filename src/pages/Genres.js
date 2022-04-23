@@ -27,27 +27,17 @@ import {
 	useMatch,
 	useNavigate,
 } from 'react-router-dom';
-import GenreComponent from '../components/GenreComponent';
-import Home from './Home';
-import { makeStyles } from '@mui/styles';
-import { marginSettingsGenerator } from '../utils/MarginSettings';
+
+import { MarginSettings } from '../utils/MarginSettings';
 
 const Genres = () => {
 	const [genresList, setGenresList, Loading] = useContext(AppContext);
 
 	const theme = useTheme();
-
-	let mtSetting = JSON.stringify(theme.mixins.toolbar).replace(
-		/minHeight/g,
-		'marginTop'
-	);
-
-	mtSetting = JSON.parse(mtSetting);
-	console.log(mtSetting);
-	console.log([theme.mixins.Toolbar]);
+	const marginTopDrawerSettings = MarginSettings();
 
 	const location = GetLocationFunction();
-	console.log(location);
+
 	let navigate = useNavigate();
 	const navigateToMain = () => {
 		navigate(`${genresList?.results[0].name}`);
@@ -64,10 +54,8 @@ const Genres = () => {
 		initialPage();
 	}, [initialPage]);
 	const drawerWidth = 240;
-	const useStyles = makeStyles({
-		mtSetting,
-	});
-	const classes = useStyles();
+
+	const classes = marginTopDrawerSettings();
 
 	return (
 		<>
@@ -94,7 +82,7 @@ const Genres = () => {
 					</AppBar>{' '}
 					<Drawer
 						classes={{
-							paper: classes.mtSetting,
+							paper: classes.customMargin,
 						}}
 						variant="permanent"
 						sx={{
