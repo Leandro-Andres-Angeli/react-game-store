@@ -28,7 +28,7 @@ const DrawerComponent = ({ genresList }) => {
 								<ListItem button key={index} component="li">
 									<Button
 										component={NavLink}
-										to={genre.name}
+										to={genre.slug}
 										sx={{
 											color: 'white',
 											'&:hover': {
@@ -46,29 +46,9 @@ const DrawerComponent = ({ genresList }) => {
 							</>
 					  ))
 					: null}
+				<Toolbar></Toolbar>
 			</List>
 		</>
-
-		// <Box sx={{ bgcolor: [theme.palette.primary.main], color: 'white' }}>
-		// 	<Toolbar />
-		// 	<Divider sx={{ bgcolor: [theme.palette.secondary.main] }} />
-		// 	<List>
-		// 		{genresList.results
-		// 			? genresList.results?.map((genre, index) => (
-		// 					<>
-		// 						<ListItem button key={index}>
-		// 							<ListItemText
-		// 								primary={genre.name}
-		// 								sx={{ textTransform: 'uppercase' }}
-		// 							/>
-		// 						</ListItem>
-		// 						<Divider sx={{ bgcolor: [theme.palette.grey[50]] }} />
-		// 					</>
-		// 			  ))
-		// 			: null}
-		// 	</List>
-		// 	<Divider />
-		// </Box>
 	);
 };
 

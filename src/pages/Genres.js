@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useRef } from 'react';
 import { AppContext } from '../context/AppContext';
 import Container from '@mui/material/Container';
 import {
@@ -30,9 +30,11 @@ import {
 import GenreComponent from '../components/GenreComponent';
 import Home from './Home';
 import { makeStyles } from '@mui/styles';
+import { marginSettingsGenerator } from '../utils/MarginSettings';
 
 const Genres = () => {
 	const [genresList, setGenresList, Loading] = useContext(AppContext);
+
 	const theme = useTheme();
 
 	let mtSetting = JSON.stringify(theme.mixins.toolbar).replace(
@@ -40,16 +42,22 @@ const Genres = () => {
 		'marginTop'
 	);
 
-	console.log(mtSetting);
 	mtSetting = JSON.parse(mtSetting);
 	console.log(mtSetting);
+	console.log([theme.mixins.Toolbar]);
+
 	const location = GetLocationFunction();
 	console.log(location);
 	let navigate = useNavigate();
+	const navigateToMain = () => {
+		navigate(`${genresList?.results[0].name}`);
+	};
+	console.log('render');
 	let firstLoad = true;
+
 	const initialPage = useCallback(() => {
 		return genresList?.results && firstLoad
-			? (navigate(`${genresList?.results[0].name}`), (firstLoad = false))
+			? (firstLoad = !navigateToMain())
 			: null;
 	}, [firstLoad, genresList?.results]);
 	useEffect(() => {
@@ -79,7 +87,10 @@ const Genres = () => {
 							ml: { sm: `${drawerWidth}px` },
 						}}
 					>
-						<BreadcrumbsComponent route={location}></BreadcrumbsComponent>
+						<BreadcrumbsComponent
+							route={location}
+							navigateToMain={navigateToMain}
+						></BreadcrumbsComponent>
 					</AppBar>{' '}
 					<Drawer
 						classes={{
@@ -94,6 +105,7 @@ const Genres = () => {
 					>
 						<Toolbar></Toolbar>
 						<DrawerComponent genresList={genresList}></DrawerComponent>
+						<Toolbar></Toolbar>
 					</Drawer>
 					<Toolbar></Toolbar>
 					<Box

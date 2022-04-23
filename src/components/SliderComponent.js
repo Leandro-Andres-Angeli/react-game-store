@@ -24,15 +24,7 @@ export default function SliderComponent() {
 		nextArrow: <KeyboardDoubleArrowRightIcon />,
 		prevArrow: <KeyboardDoubleArrowLeftIcon />,
 	};
-	// const sliderArrowStyles = makeStyles({
-	// 	root: {
-	// 		fontSize: '2rem',
-	// 		color: [theme.palette.secondary.main],
-	// 		transition: 'all .2s ease',
-	// 		borderRadius: ' 20px 20px;',
-	// 	},
-	// });
-	// const classes = sliderArrowStyles();
+
 	const arrowsCss = {
 		fontSize: '2rem',
 		color: [theme.palette.secondary.main],
