@@ -14,18 +14,12 @@ const SliderItem = ({ gameId, title }) => {
 	const URI = process.env.REACT_APP_API_BASE_URL;
 	const endPointToFetch = `${URI}/games/${gameId}?key=${KEY}`;
 
+	// eslint-disable-next-line no-unused-vars
 	const [data, setData, isLoaded] = useFetch(endPointToFetch, []);
 	const { background_image, name } = data;
-	// console.log(data);
-	// console.log(background_image);
-	// console.log(name);
-	// console.log(isLoaded);
+
 	const theme = useTheme();
 	const { grey } = theme.palette;
-
-	useEffect(() => {
-		console.log('render');
-	});
 
 	return (
 		<>

@@ -33,7 +33,7 @@ const PoliciesComponent = () => {
 				{policiesArray.map((policie, i) => (
 					<>
 						<PoliciesComponentItem
-							key={i}
+							key={policie.title}
 							icon={policie.icon}
 							title={policie.title}
 							subtitle={policie.subtitle}

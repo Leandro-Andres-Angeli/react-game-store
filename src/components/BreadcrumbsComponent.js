@@ -7,7 +7,7 @@ const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 	const theme = useTheme();
 
 	const lengthLink = route.length;
-	console.log(theme);
+
 	return (
 		<Breadcrumbs
 			sx={{

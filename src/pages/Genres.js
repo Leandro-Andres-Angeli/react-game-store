@@ -1,37 +1,17 @@
-import React, { useCallback, useContext, useEffect, useRef } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import Container from '@mui/material/Container';
-import {
-	Divider,
-	List,
-	ListItem,
-	ListItemText,
-	Toolbar,
-	Box,
-	Stack,
-	Button,
-	AppBar,
-	Drawer,
-	ListItemIcon,
-} from '@mui/material';
+import { Toolbar, Box, AppBar, Drawer } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { GetLocationFunction } from '../utils/GetLocationFunction';
 import DrawerComponent from '../components/DrawerComponent';
 import BreadcrumbsComponent from '../components/BreadcrumbsComponent';
-import {
-	BrowserRouter,
-	NavLink,
-	Outlet,
-	Route,
-	Routes,
-	useMatch,
-	useNavigate,
-} from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { MarginSettings } from '../utils/MarginSettings';
 
 const Genres = () => {
-	const [genresList, setGenresList, Loading] = useContext(AppContext);
+	const [genresList] = useContext(AppContext);
 
 	const theme = useTheme();
 	const marginTopDrawerSettings = MarginSettings();
@@ -68,11 +48,13 @@ const Genres = () => {
 					}}
 				>
 					<AppBar
+						shadow={0}
 						sx={{
 							position: 'absolute',
 							my: 5,
 							width: { sm: `calc(100% - ${drawerWidth}px)` },
 							ml: { sm: `${drawerWidth}px` },
+							boxShadow: 'none',
 						}}
 					>
 						<BreadcrumbsComponent

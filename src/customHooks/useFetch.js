@@ -24,8 +24,6 @@ export const useFetch = (url) => {
 			fetchData();
 		}
 		isLoaded = true;
-
-		console.log(isLoaded);
 	}, [fetchData]);
 	return [data, setData, loading];
 };

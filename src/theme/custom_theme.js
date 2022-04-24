@@ -22,6 +22,8 @@ export const custom_theme = createTheme({
 			primary: '#f3f4f7',
 			secondary: '#f3f4f7',
 		},
+		bg_card_color: '#43177330',
+		bg_card_header: '#2f1748',
 	},
 	typography: {
 		h1: {

@@ -27,6 +27,7 @@ const DrawerComponent = ({ genresList }) => {
 							<>
 								<ListItem button key={index} component="li">
 									<Button
+										key={genre.name}
 										component={NavLink}
 										to={genre.slug}
 										sx={{
