@@ -28,11 +28,15 @@ const GenreComponent = () => {
 
 	return (
 		<Container sx={{ p: 3 }} maxWidth="lg">
-			<Grid container spacing={{ xl: 5, lg: 3, md: 2 }}>
+			<Grid
+				container
+				spacing={{ xl: 5, lg: 3, md: 2, sm: 2 }}
+				sx={{ rowGap: { sm: '1rem', xs: '1rem' } }}
+			>
 				{data?.results ? (
 					data.results.map((game) => {
 						return (
-							<Grid item xs={12} md={6} lg={4} xl={3}>
+							<Grid item xs={12} sm={6} lg={4} xl={3}>
 								<GameCard game={game} loaded={Loaded}></GameCard>
 							</Grid>
 						);
@@ -41,7 +45,7 @@ const GenreComponent = () => {
 					<Box
 						sx={{
 							width: '70vw',
-							height: '100vh',
+							height: '80vh',
 							display: 'flex',
 							justifyContent: 'center',
 							alignItems: 'center',

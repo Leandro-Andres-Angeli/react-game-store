@@ -1,7 +1,8 @@
-import { Breadcrumbs, Link } from '@mui/material';
+import { Breadcrumbs, Button, IconButton, Link } from '@mui/material';
 import React from 'react';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { NavLink, useParams } from 'react-router-dom';
+
+import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/styles';
 const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 	const theme = useTheme();
@@ -12,6 +13,9 @@ const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 		<Breadcrumbs
 			sx={{
 				textTransform: 'uppercase',
+				'& ol': {
+					display: 'flex',
+				},
 				'& a ': {
 					color: 'white',
 					textDecoration: 'none',

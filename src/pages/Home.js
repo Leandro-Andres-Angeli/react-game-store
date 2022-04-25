@@ -4,7 +4,6 @@ import SliderComponent from '../components/SliderComponent';
 import { useTheme } from '@mui/system';
 import { Box } from '@mui/material';
 import PoliciesComponent from '../components/PoliciesComponent';
-import BreadcrumbsComponent from '../components/BreadcrumbsComponent';
 
 const Home = () => {
 	const theme = useTheme();

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import Container from '@mui/material/Container';
 import { Toolbar, Box, AppBar, Drawer } from '@mui/material';
@@ -9,10 +9,16 @@ import BreadcrumbsComponent from '../components/BreadcrumbsComponent';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { MarginSettings } from '../utils/MarginSettings';
+import DrawerButtonToggler from '../components/DrawerButtonToggler';
 
-const Genres = () => {
+const Genres = (props) => {
 	const [genresList] = useContext(AppContext);
 
+	console.log(window);
+	const [mobileOpen, setMobileOpen] = useState(true);
+	const handleDrawerToggle = () => {
+		setMobileOpen(!mobileOpen);
+	};
 	const theme = useTheme();
 	const marginTopDrawerSettings = MarginSettings();
 
@@ -40,6 +46,9 @@ const Genres = () => {
 	return (
 		<>
 			<Container maxWidth="lg">
+				<DrawerButtonToggler
+					handleDrawerToggle={handleDrawerToggle}
+				></DrawerButtonToggler>
 				<Box
 					sx={{
 						bgcolor: [theme.palette.primary.main],
@@ -52,8 +61,8 @@ const Genres = () => {
 						sx={{
 							position: 'absolute',
 							my: 5,
-							width: { sm: `calc(100% - ${drawerWidth}px)` },
-							ml: { sm: `${drawerWidth}px` },
+							width: { md: `calc(100% - ${drawerWidth}px)` },
+							ml: { md: `${drawerWidth}px` },
 							boxShadow: 'none',
 						}}
 					>
@@ -63,14 +72,24 @@ const Genres = () => {
 						></BreadcrumbsComponent>
 					</AppBar>{' '}
 					<Drawer
-						classes={{
-							paper: classes.customMargin,
+						variant="persistent"
+						open={mobileOpen}
+						onClose={handleDrawerToggle}
+						ModalProps={{
+							keepMounted: true, // Better open performance on mobile.
 						}}
-						variant="permanent"
 						sx={{
+							// display: { xs: 'block', sm: 'none' },
+							'& .MuiDrawer-paper': {
+								boxSizing: 'border-box',
+								width: drawerWidth,
+							},
 							'& .MuiPaper-root': {
 								bgcolor: [theme.palette.primary.main],
 							},
+						}}
+						classes={{
+							paper: classes.customMargin,
 						}}
 					>
 						<Toolbar></Toolbar>
@@ -80,8 +99,10 @@ const Genres = () => {
 					<Toolbar></Toolbar>
 					<Box
 						sx={{
-							width: { sm: `calc(100% - ${drawerWidth}px)` },
-							ml: { sm: `${drawerWidth}px` },
+							width: {
+								md: `calc(100% - ${drawerWidth}px)`,
+							},
+							ml: { md: `${drawerWidth}px` },
 						}}
 					>
 						<Outlet></Outlet>

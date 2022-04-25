@@ -10,7 +10,18 @@ const CallToActionCard = () => {
 		<CardActions
 			disableSpacing
 			color="secondary"
-			sx={{ ' svg': { color: grey[50] }, borderTop: '.5px solid #ffffff1f' }}
+			sx={{
+				button: {
+					flexGrow: 1,
+
+					borderRadius: 0,
+					'&:not(:last-child)': { borderRight: '.5px solid #ffffff1f' },
+				},
+				' svg': { color: grey[50] },
+				borderTop: '.5px solid #ffffff1f',
+				display: 'flex',
+				justifyContent: 'space-around',
+			}}
 		>
 			<IconButton aria-label="add to cart">
 				<CardGiftcardIcon />

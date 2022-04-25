@@ -16,7 +16,12 @@ export default function GameCard({ game }) {
 	const theme = useTheme();
 	const price = 99.99;
 	return (
-		<Card sx={{ maxWidth: 345, bgcolor: [theme.palette.bg_card_header] }}>
+		<Card
+			sx={{
+				maxWidth: 345,
+				bgcolor: [theme.palette.bg_card_header],
+			}}
+		>
 			<CardHeader
 				avatar={
 					<Avatar
@@ -34,6 +39,8 @@ export default function GameCard({ game }) {
 						overflow: 'hidden',
 						whiteSpace: 'nowrap',
 						textOverflow: ' ellipsis',
+						// THE TRICK IS IN USING CALC!!
+						width: 'calc(75%)',
 					},
 					'.MuiCardHeader-subheader': {
 						fontSize: 'smaller',

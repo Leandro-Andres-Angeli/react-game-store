@@ -1,21 +1,10 @@
-import {
-	Box,
-	Button,
-	Divider,
-	Drawer,
-	List,
-	ListItem,
-	ListItemText,
-	Stack,
-	Toolbar,
-} from '@mui/material';
+import { Button, Divider, List, ListItem, Toolbar } from '@mui/material';
 import { useTheme } from '@mui/system';
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
 const DrawerComponent = ({ genresList }) => {
-	// const [genresList, setGenresList, Loading] = useContext(AppContext);
 	const theme = useTheme();
 
 	return (
@@ -43,7 +32,7 @@ const DrawerComponent = ({ genresList }) => {
 										{genre.name}
 									</Button>
 								</ListItem>
-								<Divider sx={{ bgcolor: [theme.palette.grey[50]] }} />
+								<Divider sx={{ bgcolor: '#fafafa33' }} />
 							</>
 					  ))
 					: null}

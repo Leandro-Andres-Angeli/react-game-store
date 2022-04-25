@@ -3,14 +3,14 @@ import { grey } from '@mui/material/colors';
 import { useTheme } from '@mui/styles';
 import React from 'react';
 
-const PaginationSection = ({ pageNumber, setPage, total }) => {
+const PaginationSection = ({ pageNumber, setPage }) => {
 	const theme = useTheme();
 	console.log(pageNumber);
 	return (
 		<Stack spacing={2} sx={{ my: 4, display: 'flex' }}>
 			<Pagination
 				showFirstButton
-				count={total}
+				count={400}
 				page={pageNumber}
 				variant="outlined"
 				shape="rounded"

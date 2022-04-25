@@ -1,5 +1,5 @@
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/NavbarComponents/Navbar';
 
 import { Route, Routes } from 'react-router-dom';
 
@@ -10,13 +10,6 @@ import { useState } from 'react';
 import { useTheme } from '@mui/styles';
 import { GlobalStyles } from '@mui/material';
 import GenreComponent from './components/GenreComponent';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
-import Contact from './pages/Contact';
-import About from './pages/About';
-import Platforms from './pages/Platforms';
-import PopularGames from './pages/PopularGames';
-import Genres from './pages/Genres';
 
 function App() {
 	const routesComponents = routes;
