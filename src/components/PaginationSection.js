@@ -5,7 +5,7 @@ import React from 'react';
 
 const PaginationSection = ({ pageNumber, setPage }) => {
 	const theme = useTheme();
-	console.log(pageNumber);
+
 	return (
 		<Stack spacing={2} sx={{ my: 4, display: 'flex' }}>
 			<Pagination

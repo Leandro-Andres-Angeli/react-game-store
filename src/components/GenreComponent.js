@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { useFetch } from '../customHooks/useFetch';
@@ -21,7 +21,7 @@ const GenreComponent = () => {
 		.replace(':', 's=');
 	route = route.includes('RPG') === false ? route.toLowerCase() : route;
 
-	const URI = `${process.env.REACT_APP_API_BASE_URL}/games?page=${page}&page_size=24&${route}&key=${process.env.REACT_APP_API_KEY}`;
+	const URI = `${process.env.REACT_APP_API_BASE_URL}/games?page=${page}&page_size=1&${route}&key=${process.env.REACT_APP_API_KEY}`;
 
 	const [data, setData, Loaded] = useFetch(URI);
 	console.log(data);
@@ -37,7 +37,7 @@ const GenreComponent = () => {
 					data.results.map((game) => {
 						return (
 							<Grid item xs={12} sm={6} lg={4} xl={3}>
-								<GameCard game={game} loaded={Loaded}></GameCard>
+								<GameCard game={game} URI={URI}></GameCard>
 							</Grid>
 						);
 					})

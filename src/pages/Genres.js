@@ -14,7 +14,6 @@ import DrawerButtonToggler from '../components/DrawerButtonToggler';
 const Genres = (props) => {
 	const [genresList] = useContext(AppContext);
 
-	console.log(window);
 	const [mobileOpen, setMobileOpen] = useState(true);
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
