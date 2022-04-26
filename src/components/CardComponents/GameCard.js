@@ -14,15 +14,19 @@ import { Skeleton, Typography } from '@mui/material';
 
 import './gameCardAnimations.css';
 export const GameCard = ({ game, URI }) => {
-	let URIRef = React.useRef();
+	let URIRef = React.useRef(URI);
 
 	const theme = useTheme();
 	const price = 99.99;
-
+	console.log(URI);
 	useEffect(() => {
 		URIRef.current = URI;
 	}, [URI]);
+
 	let loadingVar = URI !== URIRef.current;
+	console.log(URI);
+	console.log(URIRef);
+	console.log(loadingVar);
 	return (
 		<>
 			{' '}
