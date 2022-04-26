@@ -36,7 +36,6 @@ const SmMenu = ({ navbarRoutes, anchorElNav, handleCloseNavMenu }) => {
 					<MenuItem
 						key={i}
 						onClick={handleCloseNavMenu}
-						textAlign="center"
 						component={NavLink}
 						sx={{
 							color: 'white',
@@ -55,7 +54,6 @@ const SmMenu = ({ navbarRoutes, anchorElNav, handleCloseNavMenu }) => {
 					<MenuItem
 						key={i}
 						onClick={handleCloseNavMenu}
-						textAlign="center"
 						component={NavLink}
 						sx={{
 							color: 'white',

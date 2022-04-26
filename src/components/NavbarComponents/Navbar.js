@@ -63,7 +63,7 @@ const Navbar = () => {
 					<IconButton
 						sx={{
 							color: 'white',
-							transform: 'scale(.6)',
+
 							display: {
 								xs: 'block',
 								md: 'none',
@@ -74,6 +74,7 @@ const Navbar = () => {
 						onClick={handleOpenNavMenu}
 					>
 						<Box
+							size={20}
 							component={Hamburger}
 							toggle={setAnchorElNav}
 							toggled={anchorElNav}

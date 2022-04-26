@@ -5,21 +5,21 @@ import { useFetch } from '../customHooks/useFetch';
 import Grid from '@mui/material/Grid';
 
 import { Box, CircularProgress, Typography } from '@mui/material';
-
+import { parseParams } from '../utils/parseParams';
 import GameCard from './CardComponents/GameCard';
 import PaginationSection from './PaginationSection';
 
 const GenreComponent = () => {
 	const params = useParams();
-
+	console.log(params);
 	const [page, setPage] = useState(1);
-
-	let route = JSON.stringify(params)
-		.replace(/"/g, '')
-		.replace('{', '')
-		.replace('}', '')
-		.replace(':', 's=');
-	route = route.includes('RPG') === false ? route.toLowerCase() : route;
+	let route = parseParams(params);
+	// let route = JSON.stringify(params)
+	// 	.replace(/"/g, '')
+	// 	.replace('{', '')
+	// 	.replace('}', '')
+	// 	.replace(':', 's=');
+	// route = route.includes('RPG') === false ? route.toLowerCase() : route;
 
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games?page=${page}&page_size=12&${route}&key=${process.env.REACT_APP_API_KEY}`;
 

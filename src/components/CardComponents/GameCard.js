@@ -24,9 +24,7 @@ export const GameCard = ({ game, URI }) => {
 	}, [URI]);
 
 	let loadingVar = URI !== URIRef.current;
-	console.log(URI);
-	console.log(URIRef);
-	console.log(loadingVar);
+
 	return (
 		<>
 			{' '}
