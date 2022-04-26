@@ -21,10 +21,9 @@ const GenreComponent = () => {
 		.replace(':', 's=');
 	route = route.includes('RPG') === false ? route.toLowerCase() : route;
 
-	const URI = `${process.env.REACT_APP_API_BASE_URL}/games?page=${page}&page_size=1&${route}&key=${process.env.REACT_APP_API_KEY}`;
+	const URI = `${process.env.REACT_APP_API_BASE_URL}/games?page=${page}&page_size=12&${route}&key=${process.env.REACT_APP_API_KEY}`;
 
 	const [data, setData, Loaded] = useFetch(URI);
-	console.log(data);
 
 	return (
 		<Container sx={{ p: 3 }} maxWidth="lg">
@@ -37,7 +36,12 @@ const GenreComponent = () => {
 					data.results.map((game) => {
 						return (
 							<Grid item xs={12} sm={6} lg={4} xl={3}>
-								<GameCard game={game} URI={URI}></GameCard>
+								<GameCard
+									game={game}
+									URI={URI}
+									page={page}
+									loaded={Loaded}
+								></GameCard>
 							</Grid>
 						);
 					})

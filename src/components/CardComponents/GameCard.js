@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -10,84 +10,113 @@ import Avatar from '@mui/material/Avatar';
 import { useTheme } from '@mui/styles';
 import GameCardRating from './GameCardRating';
 import CallToActionCard from './CallToActionCard';
-import { Typography } from '@mui/material';
-import { CSSTransition } from 'react-transition-group';
+import { Skeleton, Typography } from '@mui/material';
+
 import './gameCardAnimations.css';
 export const GameCard = ({ game, URI }) => {
-	const [render, setRender] = useState(true);
-	let gameRef = React.useRef();
-	gameRef.current = game;
+	let URIRef = React.useRef();
+
 	const theme = useTheme();
 	const price = 99.99;
-	React.useEffect(() => {
-		setRender(!render);
-		console.log(gameRef.current);
-		console.log(game);
-		console.log(game == gameRef.current);
-	}, []);
 
+	useEffect(() => {
+		URIRef.current = URI;
+	}, [URI]);
+	let loadingVar = URI !== URIRef.current;
 	return (
 		<>
-			<button
-				onClick={() => {
-					setRender(!render);
+			{' '}
+			<Card
+				component="div"
+				sx={{
+					maxWidth: 345,
+					bgcolor: [theme.palette.bg_card_header],
 				}}
 			>
-				switch
-			</button>
-			<CSSTransition
-				in={URI}
-				timeout={{ appear: 0, enter: 0, exit: 300 }}
-				classNames="roll"
-				appear
-			>
-				<Card
-					sx={{
-						maxWidth: 345,
-						bgcolor: [theme.palette.bg_card_header],
-					}}
-				>
-					<CardHeader
-						avatar={
+				<CardHeader
+					avatar={
+						loadingVar ? (
+							<Skeleton
+								animation="wave"
+								variant="circular"
+								width={40}
+								height={40}
+							/>
+						) : (
 							<Avatar
 								sx={{ bgcolor: [theme.palette.secondary.main] }}
 								aria-label=""
 							>
 								🎮
 							</Avatar>
-						}
-						sx={{
-							' .MuiCardHeader-title': {
-								color: [theme.palette.secondary.main],
-								fontWeight: 'bolder',
-								textTransform: 'uppercase',
-								overflow: 'hidden',
-								whiteSpace: 'nowrap',
-								textOverflow: ' ellipsis',
-								// THE TRICK IS IN USING CALC!!
-								width: 'calc(75%)',
-							},
-							'.MuiCardHeader-subheader': {
-								fontSize: 'smaller',
-								color: [theme.palette.neutral],
-							},
-						}}
-						title={game.name}
-						subheader={game.released}
+						)
+					}
+					sx={{
+						' .MuiCardHeader-title': {
+							color: [theme.palette.secondary.main],
+							fontWeight: 'bolder',
+							textTransform: 'uppercase',
+							overflow: 'hidden',
+							whiteSpace: 'nowrap',
+							textOverflow: ' ellipsis',
+							// THE TRICK IS IN USING CALC!!
+							width: 'calc(75%)',
+						},
+						'.MuiCardHeader-subheader': {
+							fontSize: 'smaller',
+							color: [theme.palette.neutral],
+						},
+					}}
+					title={
+						loadingVar ? (
+							<Skeleton
+								animation="wave"
+								height={10}
+								width="80%"
+								style={{ marginBottom: 6 }}
+							/>
+						) : (
+							game.name
+						)
+					}
+					subheader={
+						loadingVar ? (
+							<Skeleton animation="wave" height={10} width="40%" />
+						) : (
+							game.released
+						)
+					}
+				/>
+				{loadingVar ? (
+					<Skeleton
+						sx={{ height: 194 }}
+						animation="wave"
+						variant="rectangular"
 					/>
+				) : (
 					<CardMedia
 						component="img"
 						height="194"
-						image={game.background_image}
+						image={game.background_image || 'loading'}
 						alt={game.slug}
 					/>
-					<CardContent>
-						<GameCardRating rating={game.rating}></GameCardRating>
-						<Typography color="secondary">{price} $</Typography>
-					</CardContent>
-					<CallToActionCard></CallToActionCard>
-				</Card>
-			</CSSTransition>
+				)}
+				{loadingVar ? (
+					<>
+						<Skeleton animation="wave" height={25} sx={{ mt: 2 }} />
+						<Skeleton animation="wave" height={30} width="20%" />
+						<Skeleton animation="wave" height={40} width="100%" />
+					</>
+				) : (
+					<>
+						<CardContent>
+							<GameCardRating rating={game.rating}></GameCardRating>
+							<Typography color="secondary">{price} $</Typography>
+						</CardContent>
+						<CallToActionCard></CallToActionCard>
+					</>
+				)}
+			</Card>
 		</>
 	);
 };

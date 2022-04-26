@@ -16,10 +16,9 @@ function App() {
 	// const genres = useState(GenresList());
 	// console.log(genres);
 	const contextVar = GenresList();
-	console.log('contextVar');
-	console.log(contextVar);
+
 	const theme = useTheme();
-	console.log(theme.palette.background);
+
 	return (
 		<AppContext.Provider value={contextVar}>
 			<Navbar></Navbar>
