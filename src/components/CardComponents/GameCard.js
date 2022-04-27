@@ -18,7 +18,7 @@ export const GameCard = ({ game, URI }) => {
 
 	const theme = useTheme();
 	const price = 99.99;
-	console.log(URI);
+
 	useEffect(() => {
 		URIRef.current = URI;
 	}, [URI]);

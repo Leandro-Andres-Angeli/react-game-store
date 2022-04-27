@@ -7,8 +7,6 @@ import { useTheme } from '@mui/styles';
 const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 	const theme = useTheme();
 
-	const lengthLink = route.length;
-
 	return (
 		<Breadcrumbs
 			sx={{

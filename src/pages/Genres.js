@@ -12,7 +12,8 @@ import { MarginSettings } from '../utils/MarginSettings';
 import DrawerButtonToggler from '../components/DrawerButtonToggler';
 
 const Genres = (props) => {
-	const [categories] = useContext(AppContext);
+	const context = useContext(AppContext);
+	const categories = context.contextVar[0];
 
 	const [mobileOpen, setMobileOpen] = useState(true);
 	const handleDrawerToggle = () => {

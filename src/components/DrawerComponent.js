@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { GetLocationFunction } from '../utils/GetLocationFunction';
 const DrawerComponent = ({ categories }) => {
 	const theme = useTheme();
-
+	const { page, setPage } = useContext(AppContext);
 	const location = GetLocationFunction();
 	const categoryString = location.split('/', location.length)[0];
 	return (
@@ -20,6 +20,9 @@ const DrawerComponent = ({ categories }) => {
 									<Button
 										key={category.name}
 										component={NavLink}
+										onClick={() => {
+											setPage(1);
+										}}
 										state={{ [categoryString]: `${category.id}` }}
 										to={category.slug}
 										sx={{

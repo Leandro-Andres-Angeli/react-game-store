@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { useFetch } from '../customHooks/useFetch';
@@ -8,20 +8,20 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { parseParams } from '../utils/parseParams';
 import GameCard from './CardComponents/GameCard';
 import PaginationSection from './PaginationSection';
+import { AppContext } from '../context/AppContext';
 
 const GenreComponent = () => {
 	const params = useParams();
-	console.log(params);
-	const location = useLocation();
-	console.log(location);
-	const [page, setPage] = useState(1);
-	let route = parseParams(location.state);
-	console.log(route);
 
-	const URI = `${process.env.REACT_APP_API_BASE_URL}/games?page=${page}&page_size=12&${route}&key=${process.env.REACT_APP_API_KEY}`;
+	const location = useLocation();
+	const { page, setPage } = useContext(AppContext);
+
+	let route = parseParams(location.state);
+
+	const URI = `${process.env.REACT_APP_API_BASE_URL}/games?page=${page}&page_size=24&${route}&key=${process.env.REACT_APP_API_KEY}`;
 
 	const [data, setData, Loaded] = useFetch(URI);
-
+	console.log(data);
 	return (
 		<Container sx={{ p: 3 }} maxWidth="lg">
 			<Grid
@@ -58,7 +58,7 @@ const GenreComponent = () => {
 				)}
 			</Grid>
 			<PaginationSection
-				total={Math.round(data.count / 24)}
+				total={Math.floor(data.count / 54)}
 				pageNumber={page}
 				setPage={setPage}
 			></PaginationSection>

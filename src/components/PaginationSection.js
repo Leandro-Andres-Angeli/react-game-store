@@ -3,15 +3,17 @@ import { grey } from '@mui/material/colors';
 import { useTheme } from '@mui/styles';
 import React from 'react';
 
-const PaginationSection = ({ pageNumber, setPage }) => {
+const PaginationSection = ({ pageNumber, setPage, total }) => {
 	const theme = useTheme();
 
 	return (
 		<Stack spacing={2} sx={{ my: 4, display: 'flex' }}>
 			<Pagination
 				showFirstButton
-				count={400}
+				showLastButton
+				count={total}
 				page={pageNumber}
+				siblingCount={2}
 				variant="outlined"
 				shape="rounded"
 				onChange={(e, v) => {

@@ -17,31 +17,14 @@ function App() {
 	// console.log(genres);
 	const contextVar = GenresList();
 
+	const [page, setPage] = useState(1);
 	const theme = useTheme();
 
 	return (
-		<AppContext.Provider value={contextVar}>
+		<AppContext.Provider value={{ contextVar, page, setPage }}>
 			<Navbar></Navbar>
 
 			<Routes>
-				{/* { name: 'home', component: <Home /> },
-	{ name: 'genres', component: <Genres /> },
-	{ name: 'popular', component: <PopularGames /> },
-	{ name: 'platforms', component: <Platforms /> },
-	{ name: 'about', component: <About /> },
-	{ name: 'contact', component: <Contact /> },
-
-	{ name: 'notfound', component: <NotFound /> }, */}
-				{/* <Route path="/" element={<Home />}></Route>
-				<Route path="/genres/" element={<Genres />}>
-					<Route path=":genre" element={<GenreComponent />}></Route>
-				</Route>
-				<Route path="/popular" element={<PopularGames />}></Route>
-				<Route path="/platforms" element={<Platforms />}></Route>
-				<Route path="/about" element={<About />}></Route>
-				<Route path="/contact" element={<Contact />}></Route>
-				<Route path="*" element={<NotFound />}></Route> */}
-
 				{routesComponents.map((route, i) =>
 					route.name === 'home' ? (
 						<Route key={i} path="/" element={route.component}></Route>
