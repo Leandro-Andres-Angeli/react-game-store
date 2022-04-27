@@ -28,7 +28,7 @@ const Navbar = () => {
 	return (
 		<>
 			<AppBar
-				position="fixed"
+				// position="fixed"
 				color="primary"
 				sx={{ button: { color: 'white' } }}
 			>
@@ -87,6 +87,7 @@ const Navbar = () => {
 					></SmMenu>
 				</Toolbar>
 			</AppBar>
+			<Toolbar />
 		</>
 	);
 };

@@ -12,7 +12,7 @@ import { MarginSettings } from '../utils/MarginSettings';
 import DrawerButtonToggler from '../components/DrawerButtonToggler';
 
 const Genres = (props) => {
-	const [genresList] = useContext(AppContext);
+	const [categories] = useContext(AppContext);
 
 	const [mobileOpen, setMobileOpen] = useState(true);
 	const handleDrawerToggle = () => {
@@ -25,20 +25,20 @@ const Genres = (props) => {
 
 	let navigate = useNavigate();
 	const navigateToMain = () => {
-		navigate(`${genresList?.results[0].name}`);
+		navigate(`${categories?.results[0].name}`);
 	};
 	console.log('render');
 	let firstLoad = true;
 
 	const initialPage = useCallback(() => {
-		return genresList?.results && firstLoad
+		return categories?.results && firstLoad
 			? (firstLoad = !navigateToMain())
 			: null;
-	}, [firstLoad, genresList?.results]);
+	}, [firstLoad, categories?.results]);
 	useEffect(() => {
 		initialPage();
 	}, [initialPage]);
-	const drawerWidth = 240;
+	const drawerWidth = theme.drawerWidth;
 
 	const classes = marginTopDrawerSettings();
 
@@ -92,7 +92,7 @@ const Genres = (props) => {
 						}}
 					>
 						<Toolbar></Toolbar>
-						<DrawerComponent genresList={genresList}></DrawerComponent>
+						<DrawerComponent categories={categories}></DrawerComponent>
 						<Toolbar></Toolbar>
 					</Drawer>
 					<Toolbar></Toolbar>

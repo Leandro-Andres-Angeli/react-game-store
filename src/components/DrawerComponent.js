@@ -1,24 +1,27 @@
 import { Button, Divider, List, ListItem, Toolbar } from '@mui/material';
 import { useTheme } from '@mui/system';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-
-const DrawerComponent = ({ genresList }) => {
+import { useParams } from 'react-router-dom';
+import { GetLocationFunction } from '../utils/GetLocationFunction';
+const DrawerComponent = ({ categories }) => {
 	const theme = useTheme();
 
+	const location = GetLocationFunction();
+	const categoryString = location.split('/', location.length)[0];
 	return (
-		// <Stack>
 		<>
 			<List>
-				{genresList.results
-					? genresList.results?.map((genre, index) => (
+				{categories.results
+					? categories.results?.map((category, index) => (
 							<>
 								<ListItem button key={index} component="li">
 									<Button
-										key={genre.name}
+										key={category.name}
 										component={NavLink}
-										to={genre.slug}
+										state={{ [categoryString]: `${category.id}` }}
+										to={category.slug}
 										sx={{
 											color: 'white',
 											'&:hover': {
@@ -29,7 +32,7 @@ const DrawerComponent = ({ genresList }) => {
 											},
 										}}
 									>
-										{genre.name}
+										{category.name}
 									</Button>
 								</ListItem>
 								<Divider sx={{ bgcolor: '#fafafa33' }} />

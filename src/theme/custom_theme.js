@@ -31,4 +31,5 @@ export const custom_theme = createTheme({
 		},
 	},
 	slider_height: '80vh',
+	drawerWidth: 240,
 });

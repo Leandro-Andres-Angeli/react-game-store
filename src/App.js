@@ -9,7 +9,7 @@ import { GenresList } from './context_resources/GenresList';
 import { useState } from 'react';
 import { useTheme } from '@mui/styles';
 import { GlobalStyles } from '@mui/material';
-import GenreComponent from './components/GenreComponent';
+import CategoriesContainerComponent from './components/CategoriesContainerComponent';
 
 function App() {
 	const routesComponents = routes;
@@ -49,7 +49,17 @@ function App() {
 						<Route key={i} path="*" element={route.component}></Route>
 					) : route.name === 'genres' ? (
 						<Route key={i} path={route.name} element={route.component}>
-							<Route path=":genre" element={<GenreComponent />}></Route>
+							<Route
+								path=":genres"
+								element={<CategoriesContainerComponent />}
+							></Route>
+						</Route>
+					) : route.name === 'platforms' ? (
+						<Route key={i} path={route.name} element={route.component}>
+							<Route
+								path=":path"
+								element={<CategoriesContainerComponent />}
+							></Route>
 						</Route>
 					) : (
 						<Route key={i} path={route.name} element={route.component}></Route>

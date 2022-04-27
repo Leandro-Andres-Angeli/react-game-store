@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { useFetch } from '../customHooks/useFetch';
 import Grid from '@mui/material/Grid';
@@ -12,14 +12,11 @@ import PaginationSection from './PaginationSection';
 const GenreComponent = () => {
 	const params = useParams();
 	console.log(params);
+	const location = useLocation();
+	console.log(location);
 	const [page, setPage] = useState(1);
-	let route = parseParams(params);
-	// let route = JSON.stringify(params)
-	// 	.replace(/"/g, '')
-	// 	.replace('{', '')
-	// 	.replace('}', '')
-	// 	.replace(':', 's=');
-	// route = route.includes('RPG') === false ? route.toLowerCase() : route;
+	let route = parseParams(location.state);
+	console.log(route);
 
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games?page=${page}&page_size=12&${route}&key=${process.env.REACT_APP_API_KEY}`;
 
