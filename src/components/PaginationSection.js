@@ -7,13 +7,12 @@ const PaginationSection = ({ pageNumber, setPage, total }) => {
 	const theme = useTheme();
 
 	return (
-		<Stack spacing={2} sx={{ my: 4, display: 'flex' }}>
+		<Stack spacing={0} sx={{ my: 4, display: 'flex' }}>
 			<Pagination
 				showFirstButton
 				showLastButton
 				count={total}
 				page={pageNumber}
-				siblingCount={2}
 				variant="outlined"
 				shape="rounded"
 				onChange={(e, v) => {
@@ -21,8 +20,17 @@ const PaginationSection = ({ pageNumber, setPage, total }) => {
 				}}
 				sx={{
 					alignSelf: 'end',
+					'	ul': {
+						flexWrap: { xs: 'nowrap', md: 'wrap' },
+					},
+
 					' button': {
 						borderColor: grey[500],
+						border: '.5px solid',
+						fontSize: { xs: 10, md: 12 },
+						minWidth: { xs: 20, md: 32 },
+						height: { xs: 20, md: 32 },
+
 						'&[aria-current="true"]': {
 							color: theme.palette.secondary.main,
 							borderColor: theme.palette.secondary.main,
