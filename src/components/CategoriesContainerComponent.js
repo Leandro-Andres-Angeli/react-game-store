@@ -35,10 +35,11 @@ const GenreComponent = () => {
 				sx={{ rowGap: { sm: '1rem', xs: '1rem' } }}
 			>
 				{data?.results ? (
-					data.results.map((game) => {
+					data.results.map((game, i) => {
 						return (
-							<Grid item xs={12} sm={6} lg={4} xl={3}>
+							<Grid item key={i} xs={12} sm={6} lg={4} xl={3}>
 								<GameCard
+									key={game}
 									game={game}
 									URI={URI}
 									page={page}

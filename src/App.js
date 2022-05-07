@@ -7,9 +7,12 @@ import { routes } from './utils/routes';
 import { AppContext } from './context/AppContext';
 import { GenresList } from './context_resources/GenresList';
 import { useState } from 'react';
+import { useReducer } from 'react';
 import { useTheme } from '@mui/styles';
 import { GlobalStyles } from '@mui/material';
 import CategoriesContainerComponent from './components/CategoriesContainerComponent';
+import initialStateCart from './components/reducers/initialStateCart';
+import { cartReducer } from './components/reducers/cartReducer';
 
 function App() {
 	const routesComponents = routes;
@@ -19,9 +22,11 @@ function App() {
 
 	const [page, setPage] = useState(1);
 	const theme = useTheme();
-
+	const [cart, dispatchCart] = useReducer(cartReducer, initialStateCart);
 	return (
-		<AppContext.Provider value={{ contextVar, page, setPage }}>
+		<AppContext.Provider
+			value={{ contextVar, page, setPage, cart, dispatchCart }}
+		>
 			<Navbar></Navbar>
 
 			<Routes>

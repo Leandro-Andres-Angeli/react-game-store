@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/system';
-import { Box, Button, IconButton } from '@mui/material';
+import { Badge, Box, Button, IconButton } from '@mui/material';
 import { routes } from '../../utils/routes';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
@@ -14,6 +14,8 @@ import SmMenu from './SmMenu';
 
 const Navbar = () => {
 	const theme = useTheme();
+	const { cart } = useContext(AppContext);
+
 	const navbarRoutes = routes;
 	const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -55,7 +57,9 @@ const Navbar = () => {
 					</Typography>
 					<LgMenu navbarRoutes={navbarRoutes}></LgMenu>
 					<Button sx={{ marginLeft: 'auto' }}>
-						<CardGiftcardIcon></CardGiftcardIcon>
+						<Badge badgeContent={cart?.items?.length} color="secondary">
+							<CardGiftcardIcon></CardGiftcardIcon>
+						</Badge>
 					</Button>
 					<Button>
 						<FavoriteIcon></FavoriteIcon>

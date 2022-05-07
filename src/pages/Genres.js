@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import Container from '@mui/material/Container';
-import { Toolbar, Box, AppBar, Drawer } from '@mui/material';
+import { Toolbar, Box, AppBar, Drawer, Typography } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { GetLocationFunction } from '../utils/GetLocationFunction';
 import DrawerComponent from '../components/DrawerComponent';

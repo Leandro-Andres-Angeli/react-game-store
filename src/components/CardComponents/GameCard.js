@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -13,12 +13,31 @@ import CallToActionCard from './CallToActionCard';
 import { Skeleton, Typography } from '@mui/material';
 
 import './gameCardAnimations.css';
+import { addToCartReducer, cartReducer } from '../reducers/cartReducer';
+import { AppContext } from '../../context/AppContext';
+import initialStateCart from '../reducers/initialStateCart';
+
+// const addToCartReducer = (cart, action) => {
+// 	switch (action.type) {
+// 		case 'add':
+// 			console.log(cart);
+// 			return { ...cart, items: [...cart.items, action.payload] };
+
+// 		default:
+// 			console.log('default');
+// 	}
+// };
+
 export const GameCard = ({ game, URI }) => {
 	let URIRef = React.useRef(URI);
+	const { cart } = useContext(AppContext);
 
+	// const [cart, dispatchCart] = useReducer(cartReducer, initialCart);
 	const theme = useTheme();
 	const price = 99.99;
-
+	useEffect(() => {
+		console.log(cart);
+	});
 	useEffect(() => {
 		URIRef.current = URI;
 	}, [URI]);
@@ -115,7 +134,16 @@ export const GameCard = ({ game, URI }) => {
 							<GameCardRating rating={game.rating}></GameCardRating>
 							<Typography color="secondary">{price} $</Typography>
 						</CardContent>
-						<CallToActionCard></CallToActionCard>
+						<CallToActionCard
+							// dispatchCart={dispatchCart}
+							game={{
+								id: game.id,
+								name: game.name,
+
+								platforms: game.platforms,
+								price: price,
+							}}
+						></CallToActionCard>
 					</>
 				)}
 			</Card>
