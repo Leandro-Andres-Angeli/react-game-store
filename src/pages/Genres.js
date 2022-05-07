@@ -57,6 +57,7 @@ const Genres = (props) => {
 					}}
 				>
 					<AppBar
+						component="nav"
 						shadow={0}
 						sx={{
 							position: 'absolute',

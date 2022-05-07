@@ -1,4 +1,4 @@
-import { CardActions, IconButton, Menu } from '@mui/material';
+import { CardActions, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -9,11 +9,14 @@ import OrderMenuComponent from './OrderMenuComponent';
 import { useTheme } from '@mui/styles';
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
+import SnackbarComponent from '../SnackbarComponent';
+
 const CallToActionCard = ({ game }) => {
 	const theme = useTheme();
 	const context = useContext(AppContext);
 	const [add, setAdd] = useState(true);
 	const [anchorEl, setAnchorEl] = useState(null);
+	const [closeSnackbar, setCloseSnackbar] = useState(false);
 	const open = Boolean(anchorEl);
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -31,6 +34,7 @@ const CallToActionCard = ({ game }) => {
 					type: ACTIONS.REMOVE,
 					payload: { id: game.id, name: game.name },
 			  });
+		add && setCloseSnackbar(true);
 		setAdd(!add);
 	};
 	return (
@@ -85,6 +89,10 @@ const CallToActionCard = ({ game }) => {
 				handleClose={handleClose}
 				anchorEl={anchorEl}
 			></OrderMenuComponent>
+			<SnackbarComponent
+				closeSnackbar={closeSnackbar}
+				setCloseSnackbar={setCloseSnackbar}
+			></SnackbarComponent>
 		</>
 	);
 };

@@ -27,10 +27,8 @@ const Navbar = () => {
 		setAnchorElNav(null);
 	};
 	useEffect(() => {
-		if (favourite) {
-			console.log(favourite);
-		}
-	}, [favourite]);
+		console.log(cart);
+	}, [cart]);
 
 	return (
 		<>
