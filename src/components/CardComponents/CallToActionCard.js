@@ -3,10 +3,16 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ShareIcon from '@mui/icons-material/Share';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { grey } from '@mui/material/colors';
 import OrderMenuComponent from './OrderMenuComponent';
-const CallToActionCard = ({ dispatchCart, game }) => {
+import { useTheme } from '@mui/styles';
+import { AppContext } from '../../context/AppContext';
+import { ACTIONS } from '../reducers/actions';
+const CallToActionCard = ({ game }) => {
+	const theme = useTheme();
+	const context = useContext(AppContext);
+	const [add, setAdd] = useState(true);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event) => {
@@ -14,6 +20,18 @@ const CallToActionCard = ({ dispatchCart, game }) => {
 	};
 	const handleClose = () => {
 		setAnchorEl(null);
+	};
+	const toFavourite = () => {
+		add
+			? context.dispatchFavorite({
+					type: ACTIONS.ADD,
+					payload: { id: game.id, name: game.name },
+			  })
+			: context.dispatchFavorite({
+					type: ACTIONS.REMOVE,
+					payload: { id: game.id, name: game.name },
+			  });
+		setAdd(!add);
 	};
 	return (
 		<>
@@ -44,7 +62,13 @@ const CallToActionCard = ({ dispatchCart, game }) => {
 				>
 					<CardGiftcardIcon />
 				</IconButton>
-				<IconButton aria-label="add to favorites">
+				<IconButton
+					aria-label="add to favorites"
+					onClick={toFavourite}
+					sx={{
+						svg: { color: !add && [theme.palette.secondary.main] },
+					}}
+				>
 					<FavoriteIcon />
 				</IconButton>
 				<IconButton aria-label="share">
@@ -60,7 +84,6 @@ const CallToActionCard = ({ dispatchCart, game }) => {
 				open={open}
 				handleClose={handleClose}
 				anchorEl={anchorEl}
-				dispatchCart={dispatchCart}
 			></OrderMenuComponent>
 		</>
 	);

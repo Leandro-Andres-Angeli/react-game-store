@@ -13,6 +13,8 @@ import { GlobalStyles } from '@mui/material';
 import CategoriesContainerComponent from './components/CategoriesContainerComponent';
 import initialStateCart from './components/reducers/initialStateCart';
 import { cartReducer } from './components/reducers/cartReducer';
+import { favouriteReducer } from './components/reducers/favouriteReducer';
+import initialStateFavourite from './components/reducers/initialStateFavourite';
 
 function App() {
 	const routesComponents = routes;
@@ -21,11 +23,23 @@ function App() {
 	const contextVar = GenresList();
 
 	const [page, setPage] = useState(1);
-	const theme = useTheme();
+
 	const [cart, dispatchCart] = useReducer(cartReducer, initialStateCart);
+	const [favourite, dispatchFavorite] = useReducer(
+		favouriteReducer,
+		initialStateFavourite
+	);
 	return (
 		<AppContext.Provider
-			value={{ contextVar, page, setPage, cart, dispatchCart }}
+			value={{
+				contextVar,
+				page,
+				setPage,
+				cart,
+				dispatchCart,
+				favourite,
+				dispatchFavorite,
+			}}
 		>
 			<Navbar></Navbar>
 

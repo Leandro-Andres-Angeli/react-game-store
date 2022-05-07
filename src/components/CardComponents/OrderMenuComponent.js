@@ -11,10 +11,11 @@ import {
 	FormControl,
 	Divider,
 } from '@mui/material';
-import { grey } from '@mui/material/colors';
+
 import { useTheme } from '@mui/styles';
 import React, { useContext, useEffect, useRef } from 'react';
 import { AppContext } from '../../context/AppContext';
+import { ACTIONS } from '../reducers/actions';
 
 const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 	const context = useContext(AppContext);
@@ -26,7 +27,7 @@ const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 		const { name, price, id } = game;
 		const payload = { name, price, id, platform: labelValue.current };
 		console.log(labelValue.current);
-		context.dispatchCart({ type: 'add', payload });
+		context.dispatchCart({ type: ACTIONS.ADD, payload });
 	};
 	let labelValue = useRef(null);
 	return (
@@ -96,9 +97,6 @@ const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 						aria-labelledby="demo-radio-buttons-group-label"
 						name="radio-buttons-group"
 						ref={labelValue}
-						// onChange={(e) => {
-						// 	console.log(e.target.value);
-						// }}
 						onChange={(e) => {
 							labelValue.current = {
 								id: e.target.value,
@@ -106,9 +104,10 @@ const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 							};
 						}}
 					>
-						{game.platforms.map((platform) => {
+						{game.platforms.map((platform, i) => {
 							return (
 								<FormControlLabel
+									key={i}
 									value={platform.platform.id}
 									control={<Radio />}
 									label={platform.platform.name}

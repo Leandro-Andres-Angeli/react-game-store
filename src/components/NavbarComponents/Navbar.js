@@ -14,7 +14,7 @@ import SmMenu from './SmMenu';
 
 const Navbar = () => {
 	const theme = useTheme();
-	const { cart } = useContext(AppContext);
+	const { cart, favourite } = useContext(AppContext);
 
 	const navbarRoutes = routes;
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -26,6 +26,11 @@ const Navbar = () => {
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
 	};
+	useEffect(() => {
+		if (favourite) {
+			console.log(favourite);
+		}
+	}, [favourite]);
 
 	return (
 		<>
@@ -62,7 +67,9 @@ const Navbar = () => {
 						</Badge>
 					</Button>
 					<Button>
-						<FavoriteIcon></FavoriteIcon>
+						<Badge badgeContent={favourite?.length} color="secondary">
+							<FavoriteIcon></FavoriteIcon>
+						</Badge>
 					</Button>
 					<IconButton
 						sx={{

@@ -30,14 +30,10 @@ import initialStateCart from '../reducers/initialStateCart';
 
 export const GameCard = ({ game, URI }) => {
 	let URIRef = React.useRef(URI);
-	const { cart } = useContext(AppContext);
 
-	// const [cart, dispatchCart] = useReducer(cartReducer, initialCart);
 	const theme = useTheme();
 	const price = 99.99;
-	useEffect(() => {
-		console.log(cart);
-	});
+
 	useEffect(() => {
 		URIRef.current = URI;
 	}, [URI]);
@@ -135,7 +131,6 @@ export const GameCard = ({ game, URI }) => {
 							<Typography color="secondary">{price} $</Typography>
 						</CardContent>
 						<CallToActionCard
-							// dispatchCart={dispatchCart}
 							game={{
 								id: game.id,
 								name: game.name,
