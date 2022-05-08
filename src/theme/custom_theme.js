@@ -24,6 +24,7 @@ export const custom_theme = createTheme({
 		},
 		bg_card_color: '#43177330',
 		bg_card_header: '#2f1748',
+		bg_card_modal: '#2100469c',
 	},
 	typography: {
 		h1: {

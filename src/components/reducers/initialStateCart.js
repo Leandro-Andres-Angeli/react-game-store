@@ -1,1 +1,2 @@
-export default { items: [] };
+const initial = { items: [] };
+export default initial;

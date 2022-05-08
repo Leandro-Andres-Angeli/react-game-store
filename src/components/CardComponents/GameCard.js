@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -13,24 +13,12 @@ import CallToActionCard from './CallToActionCard';
 import { Skeleton, Typography } from '@mui/material';
 
 import './gameCardAnimations.css';
-import { addToCartReducer, cartReducer } from '../reducers/cartReducer';
-import { AppContext } from '../../context/AppContext';
-import initialStateCart from '../reducers/initialStateCart';
 
-// const addToCartReducer = (cart, action) => {
-// 	switch (action.type) {
-// 		case 'add':
-// 			console.log(cart);
-// 			return { ...cart, items: [...cart.items, action.payload] };
-
-// 		default:
-// 			console.log('default');
-// 	}
-// };
+import GameModal from '../gameModal/GameModal';
 
 export const GameCard = ({ game, URI }) => {
 	let URIRef = React.useRef(URI);
-
+	const [modal, setModal] = useState(false);
 	const theme = useTheme();
 	const price = 99.99;
 
@@ -138,10 +126,12 @@ export const GameCard = ({ game, URI }) => {
 								platforms: game.platforms,
 								price: price,
 							}}
+							modalState={[modal, setModal]}
 						></CallToActionCard>
 					</>
 				)}
 			</Card>
+			<GameModal modalState={[modal, setModal]} game={game}></GameModal>
 		</>
 	);
 };

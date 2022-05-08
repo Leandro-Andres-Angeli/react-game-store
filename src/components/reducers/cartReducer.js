@@ -1,4 +1,3 @@
-import { calcTotalPrice } from '../../utils/calcTotalPrice';
 import { ACTIONS } from './actions';
 
 export const cartReducer = (cart, action) => {

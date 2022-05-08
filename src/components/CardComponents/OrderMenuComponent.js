@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 
 import { useTheme } from '@mui/styles';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
 

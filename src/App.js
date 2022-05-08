@@ -8,8 +8,7 @@ import { AppContext } from './context/AppContext';
 import { GenresList } from './context_resources/GenresList';
 import { useState } from 'react';
 import { useReducer } from 'react';
-import { useTheme } from '@mui/styles';
-import { GlobalStyles } from '@mui/material';
+
 import CategoriesContainerComponent from './components/CategoriesContainerComponent';
 import initialStateCart from './components/reducers/initialStateCart';
 import { cartReducer } from './components/reducers/cartReducer';

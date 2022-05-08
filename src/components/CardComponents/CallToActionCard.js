@@ -11,13 +11,18 @@ import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
 import SnackbarComponent from '../SnackbarComponent';
 
-const CallToActionCard = ({ game }) => {
+const CallToActionCard = ({ game, modalState }) => {
 	const theme = useTheme();
 	const context = useContext(AppContext);
+	const [modal, setModal] = modalState;
 	const [add, setAdd] = useState(true);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [closeSnackbar, setCloseSnackbar] = useState(false);
+
 	const open = Boolean(anchorEl);
+	const handleModal = () => {
+		setModal(true);
+	};
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -78,7 +83,7 @@ const CallToActionCard = ({ game }) => {
 				<IconButton aria-label="share">
 					<ShareIcon />
 				</IconButton>
-				<IconButton aria-label="open modal">
+				<IconButton aria-label="open modal" onClick={handleModal}>
 					<VisibilityIcon />
 				</IconButton>
 			</CardActions>
