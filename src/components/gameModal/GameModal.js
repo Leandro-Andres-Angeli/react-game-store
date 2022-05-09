@@ -34,6 +34,7 @@ const GameModal = ({ modalState, gameID }) => {
 	}, [colRef]);
 	return (
 		<Modal
+			sx={{ overflow: 'auto' }}
 			aria-labelledby="modal-game"
 			aria-describedby="modal-game"
 			open={modal}
@@ -47,7 +48,7 @@ const GameModal = ({ modalState, gameID }) => {
 			<Fade in={modal}>
 				{/* //important wrap into a div otherwise will fail */}
 				<div>
-					<ModalCard>
+					<ModalCard sx={{ marginTop: 'auto' > 10 ? 'auto' : 10 }}>
 						<Grid container spacing={{ xs: 1, md: 2, lg: 3 }}>
 							<Grid
 								item
