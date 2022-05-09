@@ -11,11 +11,13 @@ import {
 	Fade,
 	Modal,
 	Typography,
+	Grid,
 } from '@mui/material';
 import { useTheme } from '@mui/styles';
 import { useFetch } from '../../customHooks/useFetch';
 import GameSlider from './GameSlider';
 import GameModalCTA from './GameModalCTA';
+import ModalCard from './ModalCard';
 const GameModal = ({ modalState, gameID }) => {
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games/${gameID}?key=${process.env.REACT_APP_API_KEY}`;
 	const gameData = useFetch(URI)[0];
@@ -44,27 +46,27 @@ const GameModal = ({ modalState, gameID }) => {
 			}}
 		>
 			<Fade in={modal}>
-				<Box sx={modalStyle}>
-					<Card
-						sx={{
-							bgcolor: theme.palette.bg_card_modal,
-
-							height: '100%',
-							margin: '0 auto',
-							p: 2,
-						}}
-					>
-						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-							<Box sx={{ flex: 1 }}>
+				{/* //important wrap into a div otherwise will fail */}
+				<div>
+					<ModalCard>
+						<Grid container spacing={{ xs: 1, md: 2, lg: 3 }}>
+							<Grid
+								item
+								sx={{ flex: 1, display: { sm: 'none', md: 'block' } }}
+								xs={12}
+								md={6}
+							>
 								<CardMedia
 									component="img"
 									sx={{ width: '100%', height: '70%' }}
 									image={gameData?.background_image}
 									alt={gameData?.name}
 								/>
-								<Box>{/* <GameSlider></GameSlider> */}</Box>
-							</Box>
-							<Box
+								{/* <GameSlider></GameSlider> */}
+							</Grid>
+							<Grid
+								xs={12}
+								md={6}
 								sx={{
 									flex: 1,
 									display: 'grid',
@@ -90,10 +92,10 @@ const GameModal = ({ modalState, gameID }) => {
 									</Typography>
 								</CardContent>
 								<GameModalCTA></GameModalCTA>
-							</Box>
-						</Box>
-					</Card>
-				</Box>
+							</Grid>
+						</Grid>
+					</ModalCard>
+				</div>
 			</Fade>
 		</Modal>
 	);
