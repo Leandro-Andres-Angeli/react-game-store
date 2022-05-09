@@ -66,14 +66,14 @@ const GameModalCTA = () => {
 						<ArrowDropDownIcon></ArrowDropDownIcon>
 					</Box>
 				</Grid>
-				<Grid item xs={6}>
+				<Grid item xs={6} sx={{ display: 'flex' }}>
 					<Button
 						variant="contained"
 						color="secondary"
 						size="small"
 						sx={{ flex: 3, px: 3, py: 2, color: 'white' }}
 					>
-						Learn More
+						add to cart
 					</Button>
 				</Grid>
 				<Grid item xs={2}>

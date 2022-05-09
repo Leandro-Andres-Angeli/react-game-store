@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import modalStyles from './modalStyles';
 import parse from 'html-react-parser';
 import {
 	Backdrop,
@@ -22,7 +21,7 @@ const GameModal = ({ modalState, gameID }) => {
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games/${gameID}?key=${process.env.REACT_APP_API_KEY}`;
 	const gameData = useFetch(URI)[0];
 	const colRef = useRef();
-	const modalStyle = modalStyles;
+
 	const theme = useTheme();
 	const price = 99.99;
 
@@ -52,19 +51,23 @@ const GameModal = ({ modalState, gameID }) => {
 						<Grid container spacing={{ xs: 1, md: 2, lg: 3 }}>
 							<Grid
 								item
-								sx={{ flex: 1, display: { sm: 'none', md: 'block' } }}
+								sx={{
+									flex: 1,
+									display: { xs: 'none', sm: 'none', md: 'block' },
+								}}
 								xs={12}
 								md={6}
 							>
 								<CardMedia
 									component="img"
-									sx={{ width: '100%', height: '70%' }}
+									sx={{ width: '90%', height: '70%', m: `.5rem auto` }}
 									image={gameData?.background_image}
 									alt={gameData?.name}
 								/>
-								{/* <GameSlider></GameSlider> */}
+								<GameSlider gameData={gameData}></GameSlider>
 							</Grid>
 							<Grid
+								item
 								xs={12}
 								md={6}
 								sx={{
@@ -73,7 +76,7 @@ const GameModal = ({ modalState, gameID }) => {
 									gridTemplateRows: '70% 30%',
 								}}
 							>
-								<CardContent sx={{ pt: 0, h2: { fontWeight: 'bold' } }}>
+								<CardContent sx={{ h2: { fontWeight: 'bold' } }}>
 									<Typography
 										color="secondary"
 										variant="h2"

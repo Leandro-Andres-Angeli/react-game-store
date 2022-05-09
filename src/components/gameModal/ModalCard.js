@@ -7,8 +7,7 @@ const ModalCard = styled(Card)(({ theme }) => ({
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
 	width: '90%',
-	height: '90vh',
-
+	padding: { md: 15, sx: 2 },
 	border: '.5  solid #000',
 	boxShadow: 24,
 	backgroundColor: theme.palette.bg_card_modal,
