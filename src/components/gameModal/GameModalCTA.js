@@ -4,32 +4,87 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
 import {
-	TextFieldBox,
 	Button,
 	CardActions,
 	IconButton,
 	TextField,
-	Grid,
 	Box,
-	Typography,
 	Stack,
 	Divider,
+	InputLabel,
+	Select,
+	MenuItem,
 } from '@mui/material';
 import { useTheme } from '@mui/styles';
 
-const GameModalCTA = () => {
+const GameModalCTA = ({ gamePlatforms }) => {
 	const [add, setAdd] = useState(true);
+	const [defaultSelect, setDefaultSelect] = useState(
+		'----select-platform-----'
+	);
 	const toFavourite = () => {
 		setAdd(!add);
 	};
 	const theme = useTheme();
+
 	return (
 		<CardActions
 			sx={{
+				flexDirection: 'column',
+				rowGap: 3,
 				alignItems: { sx: 'start', md: 'end' },
 				marginBottom: { md: 7, sx: 'auto', sm: 'auto' },
 			}}
 		>
+			<Box
+				sx={{
+					alignSelf: ' stretch',
+					display: 'inline-grid',
+					'.MuiOutlinedInput-root': { border: '1px solid white' },
+					svg: { color: 'white' },
+				}}
+			>
+				<InputLabel
+					id="demo-simple-select-label"
+					sx={{
+						color: theme.palette.secondary.main,
+						fontWeight: 'bolder',
+						textTransform: 'uppercase',
+					}}
+				>
+					Select Platform
+				</InputLabel>
+				<Select
+					labelId="select-platform-label"
+					id="select-platform-select"
+					label="Platform"
+					defaultValue={0}
+					onChange={(e) => {
+						console.log(e.target.value);
+					}}
+				>
+					<MenuItem disabled value={0} sx={{ color: 'black' }}>
+						---selec platform---
+					</MenuItem>
+					;
+					{gamePlatforms.map((gamePlatform, i) => {
+						return (
+							<MenuItem
+								sx={{ color: 'black' }}
+								// value={gamePlatform.platform.id}
+								value={
+									`${gamePlatform.platform.id}` +
+									',' +
+									`${gamePlatform.platform.name}`
+								}
+								key={i}
+							>
+								{gamePlatform.platform.name}
+							</MenuItem>
+						);
+					})}
+				</Select>
+			</Box>
 			<Stack
 				direction="row"
 				sx={{ width: '100%', px: { md: 5 } }}
@@ -115,6 +170,7 @@ const GameModalCTA = () => {
 					<AddIcon
 						sx={{
 							marginBottom: 0.5,
+							display: { xs: 'block', md: 'none', sm: 'none' },
 						}}
 					/>
 				</Button>

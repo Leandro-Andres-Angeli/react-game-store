@@ -22,6 +22,7 @@ export const GameCard = ({ game, URI }) => {
 	const theme = useTheme();
 	const price = 99.99;
 	const gameID = game.id;
+	const gamePlatforms = game.platforms;
 	useEffect(() => {
 		URIRef.current = URI;
 	}, [URI]);
@@ -131,7 +132,11 @@ export const GameCard = ({ game, URI }) => {
 					</>
 				)}
 			</Card>
-			<GameModal modalState={[modal, setModal]} gameID={gameID}></GameModal>
+			<GameModal
+				modalState={[modal, setModal]}
+				gameID={gameID}
+				gamePlatforms={gamePlatforms}
+			></GameModal>
 		</>
 	);
 };

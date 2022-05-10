@@ -19,7 +19,7 @@ import GameSlider from './GameSlider';
 import GameModalCTA from './GameModalCTA';
 import ModalCard from './ModalCard';
 import CloseIcon from '@mui/icons-material/Close';
-const GameModal = ({ modalState, gameID }) => {
+const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games/${gameID}?key=${process.env.REACT_APP_API_KEY}`;
 	const gameData = useFetch(URI)[0];
 	const colRef = useRef();
@@ -98,7 +98,11 @@ const GameModal = ({ modalState, gameID }) => {
 									<Typography
 										color="secondary"
 										variant="h2"
-										sx={{ fontSize: 30, mt: { xs: 6, md: 3, md: 'none' } }}
+										sx={{
+											fontSize: 30,
+											textTransform: 'uppercase',
+											mt: { xs: 6, md: 3, md: 'none' },
+										}}
 									>
 										{gameData?.name}
 									</Typography>
@@ -109,15 +113,15 @@ const GameModal = ({ modalState, gameID }) => {
 										paragraph
 										sx={{
 											fontSize: 13,
-											// height: { xs: '65%', sm: '65%', md: ' 95%' },
+											letterSpacing: 2,
+											fontWeight: 'lighter',
 											overflow: ' auto',
 											py: { sm: 5, xs: 5, md: 10 },
-											// height: { xs: '50%', sm: '70%', md: '70%', lg: '70%' },
 										}}
 									>
 										{parse(`${gameData?.description}`)}
 									</Typography>
-									<GameModalCTA></GameModalCTA>
+									<GameModalCTA gamePlatforms={gamePlatforms}></GameModalCTA>
 								</CardContent>
 							</Grid>
 						</Grid>

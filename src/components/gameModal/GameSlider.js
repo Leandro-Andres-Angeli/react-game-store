@@ -6,7 +6,6 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { Box } from '@mui/material';
 const GameSlider = ({ gameData }) => {
-	console.log(gameData);
 	var settings = {
 		infinite: true,
 		arrows: true,
