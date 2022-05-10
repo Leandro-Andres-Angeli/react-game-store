@@ -28,7 +28,7 @@ const GameSlider = ({ gameData }) => {
 				svg: {
 					fill: 'white',
 				},
-				img: { height: '16vh', objectFit: 'cover' },
+				img: { height: '20vh', objectFit: 'cover', p: 2 },
 				'.slick-list': { marginTop: '1rem' },
 			}}
 		>

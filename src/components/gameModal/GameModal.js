@@ -65,7 +65,13 @@ const GameModal = ({ modalState, gameID }) => {
 								item
 								sx={{
 									flex: 1,
-									display: { xs: 'none', sm: 'none', md: 'block' },
+									display: {
+										xs: 'none',
+										sm: 'none',
+										md: 'flex',
+										justifyContent: ' space-evenly',
+										flexDirection: 'column',
+									},
 								}}
 								xs={12}
 								md={6}
