@@ -8,6 +8,7 @@ const ModalCard = styled(Card)(({ theme }) => ({
 	transform: 'translate(-50%, -50%)',
 	width: '90%',
 	maxHeight: '90vh',
+	overflow: ' auto',
 	padding: { md: 15, sx: 2 },
 	border: '.5  solid #000',
 	boxShadow: 24,

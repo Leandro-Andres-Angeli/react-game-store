@@ -24,16 +24,24 @@ const GameModalCTA = () => {
 	};
 	const theme = useTheme();
 	return (
-		<CardActions sx={{ alignItems: 'flex-end', marginBottom: 7 }}>
+		<CardActions
+			sx={{
+				alignItems: { md: 'start', sx: 'start', md: 'end' },
+				marginBottom: { md: 7, sx: 'auto', sm: 'auto' },
+			}}
+		>
 			<Stack
 				direction="row"
-				sx={{ width: '100%' }}
+				sx={{ width: '100%', px: { md: 5 } }}
 				justifyContent="space-around"
 				divider={
 					<Divider
 						orientation="vertical"
 						flexItem
-						sx={{ background: '#f9f9f94f' }}
+						sx={{
+							background: '#f9f9f94f',
+							display: { xs: 'none', sm: 'block', md: 'block' },
+						}}
 					/>
 				}
 				spacing={2}
@@ -85,30 +93,30 @@ const GameModalCTA = () => {
 						<ArrowDropDownIcon></ArrowDropDownIcon>
 					</Box>
 				</Box>
-				<Button type="submit" variant="outlined" color="secondary" size="large">
-					{/* <Typography
-							paragraph
-							sx={{
-								display: { xs: 'none', sm: 'none', md: 'block' },
-							}}
-						> */}
-					add to cart
-					{/* </Typography> */}
+				<Button
+					type="submit"
+					variant="outlined"
+					color="secondary"
+					size="large"
+					sx={{
+						mt: { xs: 3, sm: 3, md: 'auto' },
+						mr: { sx: 'auto', sm: 'auto' },
+					}}
+				>
+					<Box sx={{ display: { xs: 'none', md: 'block', sm: 'block' } }}>
+						{' '}
+						add to cart
+					</Box>
 					<AddIcon
-					// sx={{
-					// 	display: { sm: 'block', md: 'none' },
-					// 	width: 50,
-					// 	height: 50,
-					// }}
+						sx={{
+							marginBottom: 0.5,
+						}}
 					/>
 				</Button>
 				<IconButton
 					aria-label="add to favorites"
 					onClick={toFavourite}
 					sx={{
-						// p: { sm: 2, md: 'auto' },
-						// border: '.5px solid  ',
-						// borderRadius: 1,
 						borderColor: !add ? [theme.palette.secondary.main] : 'white',
 						svg: {
 							color: !add ? [theme.palette.secondary.main] : 'white',
