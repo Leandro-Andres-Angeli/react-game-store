@@ -14,6 +14,7 @@ import SnackbarComponent from '../SnackbarComponent';
 const CallToActionCard = ({ game, modalState }) => {
 	const theme = useTheme();
 	const context = useContext(AppContext);
+
 	const [modal, setModal] = modalState;
 	const [add, setAdd] = useState(true);
 	const [anchorEl, setAnchorEl] = useState(null);

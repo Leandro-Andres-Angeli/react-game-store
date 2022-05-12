@@ -31,9 +31,7 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const closeModal = () => {
 		setModal(false);
 	};
-	useEffect(() => {
-		console.log(colRef);
-	}, [colRef]);
+	useEffect(() => {}, [colRef]);
 	return (
 		<Modal
 			aria-labelledby="modal-game"

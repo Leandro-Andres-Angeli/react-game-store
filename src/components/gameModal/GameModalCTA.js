@@ -19,9 +19,7 @@ import { useTheme } from '@mui/styles';
 
 const GameModalCTA = ({ gamePlatforms }) => {
 	const [add, setAdd] = useState(true);
-	const [defaultSelect, setDefaultSelect] = useState(
-		'----select-platform-----'
-	);
+
 	const toFavourite = () => {
 		setAdd(!add);
 	};
@@ -45,11 +43,12 @@ const GameModalCTA = ({ gamePlatforms }) => {
 				}}
 			>
 				<InputLabel
-					id="demo-simple-select-label"
+					id="select-label"
 					sx={{
 						color: theme.palette.secondary.main,
 						fontWeight: 'bolder',
 						textTransform: 'uppercase',
+						mb: 2,
 					}}
 				>
 					Select Platform

@@ -23,7 +23,7 @@ function App() {
 
 	const [page, setPage] = useState(1);
 
-	const [cart, dispatchCart] = useReducer(cartReducer, initialStateCart);
+	let [cart, dispatchCart] = useReducer(cartReducer, initialStateCart);
 	const [favourite, dispatchFavorite] = useReducer(
 		favouriteReducer,
 		initialStateFavourite

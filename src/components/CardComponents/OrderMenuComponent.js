@@ -13,22 +13,33 @@ import {
 } from '@mui/material';
 
 import { useTheme } from '@mui/styles';
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
 
 const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 	const context = useContext(AppContext);
-
+	const { cart } = context;
 	const theme = useTheme();
 	const handleAddProduct = (e) => {
 		e.preventDefault();
 
 		const { name, price, id } = game;
-		const payload = { name, price, id, platform: labelValue.current };
-		console.log(labelValue.current);
+
+		const payload = {
+			name,
+			price,
+			id,
+			platform: {
+				id: labelValue.current.id,
+				name: labelValue.current.platform,
+			},
+			quantity: 1,
+		};
+
 		context.dispatchCart({ type: ACTIONS.ADD, payload });
 	};
+
 	let labelValue = useRef(null);
 	return (
 		<Menu

@@ -10,7 +10,7 @@ const DrawerButtonToggler = ({ handleDrawerToggle }) => {
 				// position: 'fixed',
 				// inset: '30% 5px auto auto',
 				inset: '30% 99% auto',
-				zIndex: 10,
+				zIndex: 1201,
 			}}
 			variant="contained"
 			color="secondary"
