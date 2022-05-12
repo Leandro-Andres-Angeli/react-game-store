@@ -21,6 +21,10 @@ const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 	const context = useContext(AppContext);
 	const { cart } = context;
 	const theme = useTheme();
+	useEffect(() => {
+		localStorage.setItem('cart', JSON.stringify(cart));
+	}, [cart]);
+
 	const handleAddProduct = (e) => {
 		e.preventDefault();
 

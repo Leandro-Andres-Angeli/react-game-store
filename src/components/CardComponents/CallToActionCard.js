@@ -10,6 +10,7 @@ import { useTheme } from '@mui/styles';
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
 import SnackbarComponent from '../SnackbarComponent';
+import AddToFavoriteButton from '../shared/AddToFavoriteButton';
 
 const CallToActionCard = ({ game, modalState }) => {
 	const theme = useTheme();
@@ -30,19 +31,7 @@ const CallToActionCard = ({ game, modalState }) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
-	const toFavourite = () => {
-		add
-			? context.dispatchFavorite({
-					type: ACTIONS.ADD,
-					payload: { id: game.id, name: game.name },
-			  })
-			: context.dispatchFavorite({
-					type: ACTIONS.REMOVE,
-					payload: { id: game.id, name: game.name },
-			  });
-		add && setCloseSnackbar(true);
-		setAdd(!add);
-	};
+
 	return (
 		<>
 			<CardActions
@@ -72,7 +61,7 @@ const CallToActionCard = ({ game, modalState }) => {
 				>
 					<CardGiftcardIcon />
 				</IconButton>
-				<IconButton
+				{/* <IconButton
 					aria-label="add to favorites"
 					onClick={toFavourite}
 					sx={{
@@ -80,7 +69,12 @@ const CallToActionCard = ({ game, modalState }) => {
 					}}
 				>
 					<FavoriteIcon />
-				</IconButton>
+				</IconButton> */}
+				<AddToFavoriteButton
+					game={game}
+					addState={{ add, setAdd }}
+					setCloseSnackbar={setCloseSnackbar}
+				></AddToFavoriteButton>
 				<IconButton aria-label="share">
 					<ShareIcon />
 				</IconButton>
@@ -96,6 +90,7 @@ const CallToActionCard = ({ game, modalState }) => {
 				anchorEl={anchorEl}
 			></OrderMenuComponent>
 			<SnackbarComponent
+				add={add}
 				closeSnackbar={closeSnackbar}
 				setCloseSnackbar={setCloseSnackbar}
 			></SnackbarComponent>
