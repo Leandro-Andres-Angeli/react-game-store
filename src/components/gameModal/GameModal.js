@@ -44,7 +44,7 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 				timeout: 500,
 			}}
 		>
-			<Fade in={modal}>
+			<Fade in={!!modal}>
 				{/* //important wrap into a div otherwise will fail */}
 				<div>
 					<ModalCard

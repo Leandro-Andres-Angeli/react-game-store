@@ -44,9 +44,13 @@ const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 	return (
 		<Menu
 			sx={{
-				top: -50,
+				'.MuiPaper-root': {
+					color: [theme.palette.primary.main],
+					px: 3,
+					py: 2,
 
-				'.MuiPaper-root': { color: [theme.palette.primary.main], px: 3, py: 2 },
+					maxHeight: '70vh',
+				},
 				'.css-ato29r-MuiButtonBase-root-MuiRadio-root.Mui-checked': {
 					color: [theme.palette.secondary.main],
 				},
