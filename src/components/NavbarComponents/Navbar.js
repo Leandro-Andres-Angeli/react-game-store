@@ -11,6 +11,7 @@ import { AppContext } from '../../context/AppContext';
 import { Sling as Hamburger } from 'hamburger-react';
 import LgMenu from './LgMenu';
 import SmMenu from './SmMenu';
+import { calcTotalValues } from '../../utils/cartFunctions';
 
 const Navbar = () => {
 	const theme = useTheme();
@@ -60,7 +61,7 @@ const Navbar = () => {
 					</Typography>
 					<LgMenu navbarRoutes={navbarRoutes}></LgMenu>
 					<Button sx={{ marginLeft: 'auto' }}>
-						<Badge badgeContent={cart?.total} color="secondary">
+						<Badge badgeContent={calcTotalValues(cart)} color="secondary">
 							<CardGiftcardIcon></CardGiftcardIcon>
 						</Badge>
 					</Button>

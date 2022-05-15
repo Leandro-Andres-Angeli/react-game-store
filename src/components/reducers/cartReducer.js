@@ -1,12 +1,16 @@
-import { calcTotalValues, checkIfExistsFunc } from '../../utils/cartFunctions';
+import {
+	calcTotalPrice,
+	calcTotalValues,
+	checkIfExistsFunc,
+} from '../../utils/cartFunctions';
 import { ACTIONS } from './actions';
 
 export const cartReducer = (state, action) => {
+	// const calcTotalQty = calcTotalValues(state);
+	// const totalPrice = calcTotalPrice(state);
 	switch (action.type) {
 		case ACTIONS.ADD:
 			const checkIfExists = checkIfExistsFunc(state, action.payload);
-
-			const calcTotalQty = calcTotalValues(state);
 
 			const addToCartFunction = () => {
 				if (checkIfExists) {
@@ -28,8 +32,10 @@ export const cartReducer = (state, action) => {
 					};
 				}
 			};
-			state.total = calcTotalQty;
+
 			return addToCartFunction();
+		// (state.total = calcTotalQty),
+		// (state.total_amount = totalPrice),
 
 		default:
 			console.log('def');
