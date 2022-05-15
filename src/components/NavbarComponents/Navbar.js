@@ -3,20 +3,20 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/system';
-import { Badge, Box, Button, IconButton } from '@mui/material';
+import { Badge, Box, Button, IconButton, Menu, MenuItem } from '@mui/material';
 import { routes } from '../../utils/routes';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import { AppContext } from '../../context/AppContext';
 import { Sling as Hamburger } from 'hamburger-react';
 import LgMenu from './LgMenu';
 import SmMenu from './SmMenu';
 import { calcTotalValues } from '../../utils/cartFunctions';
-import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
+import FavoriteButtonNavbar from './FavoriteButtonNavbar';
 
 const Navbar = () => {
 	const theme = useTheme();
-	const { cart, favorite } = useContext(AppContext);
+	const { cart } = useContext(AppContext);
 
 	const navbarRoutes = routes;
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -28,6 +28,7 @@ const Navbar = () => {
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
 	};
+
 	useEffect(() => {
 		console.log(cart);
 	}, [cart]);
@@ -66,11 +67,8 @@ const Navbar = () => {
 							<CardGiftcardIcon></CardGiftcardIcon>
 						</Badge>
 					</Button>
-					<Button>
-						<Badge badgeContent={favorite?.length} color="secondary">
-							<FavoriteIcon></FavoriteIcon>
-						</Badge>
-					</Button>
+					<FavoriteButtonNavbar></FavoriteButtonNavbar>
+
 					<IconButton
 						sx={{
 							color: 'white',
