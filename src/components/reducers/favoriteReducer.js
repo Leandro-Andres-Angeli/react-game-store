@@ -1,12 +1,12 @@
 import { ACTIONS } from './actions';
 
-export const favouriteReducer = (favourite, action) => {
+export const favoriteReducer = (favorite, action) => {
 	switch (action.type) {
 		case ACTIONS.ADD:
-			return [...favourite, action.payload];
+			return [...favorite, action.payload];
 
 		case ACTIONS.REMOVE:
-			const filteredArray = favourite.filter(
+			const filteredArray = favorite.filter(
 				(game) => game.id !== action.payload.id
 			);
 			return filteredArray;
@@ -15,5 +15,5 @@ export const favouriteReducer = (favourite, action) => {
 			console.log('default');
 	}
 
-	return favouriteReducer;
+	return favoriteReducer;
 };

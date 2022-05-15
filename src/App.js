@@ -12,8 +12,8 @@ import { useReducer } from 'react';
 import CategoriesContainerComponent from './components/CategoriesContainerComponent';
 import initialStateCart from './components/reducers/initialStateCart';
 import { cartReducer } from './components/reducers/cartReducer';
-import { favouriteReducer } from './components/reducers/favouriteReducer';
-import initialStateFavourite from './components/reducers/initialStateFavourite';
+import { favoriteReducer } from './components/reducers/favoriteReducer';
+import initialStateFavorite from './components/reducers/initialStateFavorite';
 
 function App() {
 	const routesComponents = routes;
@@ -24,9 +24,9 @@ function App() {
 	const [page, setPage] = useState(1);
 
 	let [cart, dispatchCart] = useReducer(cartReducer, initialStateCart);
-	const [favourite, dispatchFavorite] = useReducer(
-		favouriteReducer,
-		initialStateFavourite
+	const [favorite, dispatchFavorite] = useReducer(
+		favoriteReducer,
+		initialStateFavorite
 	);
 	return (
 		<AppContext.Provider
@@ -36,7 +36,7 @@ function App() {
 				setPage,
 				cart,
 				dispatchCart,
-				favourite,
+				favorite,
 				dispatchFavorite,
 			}}
 		>

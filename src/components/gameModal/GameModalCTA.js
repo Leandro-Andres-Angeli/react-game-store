@@ -20,7 +20,7 @@ import { useTheme } from '@mui/styles';
 const GameModalCTA = ({ gamePlatforms }) => {
 	const [add, setAdd] = useState(true);
 
-	const toFavourite = () => {
+	const toFavorite = () => {
 		setAdd(!add);
 	};
 	const theme = useTheme();
@@ -175,7 +175,7 @@ const GameModalCTA = ({ gamePlatforms }) => {
 				</Button>
 				<IconButton
 					aria-label="add to favorites"
-					onClick={toFavourite}
+					onClick={toFavorite}
 					sx={{
 						borderColor: !add ? [theme.palette.secondary.main] : 'white',
 						svg: {

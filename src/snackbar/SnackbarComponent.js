@@ -20,7 +20,7 @@ const SnackbarComponent = ({
 			anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
 			open={closeSnackbar}
 			onClose={setCloseSnackbar}
-			autoHideDuration={4000}
+			autoHideDuration={2000}
 			message={!add ? `added to  ${msg}` : `removed from ${msg}`}
 			sx={{
 				textTransform: 'uppercase',

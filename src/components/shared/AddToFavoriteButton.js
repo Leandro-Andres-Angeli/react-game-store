@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from '@mui/material';
 import { useTheme } from '@mui/styles';
@@ -9,7 +9,7 @@ const AddToFavoriteButton = ({ game, setCloseSnackbar, addState }) => {
 	const context = useContext(AppContext);
 	const { add, setAdd } = addState;
 
-	const toFavourite = () => {
+	const toFavorite = () => {
 		console.log(add);
 		add
 			? context.dispatchFavorite({
@@ -24,10 +24,13 @@ const AddToFavoriteButton = ({ game, setCloseSnackbar, addState }) => {
 		setCloseSnackbar(true);
 		setAdd(!add);
 	};
+	useEffect(() => {
+		localStorage.setItem('favorite', JSON.stringify(context.favorite));
+	}, [context.favorite]);
 	return (
 		<IconButton
 			aria-label="add to favorites"
-			onClick={toFavourite}
+			onClick={toFavorite}
 			sx={{
 				svg: { color: !add && [theme.palette.secondary.main] },
 			}}

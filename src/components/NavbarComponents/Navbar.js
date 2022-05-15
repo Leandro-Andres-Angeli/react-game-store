@@ -16,7 +16,7 @@ import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
 
 const Navbar = () => {
 	const theme = useTheme();
-	const { cart, favourite } = useContext(AppContext);
+	const { cart, favorite } = useContext(AppContext);
 
 	const navbarRoutes = routes;
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -67,7 +67,7 @@ const Navbar = () => {
 						</Badge>
 					</Button>
 					<Button>
-						<Badge badgeContent={favourite?.length} color="secondary">
+						<Badge badgeContent={favorite?.length} color="secondary">
 							<FavoriteIcon></FavoriteIcon>
 						</Badge>
 					</Button>
