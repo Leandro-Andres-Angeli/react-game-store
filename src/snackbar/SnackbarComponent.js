@@ -1,11 +1,5 @@
 import { Snackbar } from '@mui/material';
 import React from 'react';
-import FavoriteSnackAction from './FavoriteSnackAction';
-const test = (
-	<>
-		<button>close</button>
-	</>
-);
 
 const SnackbarComponent = ({
 	closeSnackbar,
@@ -13,16 +7,18 @@ const SnackbarComponent = ({
 	add,
 	snackAction,
 	msg,
+	positionY,
 }) => {
 	return (
 		<Snackbar
 			color="primary"
-			anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+			anchorOrigin={{ vertical: `${positionY}`, horizontal: 'center' }}
 			open={closeSnackbar}
 			onClose={setCloseSnackbar}
 			autoHideDuration={2000}
 			message={!add ? `added to  ${msg}` : `removed from ${msg}`}
 			sx={{
+				zIndex: 1400,
 				textTransform: 'uppercase',
 				'.MuiPaper-root': { color: 'white', backgroundColor: '#000000a6' },
 			}}

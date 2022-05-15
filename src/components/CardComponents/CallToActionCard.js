@@ -86,6 +86,7 @@ const CallToActionCard = ({ game, modalState }) => {
 				add={add}
 				closeSnackbar={closeSnackbar}
 				setCloseSnackbar={setCloseSnackbar}
+				positionY={'top'}
 				snackAction={
 					<FavoriteSnackAction
 						setCloseSnackbar={setCloseSnackbar}

@@ -3,8 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import parse from 'html-react-parser';
 import {
 	Backdrop,
-	Box,
-	Card,
 	CardContent,
 	CardMedia,
 	Fade,
@@ -19,6 +17,7 @@ import GameSlider from './GameSlider';
 import GameModalCTA from './GameModalCTA';
 import ModalCard from './ModalCard';
 import CloseIcon from '@mui/icons-material/Close';
+
 const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games/${gameID}?key=${process.env.REACT_APP_API_KEY}`;
 	const gameData = useFetch(URI)[0];
@@ -99,7 +98,7 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 										sx={{
 											fontSize: 30,
 											textTransform: 'uppercase',
-											mt: { xs: 6, md: 3, md: 'none' },
+											mt: { xs: 6, md: 'none' },
 										}}
 									>
 										{gameData?.name}
@@ -119,7 +118,10 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 									>
 										{parse(`${gameData?.description}`)}
 									</Typography>
-									<GameModalCTA gamePlatforms={gamePlatforms}></GameModalCTA>
+									<GameModalCTA
+										gamePlatforms={gamePlatforms}
+										game={gameData}
+									></GameModalCTA>
 								</CardContent>
 							</Grid>
 						</Grid>
