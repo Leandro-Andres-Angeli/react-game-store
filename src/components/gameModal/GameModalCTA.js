@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -23,6 +23,7 @@ import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
 const GameModalCTA = ({ gamePlatforms, game }) => {
 	const [add, setAdd] = useState(true);
 	const [closeSnackbar, setCloseSnackbar] = useState(false);
+	let qtyRef = useRef(1);
 	// const toFavorite = () => {
 	// 	setAdd(!add);
 	// };
@@ -61,6 +62,7 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 						labelId="select-platform-label"
 						id="select-platform-select"
 						label="Platform"
+						name="platforms-selection"
 						defaultValue={0}
 						onChange={(e) => {
 							console.log(e.target.value);
@@ -111,6 +113,10 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 						}}
 					>
 						<TextField
+							name="quantity-field"
+							value={1}
+							ref={qtyRef}
+							min={1}
 							sx={{
 								button: {
 									borderRadius: 0,
@@ -142,7 +148,11 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 							component={'button'}
 							sx={{ border: '1px solid white', position: 'absolute', right: 0 }}
 						>
-							<ArrowDropUpIcon></ArrowDropUpIcon>
+							<ArrowDropUpIcon
+								onClick={() => {
+									qtyRef.current.childNodes[0].childNodes[0].value++;
+								}}
+							></ArrowDropUpIcon>
 						</Box>
 						<Box
 							component={'button'}
@@ -153,7 +163,13 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 								bottom: 0,
 							}}
 						>
-							<ArrowDropDownIcon></ArrowDropDownIcon>
+							<ArrowDropDownIcon
+								onClick={() => {
+									return qtyRef.current.childNodes[0].childNodes[0].value > 1
+										? qtyRef.current.childNodes[0].childNodes[0].value--
+										: 0;
+								}}
+							></ArrowDropDownIcon>
 						</Box>
 					</Box>
 					<Button
