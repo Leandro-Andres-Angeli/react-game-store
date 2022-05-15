@@ -12,6 +12,7 @@ import { Sling as Hamburger } from 'hamburger-react';
 import LgMenu from './LgMenu';
 import SmMenu from './SmMenu';
 import { calcTotalValues } from '../../utils/cartFunctions';
+import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
 
 const Navbar = () => {
 	const theme = useTheme();

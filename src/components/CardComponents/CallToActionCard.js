@@ -9,8 +9,9 @@ import OrderMenuComponent from './OrderMenuComponent';
 import { useTheme } from '@mui/styles';
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
-import SnackbarComponent from '../SnackbarComponent';
+import SnackbarComponent from '../../snackbar/SnackbarComponent';
 import AddToFavoriteButton from '../shared/AddToFavoriteButton';
+import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
 
 const CallToActionCard = ({ game, modalState }) => {
 	const theme = useTheme();
@@ -61,15 +62,7 @@ const CallToActionCard = ({ game, modalState }) => {
 				>
 					<CardGiftcardIcon />
 				</IconButton>
-				{/* <IconButton
-					aria-label="add to favorites"
-					onClick={toFavourite}
-					sx={{
-						svg: { color: !add && [theme.palette.secondary.main] },
-					}}
-				>
-					<FavoriteIcon />
-				</IconButton> */}
+
 				<AddToFavoriteButton
 					game={game}
 					addState={{ add, setAdd }}
@@ -93,6 +86,12 @@ const CallToActionCard = ({ game, modalState }) => {
 				add={add}
 				closeSnackbar={closeSnackbar}
 				setCloseSnackbar={setCloseSnackbar}
+				snackAction={
+					<FavoriteSnackAction
+						setCloseSnackbar={setCloseSnackbar}
+					></FavoriteSnackAction>
+				}
+				msg={'favorites'}
 			></SnackbarComponent>
 		</>
 	);
