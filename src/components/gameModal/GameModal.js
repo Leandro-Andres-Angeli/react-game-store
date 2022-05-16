@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import parse from 'html-react-parser';
 import {
@@ -11,7 +11,7 @@ import {
 	Grid,
 	IconButton,
 } from '@mui/material';
-import { useTheme } from '@mui/styles';
+
 import { useFetch } from '../../customHooks/useFetch';
 import GameSlider from './GameSlider';
 import GameModalCTA from './GameModalCTA';
@@ -23,7 +23,6 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const gameData = useFetch(URI)[0];
 	const colRef = useRef();
 
-	const theme = useTheme();
 	const price = 99.99;
 
 	const [modal, setModal] = modalState;

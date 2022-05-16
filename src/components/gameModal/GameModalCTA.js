@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
@@ -31,8 +31,6 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 
 	let qtyRef = useRef({ current: 1 });
 	useEffect(() => {
-		console.log(failAddedToCart);
-		console.log(context.cart);
 		localStorage.setItem('cart', JSON.stringify(context.cart));
 	}, [context.cart]);
 

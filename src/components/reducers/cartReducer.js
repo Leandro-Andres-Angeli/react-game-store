@@ -1,8 +1,4 @@
-import {
-	calcTotalPrice,
-	calcTotalValues,
-	checkIfExistsFunc,
-} from '../../utils/cartFunctions';
+import { checkIfExistsFunc } from '../../utils/cartFunctions';
 import { ACTIONS } from './actions';
 
 export const cartReducer = (state, action) => {
