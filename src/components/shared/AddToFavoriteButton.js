@@ -46,7 +46,6 @@ const AddToFavoriteButton = ({ game, setCloseSnackbar, addState }) => {
 			}}
 		>
 			<FavoriteIcon />
-			{JSON.stringify(existsInFav)}
 		</IconButton>
 	);
 };

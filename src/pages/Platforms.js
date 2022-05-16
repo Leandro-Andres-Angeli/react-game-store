@@ -61,6 +61,7 @@ const Platforms = () => {
 							width: { md: `calc(100% - ${drawerWidth}px)` },
 							ml: { md: `${drawerWidth}px` },
 							boxShadow: 'none',
+							zIndex: 1099,
 						}}
 					>
 						<BreadcrumbsComponent
