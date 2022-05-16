@@ -10,7 +10,8 @@ export const favoriteReducer = (favorite, action) => {
 				(game) => game.id !== action.payload.id
 			);
 			return filteredArray;
-
+		case ACTIONS.RESET:
+			return [];
 		default:
 			console.log('default');
 	}

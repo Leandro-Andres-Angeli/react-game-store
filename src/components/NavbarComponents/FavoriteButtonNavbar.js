@@ -1,20 +1,12 @@
-import {
-	Badge,
-	Box,
-	Button,
-	Divider,
-	Icon,
-	List,
-	ListItem,
-	Menu,
-	Typography,
-} from '@mui/material';
+import { Badge, Box, Button, List, ListItem, Menu } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import RemoveIcon from '@mui/icons-material/Remove';
+
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { grey, red } from '@mui/material/colors';
-import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+import FavoriteButtonNavbarItem from './FavoriteButtonNavbarItem';
+import { ACTIONS } from '../reducers/actions';
+
 const FavoriteButtonNavbar = () => {
 	const context = useContext(AppContext);
 
@@ -39,94 +31,63 @@ const FavoriteButtonNavbar = () => {
 					<FavoriteIcon></FavoriteIcon>
 				</Badge>
 			</Button>
-
-			<Menu
-				id="demo-positioned-menu"
-				aria-labelledby="demo-positioned-button"
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-				PaperProps={{
-					sx: {
-						overflowY: 'visible',
-						overflowX: 'visible',
-						// '.MuiPaper-root ': { overflow: ' visible' },
-						color: grey[700],
-						'&::before': {
-							content: '""',
-							display: 'block',
-							position: 'absolute',
-							top: 0,
-							right: 14,
-							width: 10,
-							height: 10,
-							bgcolor: 'background.paper',
-							transform: 'translateY(-50%) rotate(45deg)',
-							zIndex: 0,
+			{context.favorite.length > 0 && (
+				<Menu
+					id="demo-positioned-menu"
+					aria-labelledby="demo-positioned-button"
+					anchorEl={anchorEl}
+					open={open}
+					onClose={handleClose}
+					transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+					anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+					PaperProps={{
+						sx: {
+							overflowY: 'visible',
+							overflowX: 'visible',
+							// '.MuiPaper-root ': { overflow: ' visible' },
+							color: grey[700],
+							'&::before': {
+								content: '""',
+								display: 'block',
+								position: 'absolute',
+								top: 0,
+								right: 14,
+								width: 10,
+								height: 10,
+								bgcolor: 'background.paper',
+								transform: 'translateY(-50%) rotate(45deg)',
+								zIndex: 0,
+							},
 						},
-					},
-				}}
-			>
-				<List sx={{ maxHeight: '60vh', overflow: ' scroll' }}>
-					{context.favorite?.map((item, i) => {
-						return (
-							<>
-								<ListItem key={i}>
-									<Icon>
-										<VideogameAssetIcon />
-									</Icon>{' '}
-									<Typography
-										paragraph
-										sx={{
-											mb: 0,
-											ml: 2,
-											fontWeight: 'bolder',
-											width: 'calc(100% - 9rem)',
-											textOverflow: ' ellipsis',
-											overflow: ' hidden',
-											whiteSpace: 'nowrap',
-										}}
-									>
-										{item.name}
-									</Typography>
-									<Button
-										variant="outlined"
-										size="small"
-										sx={{
-											marginLeft: 'auto',
-											bgcolor: red[900],
-											color: 'white',
-											border: 'none',
-											'&:hover': {
-												bgcolor: red[400],
-												color: 'white',
-												border: 'none',
-											},
-										}}
-									>
-										<RemoveIcon />
-									</Button>
-								</ListItem>
-								<Divider />
-							</>
-						);
-					})}
-					<ListItem>
-						<Button
-							variant="contained"
-							sx={{
-								marginLeft: 'auto',
-								bgcolor: red[900],
-								'&:hover': { bgcolor: red[400] },
-							}}
-						>
-							Reset
-						</Button>
-					</ListItem>
-				</List>
-			</Menu>
+					}}
+				>
+					<List sx={{ maxHeight: '60vh', overflow: ' scroll' }}>
+						{context.favorite?.map((item) => {
+							return (
+								<FavoriteButtonNavbarItem
+									item={item}
+									key={item.id}
+								></FavoriteButtonNavbarItem>
+							);
+						})}
+						<ListItem>
+							<Button
+								variant="contained"
+								sx={{
+									marginLeft: 'auto',
+									bgcolor: red[900],
+									'&:hover': { bgcolor: red[400] },
+								}}
+								onClick={() => {
+									context.dispatchFavorite({ type: ACTIONS.RESET });
+								}}
+							>
+								Reset
+							</Button>
+						</ListItem>
+					</List>
+				</Menu>
+			)}
 		</Box>
 	);
 };

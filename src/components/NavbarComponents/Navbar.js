@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/system';
-import { Badge, Box, Button, IconButton, Menu, MenuItem } from '@mui/material';
+import { Badge, Box, Button, IconButton } from '@mui/material';
 import { routes } from '../../utils/routes';
 
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';

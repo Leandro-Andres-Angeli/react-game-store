@@ -1,16 +1,18 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from '@mui/material';
 import { useTheme } from '@mui/styles';
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
+import { checkIfExistsInFavoriteFunc } from '../../utils/checkIfExistsInFavorites';
 const AddToFavoriteButton = ({ game, setCloseSnackbar, addState }) => {
+	const checkInFavs = checkIfExistsInFavoriteFunc;
 	const theme = useTheme();
 	const context = useContext(AppContext);
 	const { add, setAdd } = addState;
+	const [existsInFav, setExistsInFav] = useState();
 
 	const toFavorite = () => {
-		console.log(add);
 		add
 			? context.dispatchFavorite({
 					type: ACTIONS.ADD,
@@ -22,20 +24,29 @@ const AddToFavoriteButton = ({ game, setCloseSnackbar, addState }) => {
 			  });
 
 		setCloseSnackbar(true);
+
 		setAdd(!add);
 	};
+
 	useEffect(() => {
 		localStorage.setItem('favorite', JSON.stringify(context.favorite));
-	}, [context.favorite]);
+
+		setExistsInFav(checkInFavs(context.favorite, game.id));
+
+		console.log('test');
+	}, [checkInFavs, context.favorite, game.id]);
 	return (
 		<IconButton
 			aria-label="add to favorites"
-			onClick={toFavorite}
+			onClick={() => {
+				toFavorite();
+			}}
 			sx={{
-				svg: { color: !add ? [theme.palette.secondary.main] : 'white' },
+				svg: { color: existsInFav ? [theme.palette.secondary.main] : 'white' },
 			}}
 		>
 			<FavoriteIcon />
+			{JSON.stringify(existsInFav)}
 		</IconButton>
 	);
 };

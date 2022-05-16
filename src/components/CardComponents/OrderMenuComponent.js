@@ -48,7 +48,7 @@ const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 		context.dispatchCart({ type: ACTIONS.ADD, payload });
 		setCloseSnackbar(true);
 	};
-	console.log(closeSnackbar);
+	// console.log(closeSnackbar);
 	let labelValue = useRef(null);
 	return (
 		<>
