@@ -17,7 +17,7 @@ import { grey, red } from '@mui/material/colors';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 const FavoriteButtonNavbar = () => {
 	const context = useContext(AppContext);
-	console.log(context.favorite);
+
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = !!anchorEl;
 	const handleClose = () => {
@@ -70,10 +70,10 @@ const FavoriteButtonNavbar = () => {
 				}}
 			>
 				<List sx={{ maxHeight: '60vh', overflow: ' scroll' }}>
-					{context.favorite?.map((item) => {
+					{context.favorite?.map((item, i) => {
 						return (
 							<>
-								<ListItem>
+								<ListItem key={i}>
 									<Icon>
 										<VideogameAssetIcon />
 									</Icon>{' '}

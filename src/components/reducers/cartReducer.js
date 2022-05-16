@@ -17,7 +17,7 @@ export const cartReducer = (state, action) => {
 					let updateQty = state.items.map((item) =>
 						parseInt(item.id) === parseInt(action.payload.id) &&
 						parseInt(item.platform.id) === parseInt(action.payload.platform.id)
-							? { ...item, quantity: item.quantity + 1 }
+							? { ...item, quantity: item.quantity + action.payload.quantity }
 							: item
 					);
 					return {

@@ -20,7 +20,6 @@ import { AppContext } from '../../context/AppContext';
 import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
 import SnackbarComponent from '../../snackbar/SnackbarComponent';
 import { ACTIONS } from '../reducers/actions';
-import { Close } from '@mui/icons-material';
 
 const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 	const context = useContext(AppContext);
