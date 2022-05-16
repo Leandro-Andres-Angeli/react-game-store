@@ -155,8 +155,9 @@ const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 			</Menu>
 
 			<SnackbarComponent
-				msg={'cart'}
+				msg={' added to cart'}
 				add={false}
+				positionY={'top'}
 				closeSnackbar={closeSnackbar}
 				setCloseSnackbar={setCloseSnackbar}
 				snackAction={

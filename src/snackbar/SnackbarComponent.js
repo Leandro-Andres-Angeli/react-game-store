@@ -16,7 +16,7 @@ const SnackbarComponent = ({
 			open={closeSnackbar}
 			onClose={setCloseSnackbar}
 			autoHideDuration={2000}
-			message={!add ? `added to  ${msg}` : `removed from ${msg}`}
+			message={msg}
 			sx={{
 				zIndex: 1400,
 				textTransform: 'uppercase',

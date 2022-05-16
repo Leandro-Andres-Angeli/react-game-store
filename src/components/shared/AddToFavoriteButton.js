@@ -32,7 +32,7 @@ const AddToFavoriteButton = ({ game, setCloseSnackbar, addState }) => {
 			aria-label="add to favorites"
 			onClick={toFavorite}
 			sx={{
-				svg: { color: !add && [theme.palette.secondary.main] },
+				svg: { color: !add ? [theme.palette.secondary.main] : 'white' },
 			}}
 		>
 			<FavoriteIcon />

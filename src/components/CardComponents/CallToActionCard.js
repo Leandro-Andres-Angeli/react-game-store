@@ -92,7 +92,7 @@ const CallToActionCard = ({ game, modalState }) => {
 						setCloseSnackbar={setCloseSnackbar}
 					></FavoriteSnackAction>
 				}
-				msg={'favorites'}
+				msg={!add ? ' added to favorites' : 'removed from favorites'}
 			></SnackbarComponent>
 		</>
 	);

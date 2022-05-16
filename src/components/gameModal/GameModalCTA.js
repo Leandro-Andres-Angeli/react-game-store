@@ -24,10 +24,14 @@ import { ACTIONS } from '../reducers/actions';
 const GameModalCTA = ({ gamePlatforms, game }) => {
 	const [add, setAdd] = useState(true);
 	const [closeSnackbar, setCloseSnackbar] = useState(false);
+	const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
+	const [failAddedToCart, setFailAddedtoCart] = useState(false);
+
 	const context = useContext(AppContext);
 
 	let qtyRef = useRef({ current: 1 });
 	useEffect(() => {
+		console.log(failAddedToCart);
 		console.log(context.cart);
 		localStorage.setItem('cart', JSON.stringify(context.cart));
 	}, [context.cart]);
@@ -38,17 +42,21 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 
 		let [idPlatform, namePlatform] =
 			e.target.platformsSelection.value.split(',');
-
+		idPlatform = parseInt(idPlatform);
 		const payload = {
 			id: game.id,
 			name: game.name,
 
 			quantity: parseInt(qtyRef.current.children[0].childNodes[0].value),
-			platform: { id: parseInt(idPlatform), name: namePlatform },
+			platform: { id: idPlatform, name: namePlatform },
 		};
-		console.log(payload);
-		context.dispatchCart({ type: ACTIONS.ADD, payload: payload });
-		e.target.quantityField.value = 1;
+		console.log(idPlatform);
+		if (idPlatform !== 0) {
+			context.dispatchCart({ type: ACTIONS.ADD, payload: payload });
+			setFailAddedtoCart(true);
+		}
+
+		setToggleSnackbarCart(true);
 	};
 
 	return (
@@ -230,11 +238,28 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 				</CardActions>
 			</form>
 			<SnackbarComponent
+				add={failAddedToCart}
+				closeSnackbar={toggleSnackbarCart}
+				setCloseSnackbar={setToggleSnackbarCart}
+				positionY={'bottom'}
+				msg={failAddedToCart ? 'added to cart' : 'required platform selection'}
+				snackAction={
+					<>
+						<Button variant="outlined" color="secondary" size="small">
+							go to checkout
+						</Button>
+						<FavoriteSnackAction
+							setCloseSnackbar={setToggleSnackbarCart}
+						></FavoriteSnackAction>
+					</>
+				}
+			></SnackbarComponent>
+			<SnackbarComponent
 				add={add}
 				closeSnackbar={closeSnackbar}
 				setCloseSnackbar={setCloseSnackbar}
 				positionY={'bottom'}
-				msg={`Favorites`}
+				msg={!add ? ' added to favorites' : 'removed from favorites'}
 				snackAction={
 					<FavoriteSnackAction
 						setCloseSnackbar={setCloseSnackbar}
