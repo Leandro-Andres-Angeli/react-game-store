@@ -32,8 +32,6 @@ const AddToFavoriteButton = ({ game, setCloseSnackbar, addState }) => {
 		localStorage.setItem('favorite', JSON.stringify(context.favorite));
 
 		setExistsInFav(checkInFavs(context.favorite, game.id));
-
-		console.log('test');
 	}, [checkInFavs, context.favorite, game.id]);
 	return (
 		<IconButton

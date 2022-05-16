@@ -20,6 +20,7 @@ import SnackbarComponent from '../../snackbar/SnackbarComponent';
 import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
+import CheckoutLink from '../../snackbar/CheckoutLink';
 
 const GameModalCTA = ({ gamePlatforms, game }) => {
 	const [add, setAdd] = useState(true);
@@ -243,9 +244,8 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 				msg={failAddedToCart ? 'added to cart' : 'required platform selection'}
 				snackAction={
 					<>
-						<Button variant="outlined" color="secondary" size="small">
-							go to checkout
-						</Button>
+						{failAddedToCart && <CheckoutLink></CheckoutLink>}
+
 						<FavoriteSnackAction
 							setCloseSnackbar={setToggleSnackbarCart}
 						></FavoriteSnackAction>
