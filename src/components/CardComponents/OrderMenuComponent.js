@@ -15,7 +15,8 @@ import {
 import { useTheme } from '@mui/styles';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
-import CheckoutLink from '../../snackbar/CheckoutLink';
+import CheckoutButton from '../../snackbar/CheckoutButton';
+import CheckoutLink from '../shared/CheckoutLink';
 import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
 import SnackbarComponent from '../../snackbar/SnackbarComponent';
 import { ACTIONS } from '../reducers/actions';
@@ -161,7 +162,10 @@ const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 				setCloseSnackbar={setCloseSnackbar}
 				snackAction={
 					<>
-						<CheckoutLink></CheckoutLink>
+						<CheckoutLink>
+							{' '}
+							<CheckoutButton></CheckoutButton>
+						</CheckoutLink>
 						<FavoriteSnackAction
 							setCloseSnackbar={setCloseSnackbar}
 						></FavoriteSnackAction>

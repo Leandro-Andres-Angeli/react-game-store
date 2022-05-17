@@ -1,4 +1,5 @@
 import About from '../pages/About';
+import CheckoutStepper from '../pages/CheckoutStepper';
 import Contact from '../pages/Contact';
 import Genres from '../pages/Genres';
 import Home from '../pages/Home';
@@ -13,6 +14,7 @@ export const routes = [
 	{ name: 'platforms', component: <Platforms /> },
 	{ name: 'about', component: <About /> },
 	{ name: 'contact', component: <Contact /> },
+	{ name: 'checkout', component: <CheckoutStepper /> },
 
 	{ name: 'notfound', component: <NotFound /> },
 ];

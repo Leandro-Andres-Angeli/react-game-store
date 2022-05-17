@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import React from 'react';
 
-const CheckoutLink = () => {
+const CheckoutButton = () => {
 	return (
 		<Button variant="outlined" color="secondary" size="small">
 			go to checkout
@@ -9,4 +9,4 @@ const CheckoutLink = () => {
 	);
 };
 
-export default CheckoutLink;
+export default CheckoutButton;

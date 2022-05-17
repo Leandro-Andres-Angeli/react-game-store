@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-
+import { Link } from 'react-router-dom';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
+import CheckoutLink from '../shared/CheckoutLink';
 import {
 	Button,
 	CardActions,
@@ -20,7 +21,7 @@ import SnackbarComponent from '../../snackbar/SnackbarComponent';
 import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
-import CheckoutLink from '../../snackbar/CheckoutLink';
+import CheckoutButton from '../../snackbar/CheckoutButton';
 
 const GameModalCTA = ({ gamePlatforms, game }) => {
 	const [add, setAdd] = useState(true);
@@ -244,7 +245,12 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 				msg={failAddedToCart ? 'added to cart' : 'required platform selection'}
 				snackAction={
 					<>
-						{failAddedToCart && <CheckoutLink></CheckoutLink>}
+						{failAddedToCart && (
+							<CheckoutLink>
+								{' '}
+								<CheckoutButton></CheckoutButton>
+							</CheckoutLink>
+						)}
 
 						<FavoriteSnackAction
 							setCloseSnackbar={setToggleSnackbarCart}
