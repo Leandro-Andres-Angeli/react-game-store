@@ -1,5 +1,5 @@
 import About from '../pages/About';
-import CheckoutStepper from '../pages/CheckoutStepper';
+import CheckoutStepper from '../pages/Checkout';
 import Contact from '../pages/Contact';
 import Genres from '../pages/Genres';
 import Home from '../pages/Home';
