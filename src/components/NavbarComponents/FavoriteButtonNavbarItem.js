@@ -20,10 +20,12 @@ const FavoriteButtonNavbarItem = ({ item }) => {
 						mb: 0,
 						ml: 2,
 						fontWeight: 'bolder',
-						width: 'calc(100% - 9rem)',
+
 						textOverflow: ' ellipsis',
 						overflow: ' hidden',
 						whiteSpace: 'nowrap',
+						width: 'fitContent',
+						margin: 'auto 1rem',
 					}}
 				>
 					{item.name}

@@ -1,22 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useState, useReducer } from 'react';
 
 import Container from '@mui/material/Container';
 
-import { Box, Button, CssBaseline, Stack, StepButton } from '@mui/material';
+import { Box } from '@mui/material';
 // import { ThemeProvider } from '@mui/styles'; => wrong import
 import { ThemeProvider } from '@mui/material/styles';
 import { useTheme } from '@mui/styles';
-import { grey, red } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 // import { createTheme } from '@mui/system';=>wrong import
 import { createTheme } from '@mui/material/styles';
 import CheckoutStepper from '../components/checkoutComponents/CheckoutStepper';
 import CheckoutButtons from '../components/checkoutComponents/CheckoutButtons';
 import { AppContext } from '../context/AppContext';
 import CheckOutCart from '../components/checkoutComponents/CheckOutCart';
-const steps = ['checkout', 'order details', 'confirm order'];
+import CartContext from '../context/CartContext';
+import { orderReducer } from '../components/reducers/orderReducer';
+const steps = ['checkout', 'payment method', 'confirm order'];
 const Checkout = () => {
 	const [activeStep, setActiveStep] = useState(0);
-	const [completed, setCompleted] = React.useState({});
+	const [completed, setCompleted] = useState({});
 	const theme = useTheme();
 	const handleStep = (num) => {
 		// setActiveStep(activeStep + 1);
@@ -38,26 +40,30 @@ const Checkout = () => {
 			},
 		},
 	});
-
+	const [order, dispatchOrder] = useReducer(orderReducer, {});
 	return (
-		<Container maxWidth="lg">
-			<ThemeProvider theme={stepperStyles}>
-				<CheckoutStepper
-					completed={completed}
-					activeStep={activeStep}
-					steps={steps}
-				></CheckoutStepper>
-			</ThemeProvider>
-			<Box>
-				{activeStep !== steps.length ? (
-					<Container maxWidth="lg">current step {activeStep}</Container>
-				) : (
-					<Container maxWidth="lg">current step {activeStep} final</Container>
-				)}
-				<CheckOutCart></CheckOutCart>
-			</Box>
-			<CheckoutButtons {...{ handleStep, activeStep, steps }}></CheckoutButtons>
-		</Container>
+		<CartContext.Provider value={{ order, dispatchOrder }}>
+			<Container maxWidth="lg">
+				<ThemeProvider theme={stepperStyles}>
+					<CheckoutStepper
+						completed={completed}
+						activeStep={activeStep}
+						steps={steps}
+					></CheckoutStepper>
+				</ThemeProvider>
+				<Box>
+					{activeStep !== steps.length ? (
+						<Container maxWidth="lg">current step {activeStep}</Container>
+					) : (
+						<Container maxWidth="lg">current step {activeStep} final</Container>
+					)}
+					<CheckOutCart></CheckOutCart>
+				</Box>
+				<CheckoutButtons
+					{...{ handleStep, activeStep, steps }}
+				></CheckoutButtons>
+			</Container>
+		</CartContext.Provider>
 	);
 };
 
