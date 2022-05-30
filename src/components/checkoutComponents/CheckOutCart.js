@@ -12,15 +12,20 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/AppContext';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import { useTheme } from '@mui/styles';
+import { ACTIONS } from '../reducers/actions';
 const CheckOutCart = () => {
 	const context = useContext(AppContext);
+
 	const theme = useTheme();
+
 	const { cart } = context;
-	console.log(cart);
+	useEffect(() => {
+		localStorage.setItem('cart', JSON.stringify(cart));
+	}, [cart]);
 	return (
 		<Card sx={{ bgcolor: theme.palette.bg_card_color }}>
 			<CardContent>
@@ -53,12 +58,18 @@ const CheckOutCart = () => {
 											>
 												{' '}
 												<Typography>
-													Amount : {game.quantity * game.price} $
+													Amount : {(game.quantity * game.price).toFixed(2)} $
 												</Typography>{' '}
 												<Button
 													variant="contained"
 													size="small"
 													color="secondary"
+													onClick={() => {
+														context.dispatchCart({
+															type: ACTIONS.ADD,
+															payload: game,
+														});
+													}}
 												>
 													<AddIcon></AddIcon>
 												</Button>
@@ -67,6 +78,12 @@ const CheckOutCart = () => {
 													variant="contained"
 													size="small"
 													color="secondary"
+													onClick={() => {
+														context.dispatchCart({
+															type: ACTIONS.REMOVE,
+															payload: game,
+														});
+													}}
 												>
 													<RemoveIcon />
 												</Button>

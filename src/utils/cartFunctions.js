@@ -14,6 +14,6 @@ export const calcTotalValues = (state) => {
 		.reduce((acum, val) => {
 			return acum + val;
 		}, 0);
-	console.log(state.items.length);
+
 	return totalGames;
 };
