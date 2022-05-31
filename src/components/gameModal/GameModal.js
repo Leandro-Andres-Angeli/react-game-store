@@ -118,6 +118,7 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 										{parse(`${gameData?.description}`)}
 									</Typography>
 									<GameModalCTA
+										price={price}
 										gamePlatforms={gamePlatforms}
 										game={gameData}
 									></GameModalCTA>

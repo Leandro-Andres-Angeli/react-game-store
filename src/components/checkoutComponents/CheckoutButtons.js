@@ -9,7 +9,11 @@ const CheckoutButtons = ({ handleStep, activeStep, steps }) => {
 			direction="row"
 			spacing={2}
 			justifyContent={'end'}
-			sx={{ button: { color: 'white' } }}
+			sx={{
+				button: { color: 'white' },
+				position: 'absolute',
+				inset: ' auto 2rem 2rem',
+			}}
 		>
 			{activeStep !== 0 && (
 				<Button

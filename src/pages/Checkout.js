@@ -11,10 +11,12 @@ import { grey } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
 import CheckoutStepper from '../components/checkoutComponents/CheckoutStepper';
 import CheckoutButtons from '../components/checkoutComponents/CheckoutButtons';
-import { AppContext } from '../context/AppContext';
+
 import CheckOutCart from '../components/checkoutComponents/CheckOutCart';
 import CartContext from '../context/CartContext';
 import { orderReducer } from '../components/reducers/orderReducer';
+
+import CreditCard from '../components/CreditCard';
 const steps = ['checkout', 'payment method', 'confirm order'];
 const Checkout = () => {
 	const [activeStep, setActiveStep] = useState(0);
@@ -52,12 +54,16 @@ const Checkout = () => {
 					></CheckoutStepper>
 				</ThemeProvider>
 				<Box>
-					{activeStep !== steps.length ? (
-						<Container maxWidth="lg">current step {activeStep}</Container>
+					{activeStep === 0 ? (
+						<Container maxWidth="lg">
+							current step {activeStep}
+							<CheckOutCart></CheckOutCart>
+						</Container>
+					) : activeStep === 1 ? (
+						<CreditCard></CreditCard>
 					) : (
 						<Container maxWidth="lg">current step {activeStep} final</Container>
 					)}
-					<CheckOutCart></CheckOutCart>
 				</Box>
 				<CheckoutButtons
 					{...{ handleStep, activeStep, steps }}

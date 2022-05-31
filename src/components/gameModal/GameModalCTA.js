@@ -23,7 +23,7 @@ import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
 import CheckoutButton from '../../snackbar/CheckoutButton';
 
-const GameModalCTA = ({ gamePlatforms, game }) => {
+const GameModalCTA = ({ gamePlatforms, game, price }) => {
 	const [add, setAdd] = useState(true);
 	const [closeSnackbar, setCloseSnackbar] = useState(false);
 	const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
@@ -46,7 +46,7 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 		const payload = {
 			id: game.id,
 			name: game.name,
-
+			price: price,
 			quantity: parseInt(qtyRef.current.children[0].childNodes[0].value),
 			platform: { id: idPlatform, name: namePlatform },
 		};
@@ -57,6 +57,7 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 		}
 
 		setToggleSnackbarCart(true);
+		console.log(qtyRef.current.children[0].childNodes[0].value);
 	};
 
 	return (
@@ -143,7 +144,7 @@ const GameModalCTA = ({ gamePlatforms, game }) => {
 							<TextField
 								name="quantityField"
 								ref={qtyRef}
-								value={1}
+								defaultValue={1}
 								sx={{
 									button: {
 										borderRadius: 0,
