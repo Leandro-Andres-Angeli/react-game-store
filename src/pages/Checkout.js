@@ -40,6 +40,7 @@ const Checkout = () => {
 				light: grey[500],
 				dark: grey[500],
 			},
+			bg_card_color: '#43177330',
 		},
 	});
 	const [order, dispatchOrder] = useReducer(orderReducer, {});
@@ -52,19 +53,22 @@ const Checkout = () => {
 						activeStep={activeStep}
 						steps={steps}
 					></CheckoutStepper>
+
+					<Box>
+						{activeStep === 0 ? (
+							<Container maxWidth="lg">
+								current step {activeStep}
+								<CheckOutCart></CheckOutCart>
+							</Container>
+						) : activeStep === 1 ? (
+							<CreditCard></CreditCard>
+						) : (
+							<Container maxWidth="lg">
+								current step {activeStep} final
+							</Container>
+						)}
+					</Box>
 				</ThemeProvider>
-				<Box>
-					{activeStep === 0 ? (
-						<Container maxWidth="lg">
-							current step {activeStep}
-							<CheckOutCart></CheckOutCart>
-						</Container>
-					) : activeStep === 1 ? (
-						<CreditCard></CreditCard>
-					) : (
-						<Container maxWidth="lg">current step {activeStep} final</Container>
-					)}
-				</Box>
 				<CheckoutButtons
 					{...{ handleStep, activeStep, steps }}
 				></CheckoutButtons>
