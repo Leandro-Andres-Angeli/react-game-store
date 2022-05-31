@@ -83,7 +83,7 @@ const CheckOutCart = () => {
 													onClick={() => {
 														context.dispatchCart({
 															type: ACTIONS.ADD,
-															payload: game,
+															payload: { ...game, quantity: 1 },
 														});
 													}}
 												>
