@@ -1,6 +1,7 @@
 import { Box, Container, Grid, TextField } from '@mui/material';
 import React, { forwardRef, useRef, useState } from 'react';
 import { IMaskInput } from 'react-imask';
+import IMask from 'imask';
 import PropTypes from 'prop-types';
 import './CardStyles.css';
 const TextMaskCustom = forwardRef((props, ref) => {
@@ -8,10 +9,22 @@ const TextMaskCustom = forwardRef((props, ref) => {
 	return (
 		<IMaskInput
 			{...other}
-			mask="(#00) 000-0000"
-			definitions={{
-				'#': /[1-9]/,
+			mask="m{/}y"
+			blocks={{
+				m: {
+					mask: IMask.MaskedRange,
+					from: 1,
+					to: 12,
+					maxLength: 2,
+				},
+				y: {
+					mask: IMask.MaskedRange,
+					from: parseInt(new Date().getFullYear()).toString().slice(-2),
+					to: 99,
+					maxLength: 2,
+				},
 			}}
+			autofix
 			inputRef={ref}
 			onAccept={(value) => onChange({ target: { name: props.name, value } })}
 			overwrite
@@ -27,7 +40,7 @@ const CreditCard = () => {
 	const creditCard = useRef();
 	const [nameOwner, setNameOwner] = useState(' ');
 	const [values, setValues] = React.useState({
-		textmask: '(100) 000-0000',
+		textmask: '',
 		numberformat: '1320',
 	});
 
@@ -317,9 +330,6 @@ const CreditCard = () => {
 					<Box
 						component="form"
 						sx={{ '& .MuiTextField-root': { m: 1 } }}
-						// sx={{
-						// 	'& .MuiTextField-root': { m: 1, width: '25ch' },
-						// }}
 						noValidate
 						autoComplete="off"
 					>
