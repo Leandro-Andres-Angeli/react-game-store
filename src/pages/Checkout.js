@@ -16,7 +16,7 @@ import CheckOutCart from '../components/checkoutComponents/CheckOutCart';
 import CartContext from '../context/CartContext';
 import { orderReducer } from '../components/reducers/orderReducer';
 
-import CreditCard from '../components/CreditCard';
+import CreditCard from '../components/CreditCardComponents/CreditCard';
 const steps = ['checkout', 'payment method', 'confirm order'];
 const Checkout = () => {
 	const [activeStep, setActiveStep] = useState(0);
