@@ -39,7 +39,7 @@ TextMaskCustom.propTypes = {
 const CreditCard = () => {
 	const creditCard = useRef();
 	const [nameOwner, setNameOwner] = useState(' ');
-	const [values, setValues] = React.useState({
+	const [values, setValues] = useState({
 		textmask: '',
 		numberformat: '1320',
 	});
