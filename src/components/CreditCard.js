@@ -1,9 +1,44 @@
 import { Box, Container, Grid, TextField } from '@mui/material';
-import React, { useRef } from 'react';
+import React, { forwardRef, useRef, useState } from 'react';
+import { IMaskInput } from 'react-imask';
+import PropTypes from 'prop-types';
 import './CardStyles.css';
+const TextMaskCustom = forwardRef((props, ref) => {
+	const { onChange, ...other } = props;
+	return (
+		<IMaskInput
+			{...other}
+			mask="(#00) 000-0000"
+			definitions={{
+				'#': /[1-9]/,
+			}}
+			inputRef={ref}
+			onAccept={(value) => onChange({ target: { name: props.name, value } })}
+			overwrite
+		/>
+	);
+});
+TextMaskCustom.propTypes = {
+	name: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired,
+};
 
 const CreditCard = () => {
 	const creditCard = useRef();
+	const [nameOwner, setNameOwner] = useState(' ');
+	const [values, setValues] = React.useState({
+		textmask: '(100) 000-0000',
+		numberformat: '1320',
+	});
+
+	const handleChange = (event) => {
+		setValues({
+			...values,
+			[event.target.name]: event.target.value,
+		});
+	};
+	console.log(nameOwner);
+
 	return (
 		<Container>
 			{' '}
@@ -12,7 +47,6 @@ const CreditCard = () => {
 					<Box sx={{ position: 'relative' }}>
 						<Box className="creditcard" ref={creditCard}>
 							<div className="front">
-								<div id="ccsingle"></div>
 								<svg
 									version="1.1"
 									id="cardfront"
@@ -53,7 +87,9 @@ const CreditCard = () => {
 											id="svgname"
 											className="st2 st5 st6"
 										>
-											JOHN DOE
+											{nameOwner === ' ' || nameOwner === ''
+												? 'name'
+												: nameOwner}
 										</text>
 										<text
 											transform="matrix(1 0 0 1 54.1074 389.8793)"
@@ -269,7 +305,7 @@ const CreditCard = () => {
 											id="svgnameback"
 											className="st12 st13"
 										>
-											John Doe
+											{nameOwner || 'name'}
 										</text>
 									</g>
 								</svg>
@@ -295,6 +331,10 @@ const CreditCard = () => {
 								defaultValue="name"
 								size="small"
 								fullWidth
+								onChange={(e) => {
+									console.log(e.target.value);
+									setNameOwner(e.target.value);
+								}}
 							/>
 						</div>
 						<div>
@@ -314,8 +354,13 @@ const CreditCard = () => {
 							<TextField
 								label="Expiration (mm/yy)"
 								id="outlined-size-small"
-								defaultValue=""
+								value={values.textmask}
+								onChange={handleChange}
+								name="textmask"
 								size="small"
+								InputProps={{
+									inputComponent: TextMaskCustom,
+								}}
 							/>
 							<TextField
 								label="Security Code"
@@ -329,6 +374,7 @@ const CreditCard = () => {
 									creditCard.current.classList.add('flipped');
 								}}
 							/>
+							owner {nameOwner}
 						</Box>
 					</Box>
 				</Grid>
