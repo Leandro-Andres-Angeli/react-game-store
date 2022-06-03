@@ -16,7 +16,8 @@ import CheckOutCart from '../components/checkoutComponents/CheckOutCart';
 import CartContext from '../context/CartContext';
 import { orderReducer } from '../components/reducers/orderReducer';
 
-import CreditCard from '../components/CreditCardComponents/CreditCard';
+import CreditCard from '../components/paymentSection/CreditCardComponents/CreditCard';
+import PaymentComponent from '../components/paymentSection/PaymentComponent';
 const steps = ['checkout', 'payment method', 'confirm order'];
 const Checkout = () => {
 	const [activeStep, setActiveStep] = useState(0);
@@ -61,7 +62,7 @@ const Checkout = () => {
 								<CheckOutCart></CheckOutCart>
 							</Container>
 						) : activeStep === 1 ? (
-							<CreditCard></CreditCard>
+							<PaymentComponent />
 						) : (
 							<Container maxWidth="lg">
 								current step {activeStep} final
