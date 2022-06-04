@@ -8,13 +8,16 @@ import {
 } from '@mui/material';
 import React, { forwardRef, useRef, useState } from 'react';
 import { IMaskInput } from 'react-imask';
-import { useForm } from 'react-hook-form';
-import IMask from 'imask';
+import { Controller, useForm } from 'react-hook-form';
+import IMask, { InputMask } from 'imask';
 import PropTypes from 'prop-types';
 import './CardStyles.css';
 import { red } from '@mui/material/colors';
 import Front from './Front';
 import Back from './Back';
+import { joiResolver } from '@hookform/resolvers/joi';
+import Joi from 'joi';
+
 const ExpirationDateIMask = forwardRef((props, ref) => {
 	const { onChange, ...other } = props;
 
@@ -83,16 +86,22 @@ cardCodeIMask.propTypes = {
 	name: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,
 };
+
+const schema = Joi.object({
+	name: Joi.string().required(),
+	age: Joi.number().required(),
+});
 const CreditCard = () => {
 	const creditCard = useRef();
-
-	const [values, setValues] = useState({});
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
-
+		onChange: changeVal,
+		control,
+	} = useForm({ mode: 'all' });
+	const [values, setValues] = useState({});
+	const ref = useRef();
 	const handleChange = (event) => {
 		setValues({
 			...values,
@@ -105,10 +114,12 @@ const CreditCard = () => {
 	// 	e.preventDefault();
 	// 	console.log(values);
 	// };
-	console.log(errors.expirationDate);
+
 	const onSubmit = (data) => {
 		console.log(data);
 	};
+	console.log(errors);
+
 	return (
 		<Container>
 			{' '}
@@ -137,62 +148,65 @@ const CreditCard = () => {
 						<div>
 							{' '}
 							<TextField
-								{...register('name', {
-									required: 'required field',
-									minLength: { value: 10, message: 'name too short' },
-								})}
 								label="Name"
 								id="outlined-size-small"
 								// defaultValue="name"
 								size="small"
 								name="ownerName"
 								fullWidth
-								onChange={handleChange}
+								onChange={changeVal}
+								inputProps={{
+									...register('name', {
+										required: 'required field',
+										minLength: { value: 10, message: 'name too short' },
+									}),
+								}}
 							/>
-							{errors.name && (
+							{/* {errors.name && (
 								<FormHelperText
 									sx={{ color: red[900], marginLeft: 2 }}
 									id="component-error-text"
 								>
 									{errors.name.message}
 								</FormHelperText>
-							)}
+							) */}
 						</div>
 						<div>
 							<TextField
 								label="Card Number"
 								name="cardNumber"
-								{...register('cardNumber', {
-									required: 'required field',
-									minLength: {
-										value: 19,
-										message: 'credit card number must be 16 numbers long',
-									},
-								})}
 								id="outlined-size-small"
 								value={values.cardNumber}
-								onChange={handleChange}
 								size="small"
 								fullWidth
+								// {...register('cardNumber', {
+								// 	required: 'required field',
+								// 	minLength: {
+								// 		value: 19,
+								// 		message: 'credit card number must be 16 numbers long',
+								// 	},
+								// })}
+								defaultValue=""
 								InputProps={{
 									inputComponent: CardNumberFormatIMask,
 								}}
+								onChange={handleChange}
 							/>
-							{errors.cardNumber && (
+							{/* {errors.cardNumber && (
 								<FormHelperText
 									sx={{ color: red[900], marginLeft: 2 }}
 									id="component-error-text"
 								>
 									{errors.cardNumber.message}
 								</FormHelperText>
-							)}
+							)} */}
 						</div>
 						<Box
 							sx={{
 								'& .MuiTextField-root': { width: '25ch' },
 							}}
 						>
-							<TextField
+							{/* <TextField
 								label="Expiration (mm/yy)"
 								id="outlined-size-small"
 								{...register('expirationDate', {
@@ -210,16 +224,16 @@ const CreditCard = () => {
 								InputProps={{
 									inputComponent: ExpirationDateIMask,
 								}}
-							/>
-							{errors.expirationDate && (
+							/> */}
+							{/* {errors.expirationDate && (
 								<FormHelperText
 									sx={{ color: red[900], marginLeft: 2 }}
 									id="component-error-text"
 								>
 									{errors.expirationDate.message}
 								</FormHelperText>
-							)}
-							<TextField
+							)} */}
+							{/* <TextField
 								label="Security Code"
 								id="outlined-size-small"
 								defaultValue=""
@@ -244,9 +258,59 @@ const CreditCard = () => {
 								InputProps={{
 									inputComponent: cardCodeIMask,
 								}}
+							/> */}
+
+							<Controller
+								control={control}
+								name="muiSwitch"
+								defaultValue={''}
+								ref={ref}
+								render={({ field: { onChange, value, ref } }) => (
+									<>
+										{/* <TextField {...field} step={10} marks min={10} max={110} /> */}
+										<IMaskInput
+											mask="000-000-000-000"
+											definitions={{
+												'#': /[1-9]/,
+											}}
+											inputRef={ref}
+											value={value}
+											// onAccept={(value) =>
+											// 	onChange({ target: { name: ref.current.value, value } })
+											// }
+											onChange={onChange}
+											overwrite
+											defaultValue=""
+										/>
+
+										{
+											(inputProps) => (
+												<TextField
+													error={!!errors.phone?.message}
+													label="Phone"
+													variant="outlined"
+													type="text"
+													fullWidth
+													required
+													{...inputProps}
+												/>
+											)
+
+											/* {() => (
+											<TextField
+												
+											/>
+										)} */
+										}
+									</>
+								)}
+								rules={{
+									required: 'required field',
+									minLength: { value: 3, message: '3 min' },
+								}}
 							/>
-							owner {values.ownerName}
 						</Box>
+
 						<Button type="submit">sub</Button>
 					</Box>
 				</Grid>
