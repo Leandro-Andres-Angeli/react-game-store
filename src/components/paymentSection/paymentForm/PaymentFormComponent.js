@@ -1,9 +1,11 @@
-import { Box, Button, FormHelperText, Grid, TextField } from '@mui/material';
-import { Controller, useForm } from 'react-hook-form';
-import IMask, { InputMask } from 'imask';
-import InputCustomMask from './InputCustomMask';
+import { Box, Button, Grid, TextField } from '@mui/material';
+import { useForm } from 'react-hook-form';
+
 import React from 'react';
-import { red } from '@mui/material/colors';
+
+import InputErrorMsg from './InputErrorMsg';
+import InputController from './InputController';
+import { cardRules } from './inputRules';
 
 const PaymentFormComponent = () => {
 	const {
@@ -31,7 +33,6 @@ const PaymentFormComponent = () => {
 					<TextField
 						label="Name"
 						id="outlined-size-small"
-						// defaultValue="name"
 						size="small"
 						name="ownerName"
 						fullWidth
@@ -43,90 +44,23 @@ const PaymentFormComponent = () => {
 							}),
 						}}
 					/>
-					{/* {errors.name && (
-								<FormHelperText
-									sx={{ color: red[900], marginLeft: 2 }}
-									id="component-error-text"
-								>
-									{errors.name.message}
-								</FormHelperText>
-							) */}
 				</div>
 				<div>
-					<Controller
-						defaultValue=""
-						name="cardNumber"
-						control={control}
-						render={({
-							field: { onChange: onChangeReactHookForm, value, ref },
-						}) => {
-							return (
-								<TextField
-									size="small"
-									label="card number"
-									value={value}
-									onChange={onChangeReactHookForm}
-									fullWidth
-									InputProps={{
-										inputComponent: InputCustomMask,
-										inputProps: { pattern: '0000-0000-0000-0000' },
-									}}
-								></TextField>
-							);
-						}}
-						rules={{
-							required: 'required field',
-							minLength: { value: 19, message: 'must be 16 numbers long' },
-						}}
-					></Controller>
-					{errors.cardNumber ? (
-						<FormHelperText
-							id="component-helper-text"
-							sx={{
-								marginLeft: 1,
-								bgcolor: red[700],
-								color: 'white',
+					<InputController
+						{...{ control }}
+						name={'cardNumber'}
+						pattern={'0000-0000-0000-0000'}
+						rules={cardRules}
+					></InputController>
 
-								textTransform: 'uppercase',
-								width: 'fit-content',
-								padding: 1,
-								borderRadius: 1,
-							}}
-						>
-							{errors.cardNumber.message}
-						</FormHelperText>
+					{errors.cardNumber ? (
+						<InputErrorMsg
+							errors={errors}
+							field={errors.cardNumber}
+						></InputErrorMsg>
 					) : null}
 				</div>
-				<div>
-					{/* <TextField
-								label="Card Number"
-								name="cardNumber"
-								id="outlined-size-small"
-								value={values.cardNumber}
-								size="small"
-								fullWidth
-								 {...register('cardNumber', {
-								 	required: 'required field',
-								 	minLength: {
-								 		value: 19,
-								 		message: 'credit card number must be 16 numbers long',
-								 	},
-								 })}
-								defaultValue=""
-								InputProps={{
-									inputComponent: CardNumberFormatIMask,
-								}}
-								onChange={handleChange}
-							/> */}
-					{/* {errors.cardNumber && (
-								<FormHelperText
-									sx={{ color: red[900], marginLeft: 2 }}
-									id="component-error-text"
-								>
-									{errors.cardNumber.message}
-								</FormHelperText>
-							)} */}
-				</div>
+
 				<Box
 					sx={{
 						'& .MuiTextField-root': { width: '25ch' },
