@@ -27,7 +27,7 @@ const Checkout = () => {
 		// setActiveStep(activeStep + 1);
 		setActiveStep((prev) => num + prev);
 	};
-	console.log(theme);
+
 	const stepperStyles = createTheme({
 		palette: {
 			mode: 'dark',
