@@ -5,6 +5,8 @@ import {
 	Grid,
 	TextField,
 	FormHelperText,
+	Input,
+	Typography,
 } from '@mui/material';
 import React, { forwardRef, useRef, useState } from 'react';
 import { IMaskInput } from 'react-imask';
@@ -18,6 +20,24 @@ import Back from './Back';
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
 
+const CustomMask = ({ ref, value, onChange }, children) => {
+	return (
+		<IMaskInput
+			mask="000-000-000-000"
+			definitions={{
+				'#': /[1-9]/,
+			}}
+			inputRef={ref}
+			value={value}
+			onChange={onChange}
+			overwrite
+			defaultValue=""
+		>
+			{' '}
+			{children}
+		</IMaskInput>
+	);
+};
 const ExpirationDateIMask = forwardRef((props, ref) => {
 	const { onChange, ...other } = props;
 
@@ -79,6 +99,26 @@ const cardCodeIMask = forwardRef((props, ref) => {
 			inputRef={ref}
 			onAccept={(value) => onChange({ target: { name: props.name, value } })}
 			overwrite
+		/>
+	);
+});
+const MaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+	// console.log(props);
+	const { onChange, register, errors, ...other } = props;
+
+	// console.log(methods);
+
+	return (
+		<IMaskInput
+			{...other}
+			mask="(#00) 000-0000"
+			definitions={{
+				'#': /[1-9]/,
+			}}
+			inputRef={ref}
+			onAccept={(value) => onChange({ target: { name: props.name, value } })}
+			overwrite
+			// rules={{ required: true }}
 		/>
 	);
 });
@@ -172,26 +212,51 @@ const CreditCard = () => {
 							) */}
 						</div>
 						<div>
-							<TextField
+							<Typography>Controlled text field</Typography>
+							<Controller
+								defaultValue=""
+								name="cardNumber"
+								control={control}
+								render={({
+									field: { onChange: onChangeReactHookForm, value, ref },
+								}) => {
+									return (
+										<TextField
+											value={value}
+											onChange={onChangeReactHookForm}
+											InputProps={{
+												inputComponent: MaskCustom,
+											}}
+										></TextField>
+									);
+								}}
+								rules={{
+									required: 'required field',
+									minLength: { value: 4, message: 'min 4' },
+								}}
+							></Controller>
+						</div>
+						<div>
+							{/* <TextField
 								label="Card Number"
 								name="cardNumber"
 								id="outlined-size-small"
 								value={values.cardNumber}
 								size="small"
 								fullWidth
-								// {...register('cardNumber', {
-								// 	required: 'required field',
-								// 	minLength: {
-								// 		value: 19,
-								// 		message: 'credit card number must be 16 numbers long',
-								// 	},
-								// })}
+								 {...register('cardNumber', {
+								 	required: 'required field',
+								 	minLength: {
+								 		value: 19,
+								 		message: 'credit card number must be 16 numbers long',
+								 	},
+								 })}
 								defaultValue=""
 								InputProps={{
 									inputComponent: CardNumberFormatIMask,
 								}}
 								onChange={handleChange}
-							/>
+							/> */}
 							{/* {errors.cardNumber && (
 								<FormHelperText
 									sx={{ color: red[900], marginLeft: 2 }}
@@ -260,55 +325,48 @@ const CreditCard = () => {
 								}}
 							/> */}
 
-							<Controller
+							{/* <Controller
 								control={control}
 								name="muiSwitch"
 								defaultValue={''}
 								ref={ref}
 								render={({ field: { onChange, value, ref } }) => (
 									<>
-										{/* <TextField {...field} step={10} marks min={10} max={110} /> */}
-										<IMaskInput
-											mask="000-000-000-000"
-											definitions={{
-												'#': /[1-9]/,
-											}}
-											inputRef={ref}
+										 <TextField {...field} step={10} marks min={10} max={110} /> 
+									
+										<CustomMask
+											ref={ref}
 											value={value}
-											// onAccept={(value) =>
-											// 	onChange({ target: { name: ref.current.value, value } })
-											// }
 											onChange={onChange}
-											overwrite
-											defaultValue=""
-										/>
-
-										{
-											(inputProps) => (
-												<TextField
-													error={!!errors.phone?.message}
-													label="Phone"
-													variant="outlined"
-													type="text"
-													fullWidth
-													required
-													{...inputProps}
-												/>
-											)
-
-											/* {() => (
-											<TextField
+										></CustomMask>
+										 {() => (
+											<>
+												{/* <TextField
+										
+												error={!!errors.phone?.message}
+												label="Phone"
+												variant="outlined"
+												type="text"
+												fullWidth
+												required
 												
-											/>
-										)} */
-										}
+											/> 
+												
+											</>
+										)} 
 									</>
 								)}
 								rules={{
 									required: 'required field',
 									minLength: { value: 3, message: '3 min' },
 								}}
-							/>
+							/> */}
+							{/* <Controller
+								component={<InputMask />}
+								control={control}
+								mask="999.999.999-99"
+								name="cpf"
+							></Controller> */}
 						</Box>
 
 						<Button type="submit">sub</Button>
