@@ -49,6 +49,12 @@ const Navbar = () => {
 							fontWeight: 'bold',
 							display: 'inline-flex',
 							flexGrow: 1,
+							fontSize: {
+								xs: 24,
+								sm: 24,
+								md: 32,
+								lg: [theme.typography.h1.fontSize],
+							},
 						}}
 					>
 						game{' '}
