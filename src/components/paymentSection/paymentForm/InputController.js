@@ -18,6 +18,12 @@ const InputController = ({ control, name, pattern, rules }) => {
 						value={value}
 						onChange={onChangeReactHookForm}
 						fullWidth
+						// onClick={(e) => {
+						// 	console.log(e);
+						// }}
+						// onFocus={(e) => {
+						// 	console.log('e');
+						// }}
 						InputProps={{
 							inputComponent: InputCustomMask,
 							inputProps: { pattern },

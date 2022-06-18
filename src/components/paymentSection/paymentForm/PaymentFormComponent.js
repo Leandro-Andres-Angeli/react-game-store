@@ -1,5 +1,4 @@
 import { Box, Button, Grid, Stack, TextField } from '@mui/material';
-import { useForm } from 'react-hook-form';
 
 import React, { useEffect, useRef } from 'react';
 
@@ -11,22 +10,18 @@ import {
 	expirationDateRules,
 } from './inputRules';
 
-const PaymentFormComponent = () => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		onChange,
-		control,
-	} = useForm({ mode: 'all' });
+const PaymentFormComponent = ({
+	register,
+	handleSubmit,
+	formState: { errors },
+	onChange,
+	control,
+}) => {
 	const onSubmit = (data) => {
 		console.log(data);
 	};
-	const inputRef = useRef(null);
 
-	useEffect(() => {
-		console.log(inputRef.current);
-	}, []);
+	useEffect(() => {}, []);
 
 	return (
 		<Grid item xs={12} sm={12} md={6}>
@@ -69,7 +64,7 @@ const PaymentFormComponent = () => {
 						></InputErrorMsg>
 					) : null}
 				</div>
-				<Stack direction="row" spacing={2} ref={inputRef}>
+				<Stack direction="row" spacing={2}>
 					<Box>
 						<InputController
 							{...{ control }}
