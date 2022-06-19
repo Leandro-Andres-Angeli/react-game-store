@@ -62,6 +62,13 @@ function App() {
 								element={<CategoriesContainerComponent />}
 							></Route>
 						</Route>
+					) : route.name === 'publishers' ? (
+						<Route key={i} path={route.name} element={route.component}>
+							<Route
+								path=":path"
+								element={<CategoriesContainerComponent />}
+							></Route>
+						</Route>
 					) : (
 						<Route key={i} path={route.name} element={route.component}></Route>
 					)

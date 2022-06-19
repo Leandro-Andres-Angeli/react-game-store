@@ -76,10 +76,9 @@ const Platforms = () => {
 						open={mobileOpen}
 						onClose={handleDrawerToggle}
 						ModalProps={{
-							keepMounted: false, // Better open performance on mobile.
+							keepMounted: false,
 						}}
 						sx={{
-							// display: { xs: 'block', sm: 'none' },
 							'& .MuiDrawer-paper': {
 								boxSizing: 'border-box',
 								width: drawerWidth,

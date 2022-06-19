@@ -12,19 +12,8 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 export default function SliderComponent() {
 	const theme = useTheme();
-	const randomGame = () => {
-		return Math.round(Math.random() * 1000);
-	};
-	let gamesArray = [];
-	for (let index = 0; index < 5; index++) {
-		gamesArray = [...gamesArray, randomGame()];
-	}
 
-	// const [gamesId, setGamesId] = useState([3, 6, 33, 22, 59]);
-	const [gamesId, setGamesId] = useState(gamesArray);
-
-
-
+	const [gamesId, setGamesId] = useState([2454, 53551, 33, 22509, 5286]);
 
 	var settings = {
 		infinite: true,
