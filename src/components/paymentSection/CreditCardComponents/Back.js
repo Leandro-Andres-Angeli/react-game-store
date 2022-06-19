@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Back = () => {
+const Back = ({ name, securityCode }) => {
 	return (
 		<svg
 			version="1.1"
@@ -58,7 +58,7 @@ C707.1,246.4,704.4,249.1,701.1,249.1z"
 					id="svgsecurity"
 					className="st6 st7"
 				>
-					985
+					{securityCode ? securityCode : 'xxx'}
 				</text>
 				<g className="st8">
 					<text
@@ -75,8 +75,7 @@ C707.1,246.4,704.4,249.1,701.1,249.1z"
 					id="svgnameback"
 					className="st12 st13"
 				>
-					nameOwner
-					{/* {nameOwner || 'name'} */}
+					{name ? name : 'name owner'}
 				</text>
 			</g>
 		</svg>

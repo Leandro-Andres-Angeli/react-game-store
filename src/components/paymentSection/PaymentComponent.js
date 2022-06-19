@@ -1,5 +1,5 @@
 import { Container, Grid } from '@mui/material';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import CreditCard from './CreditCardComponents/CreditCard';
 import PaymentFormComponent from './paymentForm/PaymentFormComponent';
@@ -11,11 +11,28 @@ const PaymentComponent = () => {
 		formState: { errors },
 		onChange,
 		control,
+		watch,
+		getValues,
 	} = useForm({ mode: 'all' });
+	const [flipped, setFlipped] = useState('not-flipped');
+	let name = watch('name');
+	let expirationDate = watch('expirationDate(mm/yy)');
+	let securityCode = watch('cardSecurityCode');
+	let cardNumber = watch('cardNumber');
 	return (
 		<Container>
+			<p>Values</p> {name && name}
 			<Grid container>
-				<CreditCard></CreditCard>
+				<CreditCard
+					{...{
+						flipped,
+						setFlipped,
+						name,
+						expirationDate,
+						securityCode,
+						cardNumber,
+					}}
+				></CreditCard>
 				<PaymentFormComponent
 					{...{
 						register,
@@ -23,6 +40,8 @@ const PaymentComponent = () => {
 						formState: { errors },
 						onChange,
 						control,
+						setFlipped,
+						flipped,
 					}}
 				></PaymentFormComponent>
 			</Grid>

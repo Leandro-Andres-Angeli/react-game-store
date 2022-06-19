@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Front = () => {
+const Front = ({ name, expirationDate, securityCode, cardNumber }) => {
 	return (
 		<svg
 			version="1.1"
@@ -35,15 +35,14 @@ const Front = () => {
 					id="svgnumber"
 					className="st2 st3 st4"
 				>
-					0123 4567 8910 1112
+					{cardNumber ? cardNumber : 'xxxx-xxxx-xxxx-xxxx'}
 				</text>
 				<text
 					transform="matrix(1 0 0 1 54.1064 428.1723)"
 					id="svgname"
 					className="st2 st5 st6"
 				>
-					name
-					{/* {nameOwner === ' ' || nameOwner === '' ? 'name' : nameOwner} */}
+					{name ? name : 'name'}
 				</text>
 				<text
 					transform="matrix(1 0 0 1 54.1074 389.8793)"
@@ -66,7 +65,7 @@ const Front = () => {
 						id="svgexpire"
 						className="st2 st5 st9"
 					>
-						01/23
+						{expirationDate ? expirationDate : 'xx/xx'}
 					</text>
 					<text
 						transform="matrix(1 0 0 1 479.3848 417.0097)"

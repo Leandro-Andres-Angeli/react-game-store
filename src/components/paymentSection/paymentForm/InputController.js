@@ -4,7 +4,14 @@ import { Controller } from 'react-hook-form';
 import { returnLabelName } from '../../../utils/convertNameToLabel';
 import InputCustomMask from './InputCustomMask';
 
-const InputController = ({ control, name, pattern, rules }) => {
+const InputController = ({
+	control,
+	name,
+	pattern,
+	rules,
+	flipped,
+	setFlipped,
+}) => {
 	return (
 		<Controller
 			defaultValue=""
@@ -19,11 +26,14 @@ const InputController = ({ control, name, pattern, rules }) => {
 						onChange={onChangeReactHookForm}
 						fullWidth
 						// onClick={(e) => {
-						// 	console.log(e);
+						// 	console.log(flipped);
 						// }}
-						// onFocus={(e) => {
-						// 	console.log('e');
-						// }}
+						onFocus={() => {
+							return flipped ? setFlipped('flipped') : null;
+						}}
+						onBlur={() => {
+							return flipped ? setFlipped('not-flipped') : null;
+						}}
 						InputProps={{
 							inputComponent: InputCustomMask,
 							inputProps: { pattern },

@@ -6,7 +6,14 @@ import './CardStyles.css';
 import Front from './Front';
 import Back from './Back';
 
-const CreditCard = () => {
+const CreditCard = ({
+	flipped,
+	setFlipped,
+	name,
+	expirationDate,
+	securityCode,
+	cardNumber,
+}) => {
 	const creditCard = useRef();
 
 	return (
@@ -20,12 +27,14 @@ const CreditCard = () => {
 					p: 3,
 				}}
 			>
-				<Box className="creditcard" ref={creditCard}>
+				<Box className={`creditcard  ${flipped}`} ref={creditCard}>
 					<Box className="front">
-						<Front></Front>
+						<Front
+							{...{ name, expirationDate, securityCode, cardNumber }}
+						></Front>
 					</Box>
 					<Box className="back">
-						<Back></Back>
+						<Back {...{ name, securityCode }}></Back>
 					</Box>
 				</Box>
 			</Box>

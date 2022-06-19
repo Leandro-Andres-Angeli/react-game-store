@@ -16,6 +16,9 @@ const PaymentFormComponent = ({
 	formState: { errors },
 	onChange,
 	control,
+	setFlipped,
+	flipped,
+	formRef,
 }) => {
 	const onSubmit = (data) => {
 		console.log(data);
@@ -31,6 +34,7 @@ const PaymentFormComponent = ({
 				sx={{ '& .MuiTextField-root': { m: 1 } }}
 				noValidate
 				autoComplete="off"
+				ref={formRef}
 			>
 				<div>
 					{' '}
@@ -81,7 +85,7 @@ const PaymentFormComponent = ({
 					</Box>
 					<Box>
 						<InputController
-							{...{ control }}
+							{...{ control, setFlipped, flipped }}
 							name={'cardSecurityCode'}
 							pattern={'000'}
 							rules={CardSecurityCodeRules}
