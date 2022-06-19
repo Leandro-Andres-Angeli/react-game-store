@@ -1,9 +1,11 @@
 import { useTheme } from '@emotion/react';
 import { Menu, MenuItem } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
 
 const SmMenu = ({ navbarRoutes, anchorElNav, handleCloseNavMenu }) => {
+	const { cart } = useContext(AppContext);
 	const theme = useTheme();
 	return (
 		<Menu
@@ -55,6 +57,9 @@ const SmMenu = ({ navbarRoutes, anchorElNav, handleCloseNavMenu }) => {
 						key={i}
 						onClick={handleCloseNavMenu}
 						component={NavLink}
+						disabled={
+							route.name === 'checkout' && cart.items.length <= 0 ? true : false
+						}
 						sx={{
 							color: 'white',
 							'&:hover': {

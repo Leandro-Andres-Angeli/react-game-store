@@ -1,9 +1,11 @@
 import { useTheme } from '@emotion/react';
 import { Box, Button } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
 
 const LgMenu = ({ navbarRoutes }) => {
+	const { cart } = useContext(AppContext);
 	const theme = useTheme();
 	return (
 		<Box
@@ -37,6 +39,9 @@ const LgMenu = ({ navbarRoutes }) => {
 					<Button
 						key={i}
 						component={NavLink}
+						disabled={
+							route.name === 'checkout' && cart.items.length <= 0 ? true : false
+						}
 						sx={{
 							color: 'white',
 							'&:hover': {

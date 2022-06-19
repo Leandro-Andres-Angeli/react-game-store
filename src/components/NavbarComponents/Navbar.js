@@ -72,10 +72,10 @@ const Navbar = () => {
 					</Link>
 					<LgMenu navbarRoutes={navbarRoutes}></LgMenu>
 					<Button
-						sx={{ marginLeft: 'auto' }}
+						sx={{ marginLeft: 'auto', color: 'white' }}
 						component={Link}
-						sx={{ color: 'white' }}
 						to="/checkout"
+						disabled={cart.items <= 0}
 					>
 						<Badge badgeContent={calcTotalValues(cart)} color="secondary">
 							<CardGiftcardIcon></CardGiftcardIcon>
