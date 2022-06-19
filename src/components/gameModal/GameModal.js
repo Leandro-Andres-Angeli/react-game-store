@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import parse from 'html-react-parser';
 import {
@@ -17,15 +17,21 @@ import GameSlider from './GameSlider';
 import GameModalCTA from './GameModalCTA';
 import ModalCard from './ModalCard';
 import CloseIcon from '@mui/icons-material/Close';
+import SnackbarComponent from '../../snackbar/SnackbarComponent';
+import CheckoutLink from '../shared/CheckoutLink';
+import CheckoutButton from '../../snackbar/CheckoutButton';
+import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
 
 const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games/${gameID}?key=${process.env.REACT_APP_API_KEY}`;
 	const gameData = useFetch(URI)[0];
 	const colRef = useRef();
-	// const [add, setAdd] = useState(true);
-	// const [closeSnackbar, setCloseSnackbar] = useState(false);
-	// const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
-	// const [failAddedToCart, setFailAddedtoCart] = useState(false);
+	//refactor states
+	const [add, setAdd] = useState(true);
+	const [closeSnackbar, setCloseSnackbar] = useState(false);
+	const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
+	const [failAddedToCart, setFailAddedtoCart] = useState(false);
+	//refactor states
 
 	const price = 99.99;
 
@@ -122,6 +128,13 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 										{parse(`${gameData?.description}`)}
 									</Typography>
 									<GameModalCTA
+										{...{
+											setFailAddedtoCart,
+											setToggleSnackbarCart,
+											add,
+											setAdd,
+											setCloseSnackbar,
+										}}
 										price={price}
 										gamePlatforms={gamePlatforms}
 										game={gameData}
@@ -130,6 +143,41 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 							</Grid>
 						</Grid>
 					</ModalCard>
+					<SnackbarComponent
+						add={failAddedToCart}
+						closeSnackbar={toggleSnackbarCart}
+						setCloseSnackbar={setToggleSnackbarCart}
+						positionY={'bottom'}
+						msg={
+							failAddedToCart ? 'added to cart' : 'required platform selection'
+						}
+						snackAction={
+							<>
+								{failAddedToCart && (
+									<CheckoutLink>
+										{' '}
+										<CheckoutButton></CheckoutButton>
+									</CheckoutLink>
+								)}
+
+								<FavoriteSnackAction
+									setCloseSnackbar={setToggleSnackbarCart}
+								></FavoriteSnackAction>
+							</>
+						}
+					></SnackbarComponent>
+					<SnackbarComponent
+						add={add}
+						closeSnackbar={closeSnackbar}
+						setCloseSnackbar={setCloseSnackbar}
+						positionY={'bottom'}
+						msg={!add ? ' added to favorites' : 'removed from favorites'}
+						snackAction={
+							<FavoriteSnackAction
+								setCloseSnackbar={setCloseSnackbar}
+							></FavoriteSnackAction>
+						}
+					></SnackbarComponent>
 				</div>
 			</Fade>
 		</Modal>

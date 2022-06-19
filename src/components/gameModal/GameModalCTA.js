@@ -23,12 +23,21 @@ import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
 import CheckoutButton from '../../snackbar/CheckoutButton';
 
-const GameModalCTA = ({ gamePlatforms, game, price }) => {
+const GameModalCTA = ({
+	gamePlatforms,
+	game,
+	price,
+	setFailAddedtoCart,
+	setToggleSnackbarCart,
+	add,
+	setAdd,
+	setCloseSnackbar,
+}) => {
 	//states to refactor
-	const [add, setAdd] = useState(true);
-	const [closeSnackbar, setCloseSnackbar] = useState(false);
-	const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
-	const [failAddedToCart, setFailAddedtoCart] = useState(false);
+	// const [add, setAdd] = useState(true);
+	// const [closeSnackbar, setCloseSnackbar] = useState(false);
+	// const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
+	// const [failAddedToCart, setFailAddedtoCart] = useState(false);
 	//states to refactor
 
 	const context = useContext(AppContext);
@@ -240,7 +249,8 @@ const GameModalCTA = ({ gamePlatforms, game, price }) => {
 					</Stack>
 				</CardActions>
 			</form>
-			<SnackbarComponent
+			{/* snackbards to refactor */}
+			{/* <SnackbarComponent
 				add={failAddedToCart}
 				closeSnackbar={toggleSnackbarCart}
 				setCloseSnackbar={setToggleSnackbarCart}
@@ -272,7 +282,8 @@ const GameModalCTA = ({ gamePlatforms, game, price }) => {
 						setCloseSnackbar={setCloseSnackbar}
 					></FavoriteSnackAction>
 				}
-			></SnackbarComponent>
+			></SnackbarComponent> */}
+			{/* snackbards to refactor */}
 		</>
 	);
 };
