@@ -10,11 +10,13 @@ import { GetLocationFunction } from '../utils/GetLocationFunction';
 import { MarginSettings } from '../utils/MarginSettings';
 
 const Platforms = () => {
-	const [mobileOpen, setMobileOpen] = useState(true);
+	const theme = useTheme();
+
+	const [mobileOpen, setMobileOpen] = useState(window.innerWidth > 600);
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
-	const theme = useTheme();
+
 	const location = GetLocationFunction();
 	const routeToGetPlatforms = location.split('/', 1)[0];
 
@@ -74,7 +76,7 @@ const Platforms = () => {
 						open={mobileOpen}
 						onClose={handleDrawerToggle}
 						ModalProps={{
-							keepMounted: true, // Better open performance on mobile.
+							keepMounted: false, // Better open performance on mobile.
 						}}
 						sx={{
 							// display: { xs: 'block', sm: 'none' },

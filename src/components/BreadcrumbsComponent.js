@@ -40,7 +40,7 @@ const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 			</Link>
 
 			<Link component={NavLink} to={`/${route}`}>
-				{route.split('/', route.length)[1]}
+				{route.split('/', route.length)[1].replace(/-/g, ' ')}
 			</Link>
 		</Breadcrumbs>
 	);

@@ -33,13 +33,6 @@ const GameModalCTA = ({
 	setAdd,
 	setCloseSnackbar,
 }) => {
-	//states to refactor
-	// const [add, setAdd] = useState(true);
-	// const [closeSnackbar, setCloseSnackbar] = useState(false);
-	// const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
-	// const [failAddedToCart, setFailAddedtoCart] = useState(false);
-	//states to refactor
-
 	const context = useContext(AppContext);
 
 	let qtyRef = useRef({ current: 1 });
@@ -249,41 +242,6 @@ const GameModalCTA = ({
 					</Stack>
 				</CardActions>
 			</form>
-			{/* snackbards to refactor */}
-			{/* <SnackbarComponent
-				add={failAddedToCart}
-				closeSnackbar={toggleSnackbarCart}
-				setCloseSnackbar={setToggleSnackbarCart}
-				positionY={'bottom'}
-				msg={failAddedToCart ? 'added to cart' : 'required platform selection'}
-				snackAction={
-					<>
-						{failAddedToCart && (
-							<CheckoutLink>
-								{' '}
-								<CheckoutButton></CheckoutButton>
-							</CheckoutLink>
-						)}
-
-						<FavoriteSnackAction
-							setCloseSnackbar={setToggleSnackbarCart}
-						></FavoriteSnackAction>
-					</>
-				}
-			></SnackbarComponent>
-			<SnackbarComponent
-				add={add}
-				closeSnackbar={closeSnackbar}
-				setCloseSnackbar={setCloseSnackbar}
-				positionY={'bottom'}
-				msg={!add ? ' added to favorites' : 'removed from favorites'}
-				snackAction={
-					<FavoriteSnackAction
-						setCloseSnackbar={setCloseSnackbar}
-					></FavoriteSnackAction>
-				}
-			></SnackbarComponent> */}
-			{/* snackbards to refactor */}
 		</>
 	);
 };

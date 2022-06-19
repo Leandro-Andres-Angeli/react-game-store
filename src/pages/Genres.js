@@ -15,7 +15,7 @@ const Genres = (props) => {
 	const context = useContext(AppContext);
 	const categories = context.contextVar[0];
 
-	const [mobileOpen, setMobileOpen] = useState(true);
+	const [mobileOpen, setMobileOpen] = useState(window.innerWidth > 600);
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
@@ -81,7 +81,6 @@ const Genres = (props) => {
 							keepMounted: true, // Better open performance on mobile.
 						}}
 						sx={{
-							// display: { xs: 'block', sm: 'none' },
 							'& .MuiDrawer-paper': {
 								boxSizing: 'border-box',
 								width: drawerWidth,

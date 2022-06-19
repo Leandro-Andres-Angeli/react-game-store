@@ -26,12 +26,12 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games/${gameID}?key=${process.env.REACT_APP_API_KEY}`;
 	const gameData = useFetch(URI)[0];
 	const colRef = useRef();
-	//refactor states
+
 	const [add, setAdd] = useState(true);
 	const [closeSnackbar, setCloseSnackbar] = useState(false);
 	const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
 	const [failAddedToCart, setFailAddedtoCart] = useState(false);
-	//refactor states
+
 
 	const price = 99.99;
 
