@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/styles';
 const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 	const theme = useTheme();
-	let gameGenre = route.split('/', route.length)[1];
+	let gameGenre = route.split('/', route.length)[1].replace(/-/g, ' ');
 
 	return (
 		<Breadcrumbs
@@ -43,7 +43,7 @@ const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 			</Link>
 
 			<Link component={NavLink} to={`/${route}`}>
-				{gameGenre && gameGenre.replace(/-/g, ' ')}
+				{gameGenre && gameGenre}
 			</Link>
 		</Breadcrumbs>
 	);
