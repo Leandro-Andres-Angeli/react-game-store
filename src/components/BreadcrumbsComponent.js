@@ -7,10 +7,7 @@ import { useTheme } from '@mui/styles';
 const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 	const theme = useTheme();
 	let gameGenre = route.split('/', route.length)[1];
-	if (gameGenre) {
-		console.log(gameGenre);
-	}
-	console.log(route.split('/', route.length)[1]);
+
 	return (
 		<Breadcrumbs
 			sx={{
@@ -46,7 +43,7 @@ const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 			</Link>
 
 			<Link component={NavLink} to={`/${route}`}>
-				{route.split('/', route.length)[1]}
+				{gameGenre && gameGenre.replace(/-/g, ' ')}
 			</Link>
 		</Breadcrumbs>
 	);
