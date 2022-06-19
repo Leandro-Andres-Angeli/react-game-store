@@ -24,10 +24,12 @@ import { ACTIONS } from '../reducers/actions';
 import CheckoutButton from '../../snackbar/CheckoutButton';
 
 const GameModalCTA = ({ gamePlatforms, game, price }) => {
+	//states to refactor
 	const [add, setAdd] = useState(true);
 	const [closeSnackbar, setCloseSnackbar] = useState(false);
 	const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
 	const [failAddedToCart, setFailAddedtoCart] = useState(false);
+	//states to refactor
 
 	const context = useContext(AppContext);
 
