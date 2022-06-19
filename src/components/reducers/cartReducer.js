@@ -35,9 +35,6 @@ export const cartReducer = (state, action) => {
 						item.platform.id === action.payload.platform.id
 				);
 				const { quantity } = itemToUpdate[0];
-				console.log(action.payload.platform.id);
-				console.log(itemToUpdate[0].platform.id);
-				console.log(quantity);
 
 				const filteredArray =
 					quantity > 1

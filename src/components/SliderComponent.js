@@ -2,7 +2,7 @@ import { Box, Container, Typography } from '@mui/material';
 //MAKE STYES DOESN'T WORK ON REACT STRICT MODE OR REACT 18
 // import { makeStyles } from '@mui/styles';
 //MAKE STYES DOESN'T WORK ON REACT STRICT MODE OR REACT 18
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -12,8 +12,19 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 export default function SliderComponent() {
 	const theme = useTheme();
+	const randomGame = () => {
+		return Math.round(Math.random() * 1000);
+	};
+	let gamesArray = [];
+	for (let index = 0; index < 5; index++) {
+		gamesArray = [...gamesArray, randomGame()];
+	}
 
-	const [gamesId, setGamesId] = useState([3, 6, 33, 22, 59]);
+	// const [gamesId, setGamesId] = useState([3, 6, 33, 22, 59]);
+	const [gamesId, setGamesId] = useState(gamesArray);
+
+
+
 
 	var settings = {
 		infinite: true,

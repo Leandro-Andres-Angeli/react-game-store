@@ -52,7 +52,7 @@ const SliderItem = ({ gameId, title }) => {
 								<Typography
 									variant="h3"
 									sx={{
-										fontSize: '1.5rem',
+										fontSize: { md: '1.5rem', xs: 'smaller', sm: 'smaller' },
 										transform: 'skewX(30deg)',
 										fontWeight: 'bolder',
 									}}
@@ -66,7 +66,8 @@ const SliderItem = ({ gameId, title }) => {
 									mt: theme.spacing(3),
 									color: 'white',
 									fontWeight: 'bolder',
-									letterSpacing: theme.spacing(2),
+									letterSpacing: { xs: 'initial', md: theme.spacing(2) },
+									fontSize: { xs: '2rem', md: [theme.typography.h2.fontSize] },
 								}}
 							>
 								{name}{' '}
