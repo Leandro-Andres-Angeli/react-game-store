@@ -10,6 +10,9 @@ const InputCustomMask = React.forwardRef(function TextMaskCustom(props, ref) {
 			mask={props.pattern}
 			definitions={{
 				0: /[1-9]/,
+				x: {
+					mask: /^[a-zA-Z\s]*$/,
+				},
 			}}
 			blocks={{
 				Y: {

@@ -11,23 +11,23 @@ const InputController = ({
 	rules,
 	flipped,
 	setFlipped,
+	inputProps,
 }) => {
+	console.log(inputProps);
 	return (
 		<Controller
 			defaultValue=""
 			{...{ name }}
 			control={control}
-			render={({ field: { onChange: onChangeReactHookForm, value, ref } }) => {
+			render={({ field: { onChange: onChangeReactHookForm, value } }) => {
 				return (
 					<TextField
+					
 						size="small"
 						label={returnLabelName(name)}
 						value={value}
 						onChange={onChangeReactHookForm}
 						fullWidth
-						// onClick={(e) => {
-						// 	console.log(flipped);
-						// }}
 						onFocus={() => {
 							return flipped ? setFlipped('flipped') : null;
 						}}

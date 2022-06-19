@@ -21,7 +21,6 @@ const PaymentComponent = () => {
 	let cardNumber = watch('cardNumber');
 	return (
 		<Container>
-			<p>Values</p> {name && name}
 			<Grid container>
 				<CreditCard
 					{...{

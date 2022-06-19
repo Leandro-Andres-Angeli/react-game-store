@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Stack, TextField } from '@mui/material';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 import InputErrorMsg from './InputErrorMsg';
 import InputController from './InputController';
@@ -8,6 +8,7 @@ import {
 	cardRules,
 	CardSecurityCodeRules,
 	expirationDateRules,
+	nameRules,
 } from './inputRules';
 
 const PaymentFormComponent = ({
@@ -36,7 +37,7 @@ const PaymentFormComponent = ({
 				autoComplete="off"
 				ref={formRef}
 			>
-				<div>
+				{/* <div>
 					{' '}
 					<TextField
 						label="Name"
@@ -52,6 +53,18 @@ const PaymentFormComponent = ({
 							}),
 						}}
 					/>
+				</div> */}
+				<div>
+					<InputController
+						{...{ control }}
+						name={'name'}
+						pattern={'xxxxxxxxxxxxxxxx'}
+						rules={nameRules}
+					></InputController>
+
+					{errors.name ? (
+						<InputErrorMsg errors={errors} field={errors.name}></InputErrorMsg>
+					) : null}
 				</div>
 				<div>
 					<InputController

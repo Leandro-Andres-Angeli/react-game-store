@@ -2,6 +2,10 @@ export const cardRules = {
 	required: 'required field',
 	minLength: { value: 19, message: 'card number must be 16 numbers ' },
 };
+export const nameRules = {
+	required: 'required field',
+	minLength: { value: 6, message: 'name too short' },
+};
 export const expirationDateRules = {
 	required: 'required field',
 	minLength: {
