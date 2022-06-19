@@ -10,7 +10,9 @@ const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 	return (
 		<Breadcrumbs
 			sx={{
+				fontSize: { xs: 14, sm: 16, md: 16 },
 				textTransform: 'uppercase',
+				'.MuiBreadcrumbs-separator': { m: { xs: 0, sm: 0, md: '0 5px' } },
 				'& ol': {
 					display: 'flex',
 				},
