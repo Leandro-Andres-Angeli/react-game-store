@@ -13,6 +13,7 @@ import LgMenu from './LgMenu';
 import SmMenu from './SmMenu';
 import { calcTotalValues } from '../../utils/cartFunctions';
 import FavoriteButtonNavbar from './FavoriteButtonNavbar';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 	const theme = useTheme();
@@ -41,34 +42,41 @@ const Navbar = () => {
 				sx={{ button: { color: 'white' } }}
 			>
 				<Toolbar maxWidth="xl" sx={{ display: 'flex', alignItems: 'center' }}>
-					<Typography
-						variant="h1"
-						sx={{
-							textTransform: 'uppercase',
-							fontStyle: 'italic',
-							fontWeight: 'bold',
-							display: 'inline-flex',
-							flexGrow: 1,
-							fontSize: {
-								xs: 24,
-								sm: 24,
-								md: 32,
-								lg: [theme.typography.h1.fontSize],
-							},
-						}}
-					>
-						game{' '}
-						<Box
+					<Link to="/">
+						<Typography
+							variant="h1"
 							sx={{
-								display: 'inline',
-								color: [theme.palette.secondary.main],
+								textTransform: 'uppercase',
+								fontStyle: 'italic',
+								fontWeight: 'bold',
+								display: 'inline-flex',
+								flexGrow: 1,
+								fontSize: {
+									xs: 24,
+									sm: 24,
+									md: 32,
+									lg: [theme.typography.h1.fontSize],
+								},
 							}}
 						>
-							hoax
-						</Box>
-					</Typography>
+							game{' '}
+							<Box
+								sx={{
+									display: 'inline',
+									color: [theme.palette.secondary.main],
+								}}
+							>
+								hoax
+							</Box>
+						</Typography>
+					</Link>
 					<LgMenu navbarRoutes={navbarRoutes}></LgMenu>
-					<Button sx={{ marginLeft: 'auto' }}>
+					<Button
+						sx={{ marginLeft: 'auto' }}
+						component={Link}
+						sx={{ color: 'white' }}
+						to="/checkout"
+					>
 						<Badge badgeContent={calcTotalValues(cart)} color="secondary">
 							<CardGiftcardIcon></CardGiftcardIcon>
 						</Badge>
