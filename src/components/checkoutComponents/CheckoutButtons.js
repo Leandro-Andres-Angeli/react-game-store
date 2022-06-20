@@ -11,7 +11,7 @@ const CheckoutButtons = ({ handleStep, activeStep, steps }) => {
 			justifyContent={'end'}
 			sx={{
 				button: { color: 'white' },
-				position: 'absolute',
+
 				inset: ' auto 2rem 2rem',
 			}}
 		>

@@ -28,7 +28,7 @@ const PaymentFormComponent = ({
 	useEffect(() => {}, []);
 
 	return (
-		<Grid item xs={12} sm={12} md={6}>
+		<Grid item xs={12} sm={12} md={6} sx={{ py: 2.5, px: 1.5 }}>
 			<Box
 				component="form"
 				onSubmit={handleSubmit(onSubmit)}
@@ -37,23 +37,6 @@ const PaymentFormComponent = ({
 				autoComplete="off"
 				ref={formRef}
 			>
-				{/* <div>
-					{' '}
-					<TextField
-						label="Name"
-						id="outlined-size-small"
-						size="small"
-						name="ownerName"
-						fullWidth
-						onChange={onChange}
-						inputProps={{
-							...register('name', {
-								required: 'required field',
-								minLength: { value: 10, message: 'name too short' },
-							}),
-						}}
-					/>
-				</div> */}
 				<div>
 					<InputController
 						{...{ control }}
@@ -113,7 +96,7 @@ const PaymentFormComponent = ({
 						)}
 					</Box>
 				</Stack>
-				<Box>
+				<Box sx={{ display: 'flex', justifyContent: 'end' }}>
 					<Button type="submit">sub</Button>
 				</Box>
 			</Box>

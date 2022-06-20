@@ -17,6 +17,7 @@ import { AppContext } from '../../context/AppContext';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import { useTheme } from '@mui/styles';
 import { ACTIONS } from '../reducers/actions';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 const CheckOutCart = () => {
 	const context = useContext(AppContext);
 
@@ -53,7 +54,9 @@ const CheckOutCart = () => {
 						? cart.items.map((game) => {
 								return (
 									<>
-										<ListItem>
+										<ListItem
+											sx={{ flexWrap: 'wrap', button: { minWidth: 3 } }}
+										>
 											<ListItemAvatar>
 												<VideogameAssetIcon />
 											</ListItemAvatar>
@@ -79,7 +82,7 @@ const CheckOutCart = () => {
 												<Button
 													variant="contained"
 													size="small"
-													color="secondary"
+													color="primary"
 													onClick={() => {
 														context.dispatchCart({
 															type: ACTIONS.ADD,
@@ -93,7 +96,7 @@ const CheckOutCart = () => {
 												<Button
 													variant="contained"
 													size="small"
-													color="secondary"
+													color="primary"
 													onClick={() => {
 														context.dispatchCart({
 															type: ACTIONS.REMOVE,
@@ -112,10 +115,15 @@ const CheckOutCart = () => {
 								);
 						  })
 						: null}
-					<ListItem
+					<Stack
+						spacing={2}
+						direction={'row'}
 						sx={{
 							'.MuiTypography-root': { fontWeight: 'bold' },
-							justifyContent: 'end',
+							justifyContent: { sm: 'start', md: 'end' },
+							m: 2,
+							alignItems: 'center',
+							flexWrap: 'wrap',
 						}}
 					>
 						<Typography sx={{ textTransform: 'uppercase' }}>
@@ -126,7 +134,16 @@ const CheckOutCart = () => {
 							{' '}
 							total price :{totalPrice ? totalPrice.toFixed(2) : null}{' '}
 						</Typography>
-					</ListItem>
+						<Button
+							sx={{
+								bgcolor: 'red',
+								color: 'white',
+								'&:hover': { bgcolor: 'inherit' },
+							}}
+						>
+							<DeleteForeverIcon></DeleteForeverIcon>
+						</Button>
+					</Stack>
 				</List>
 			</CardContent>
 		</Card>
