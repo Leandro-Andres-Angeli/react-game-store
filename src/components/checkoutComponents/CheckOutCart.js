@@ -9,6 +9,7 @@ import {
 	Divider,
 	Stack,
 	Button,
+	Box,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -18,6 +19,7 @@ import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import { useTheme } from '@mui/styles';
 import { ACTIONS } from '../reducers/actions';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { red } from '@mui/material/colors';
 const CheckOutCart = () => {
 	const context = useContext(AppContext);
 
@@ -44,7 +46,9 @@ const CheckOutCart = () => {
 	}, [cart]);
 
 	return (
-		<Card sx={{ bgcolor: theme.palette.bg_card_color }}>
+		<Card
+			sx={{ bgcolor: theme.palette.bg_card_color, py: { xs: 0, sm: 0, md: 1 } }}
+		>
 			<CardContent>
 				<Typography variant="h4" sx={{ textTransform: 'uppercase' }}>
 					cart
@@ -55,19 +59,29 @@ const CheckOutCart = () => {
 								return (
 									<>
 										<ListItem
-											sx={{ flexWrap: 'wrap', button: { minWidth: 3 } }}
+											sx={{
+												flexWrap: 'wrap',
+												button: { minWidth: 3 },
+												paddingBottom: 2,
+											}}
 										>
 											<ListItemAvatar>
-												<VideogameAssetIcon />
+												<VideogameAssetIcon
+													sx={{
+														fontSize: { xs: 64, sm: 64, md: 32 },
+														marginRight: 2,
+													}}
+												/>
 											</ListItemAvatar>
 											<ListItemText
+												sx={{ marginLeft: { xs: 0, sm: 1, md: 1 } }}
 												primary={game.name}
 												secondary={game.platform.name}
 											/>
 											<Stack
 												sx={{
 													' .MuiTypography-root': {
-														fontWeight: 'bold',
+														fontWeight: 'lighter',
 														textTransform: 'uppercase',
 													},
 													button: { color: 'white' },
@@ -76,36 +90,53 @@ const CheckOutCart = () => {
 												spacing={2}
 											>
 												{' '}
-												<Typography>
-													Amount : {(game.quantity * game.price).toFixed(2)} $
-												</Typography>{' '}
-												<Button
-													variant="contained"
-													size="small"
-													color="primary"
-													onClick={() => {
-														context.dispatchCart({
-															type: ACTIONS.ADD,
-															payload: { ...game, quantity: 1 },
-														});
+												<Box
+													sx={{
+														display: 'flex',
+														gap: 2,
+														flexWrap: 'wrap',
+														alignItems: 'center',
 													}}
 												>
-													<AddIcon></AddIcon>
-												</Button>
-												<Typography>Units:{game.quantity} </Typography>{' '}
-												<Button
-													variant="contained"
-													size="small"
-													color="primary"
-													onClick={() => {
-														context.dispatchCart({
-															type: ACTIONS.REMOVE,
-															payload: game,
-														});
-													}}
-												>
-													<RemoveIcon />
-												</Button>
+													<Typography>
+														Amount : {(game.quantity * game.price).toFixed(2)} $
+													</Typography>{' '}
+													<Box
+														sx={{
+															display: 'flex',
+															columnGap: 1,
+															alignItems: 'center',
+														}}
+													>
+														<Button
+															variant="contained"
+															size="small"
+															color="primary"
+															onClick={() => {
+																context.dispatchCart({
+																	type: ACTIONS.ADD,
+																	payload: { ...game, quantity: 1 },
+																});
+															}}
+														>
+															<AddIcon></AddIcon>
+														</Button>
+														<Typography>Units:{game.quantity} </Typography>{' '}
+														<Button
+															variant="contained"
+															size="small"
+															color="primary"
+															onClick={() => {
+																context.dispatchCart({
+																	type: ACTIONS.REMOVE,
+																	payload: game,
+																});
+															}}
+														>
+															<RemoveIcon />
+														</Button>
+													</Box>
+												</Box>
 											</Stack>
 										</ListItem>
 										<Divider
@@ -130,15 +161,19 @@ const CheckOutCart = () => {
 							{' '}
 							total items :{totalItems ? totalItems : null}{' '}
 						</Typography>
-						<Typography sx={{ textTransform: 'uppercase', marginLeft: '1rem' }}>
+						<Typography
+							sx={{
+								textTransform: 'uppercase',
+							}}
+						>
 							{' '}
 							total price :{totalPrice ? totalPrice.toFixed(2) : null}{' '}
 						</Typography>
 						<Button
 							sx={{
-								bgcolor: 'red',
+								bgcolor: red[900],
 								color: 'white',
-								'&:hover': { bgcolor: 'inherit' },
+								'&:hover': { bgcolor: red[700] },
 							}}
 						>
 							<DeleteForeverIcon></DeleteForeverIcon>

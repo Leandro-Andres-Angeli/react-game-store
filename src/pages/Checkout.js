@@ -16,7 +16,6 @@ import CheckOutCart from '../components/checkoutComponents/CheckOutCart';
 import CartContext from '../context/CartContext';
 import { orderReducer } from '../components/reducers/orderReducer';
 
-
 import PaymentComponent from '../components/paymentSection/PaymentComponent';
 const steps = ['checkout', 'payment method', 'confirm order'];
 const Checkout = () => {
@@ -47,7 +46,7 @@ const Checkout = () => {
 	const [order, dispatchOrder] = useReducer(orderReducer, {});
 	return (
 		<CartContext.Provider value={{ order, dispatchOrder }}>
-			<Container maxWidth="lg">
+			<Container maxWidth="lg" sx={{ marginTop: 2 }}>
 				<ThemeProvider theme={stepperStyles}>
 					<CheckoutStepper
 						completed={completed}
@@ -55,10 +54,9 @@ const Checkout = () => {
 						steps={steps}
 					></CheckoutStepper>
 
-					<Box>
+					<Box sx={{ marginTop: 2 }}>
 						{activeStep === 0 ? (
 							<Container maxWidth="lg">
-								current step {activeStep}
 								<CheckOutCart></CheckOutCart>
 							</Container>
 						) : activeStep === 1 ? (
