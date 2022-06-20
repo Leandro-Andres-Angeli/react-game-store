@@ -20,7 +20,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import SnackbarComponent from '../../snackbar/SnackbarComponent';
 import CheckoutLink from '../shared/CheckoutLink';
 import CheckoutButton from '../../snackbar/CheckoutButton';
-import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
+import CloseButtonSnackbar from '../../snackbar/CloseButtonSnackbar';
 
 const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games/${gameID}?key=${process.env.REACT_APP_API_KEY}`;
@@ -31,7 +31,6 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const [closeSnackbar, setCloseSnackbar] = useState(false);
 	const [toggleSnackbarCart, setToggleSnackbarCart] = useState(false);
 	const [failAddedToCart, setFailAddedtoCart] = useState(false);
-
 
 	const price = 99.99;
 
@@ -160,9 +159,9 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 									</CheckoutLink>
 								)}
 
-								<FavoriteSnackAction
+								<CloseButtonSnackbar
 									setCloseSnackbar={setToggleSnackbarCart}
-								></FavoriteSnackAction>
+								></CloseButtonSnackbar>
 							</>
 						}
 					></SnackbarComponent>
@@ -173,9 +172,9 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 						positionY={'bottom'}
 						msg={!add ? ' added to favorites' : 'removed from favorites'}
 						snackAction={
-							<FavoriteSnackAction
+							<CloseButtonSnackbar
 								setCloseSnackbar={setCloseSnackbar}
-							></FavoriteSnackAction>
+							></CloseButtonSnackbar>
 						}
 					></SnackbarComponent>
 				</div>

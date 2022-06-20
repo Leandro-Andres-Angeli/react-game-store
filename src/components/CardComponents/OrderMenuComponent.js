@@ -17,7 +17,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import CheckoutButton from '../../snackbar/CheckoutButton';
 import CheckoutLink from '../shared/CheckoutLink';
-import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
+import CloseButtonSnackbar from '../../snackbar/CloseButtonSnackbar';
 import SnackbarComponent from '../../snackbar/SnackbarComponent';
 import { ACTIONS } from '../reducers/actions';
 
@@ -166,9 +166,9 @@ const OrderMenuComponent = ({ handleClose, open, anchorEl, game }) => {
 							{' '}
 							<CheckoutButton></CheckoutButton>
 						</CheckoutLink>
-						<FavoriteSnackAction
+						<CloseButtonSnackbar
 							setCloseSnackbar={setCloseSnackbar}
-						></FavoriteSnackAction>
+						></CloseButtonSnackbar>
 					</>
 				}
 			></SnackbarComponent>

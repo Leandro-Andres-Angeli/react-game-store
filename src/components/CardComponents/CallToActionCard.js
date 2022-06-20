@@ -9,7 +9,7 @@ import OrderMenuComponent from './OrderMenuComponent';
 
 import SnackbarComponent from '../../snackbar/SnackbarComponent';
 import AddToFavoriteButton from '../shared/AddToFavoriteButton';
-import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
+import CloseButtonSnackbar from '../../snackbar/CloseButtonSnackbar';
 
 const CallToActionCard = ({ game, modalState }) => {
 	const [, setModal] = modalState;
@@ -83,9 +83,9 @@ const CallToActionCard = ({ game, modalState }) => {
 				setCloseSnackbar={setCloseSnackbar}
 				positionY={'top'}
 				snackAction={
-					<FavoriteSnackAction
+					<CloseButtonSnackbar
 						setCloseSnackbar={setCloseSnackbar}
-					></FavoriteSnackAction>
+					></CloseButtonSnackbar>
 				}
 				msg={!add ? ' added to favorites' : 'removed from favorites'}
 			></SnackbarComponent>
