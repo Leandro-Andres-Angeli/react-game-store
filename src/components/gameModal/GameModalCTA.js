@@ -1,9 +1,8 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useEffect, useContext } from 'react';
+
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
-import CheckoutLink from '../shared/CheckoutLink';
 import {
 	Button,
 	CardActions,
@@ -17,11 +16,10 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/styles';
 import AddToFavoriteButton from '../shared/AddToFavoriteButton';
-import SnackbarComponent from '../../snackbar/SnackbarComponent';
-import FavoriteSnackAction from '../../snackbar/FavoriteSnackAction';
+
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
-import CheckoutButton from '../../snackbar/CheckoutButton';
+
 
 const GameModalCTA = ({
 	gamePlatforms,

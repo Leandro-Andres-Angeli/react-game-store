@@ -16,13 +16,13 @@ import CheckOutCart from '../components/checkoutComponents/CheckOutCart';
 import CartContext from '../context/CartContext';
 import { orderReducer } from '../components/reducers/orderReducer';
 
-import CreditCard from '../components/paymentSection/CreditCardComponents/CreditCard';
+
 import PaymentComponent from '../components/paymentSection/PaymentComponent';
 const steps = ['checkout', 'payment method', 'confirm order'];
 const Checkout = () => {
 	const [activeStep, setActiveStep] = useState(0);
 	const [completed, setCompleted] = useState({});
-	const theme = useTheme();
+
 	const handleStep = (num) => {
 		// setActiveStep(activeStep + 1);
 		setActiveStep((prev) => num + prev);

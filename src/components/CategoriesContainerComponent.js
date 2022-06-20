@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { useFetch } from '../customHooks/useFetch';
 import Grid from '@mui/material/Grid';
@@ -11,9 +11,7 @@ import PaginationNumbersSection from './shared/pagination/PaginationNumbersSecti
 import PaginationArrowsSection from './shared/pagination/PaginationArrowsSection';
 import { AppContext } from '../context/AppContext';
 
-const GenreComponent = ({ children }) => {
-	const params = useParams();
-
+const GenreComponent = () => {
 	const location = useLocation();
 	const { page, setPage } = useContext(AppContext);
 

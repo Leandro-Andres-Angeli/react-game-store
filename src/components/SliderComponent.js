@@ -1,8 +1,8 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 //MAKE STYES DOESN'T WORK ON REACT STRICT MODE OR REACT 18
 // import { makeStyles } from '@mui/styles';
 //MAKE STYES DOESN'T WORK ON REACT STRICT MODE OR REACT 18
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

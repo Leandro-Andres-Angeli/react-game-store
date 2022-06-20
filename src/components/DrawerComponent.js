@@ -1,13 +1,13 @@
 import { Button, Divider, List, ListItem, Toolbar } from '@mui/material';
 import { useTheme } from '@mui/system';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-import { useParams } from 'react-router-dom';
+
 import { GetLocationFunction } from '../utils/GetLocationFunction';
 const DrawerComponent = ({ categories }) => {
 	const theme = useTheme();
-	const { page, setPage } = useContext(AppContext);
+	const { setPage } = useContext(AppContext);
 	const location = GetLocationFunction();
 	const categoryString = location.split('/', location.length)[0];
 	return (

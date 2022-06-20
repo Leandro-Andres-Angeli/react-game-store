@@ -5,13 +5,13 @@ import Genres from '../pages/Genres';
 import Home from '../pages/Home';
 import NotFound from '../pages/NotFound';
 import Platforms from '../pages/Platforms';
-import PopularGames from '../pages/PopularGames';
+
 import Publishers from '../pages/Publishers';
 
 export const routes = [
 	{ name: 'home', component: <Home /> },
 	{ name: 'genres', component: <Genres /> },
-	{ name: 'popular', component: <PopularGames /> },
+
 	{ name: 'platforms', component: <Platforms /> },
 	{ name: 'publishers', component: <Publishers /> },
 	{ name: 'about', component: <About /> },

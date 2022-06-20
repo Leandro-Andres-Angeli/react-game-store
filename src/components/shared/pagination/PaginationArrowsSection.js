@@ -1,6 +1,5 @@
-import { Button, Pagination, Stack } from '@mui/material';
-import { grey } from '@mui/material/colors';
-import { useTheme } from '@mui/styles';
+import { Button, Stack } from '@mui/material';
+
 import React from 'react';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -13,8 +12,6 @@ const PaginationNumbersSection = ({
 	setPage,
 	page,
 }) => {
-	const theme = useTheme();
-
 	return (
 		<Stack
 			spacing={1}

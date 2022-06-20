@@ -6,7 +6,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/system';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useFetch } from '../customHooks/useFetch';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 const SliderItem = ({ gameId, title }) => {
