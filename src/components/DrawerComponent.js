@@ -10,6 +10,7 @@ const DrawerComponent = ({ categories }) => {
 	const { setPage } = useContext(AppContext);
 	const location = GetLocationFunction();
 	const categoryString = location.split('/', location.length)[0];
+
 	return (
 		<>
 			<List>

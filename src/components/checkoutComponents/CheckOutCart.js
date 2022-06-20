@@ -198,8 +198,19 @@ const CheckOutCart = () => {
 						</List>
 					</CardContent>
 				) : (
-					<CardContent>
-						<Typography sx={{ textTransform: 'uppercase' }}>
+					<CardContent
+						sx={{
+							minHeight: '50vh',
+							display: ' flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					>
+						<Typography
+							sx={{
+								textTransform: 'uppercase',
+							}}
+						>
 							No items in cart
 						</Typography>
 					</CardContent>

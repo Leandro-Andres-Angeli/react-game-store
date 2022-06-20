@@ -4,8 +4,25 @@ import { Box, Typography, Divider } from '@mui/material';
 
 const PoliciesComponentItem = ({ icon, title, subtitle }) => {
 	return (
-		<Grid item sx={{ display: 'flex', alignItems: 'center', ml: 4 }}>
-			<Box sx={{ '& svg': { height: '2rem', width: '2rem' }, mr: 3 }}>
+		<Grid
+			item
+			lg={2}
+			md={6}
+			sm={12}
+			xs={12}
+			sx={{
+				display: 'flex',
+				alignItems: 'center',
+				columnGap: { xs: 2, md: 4, sm: 8 },
+				justifyContent: { xs: 'center' },
+			}}
+		>
+			<Box
+				sx={{
+					'& svg': { height: '2rem', width: '2rem' },
+					//  mr: 3
+				}}
+			>
 				{icon}{' '}
 			</Box>
 			<Box>

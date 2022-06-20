@@ -15,7 +15,7 @@ const PoliciesComponent = () => {
 		<Box
 			maxWidth="lg"
 			sx={{
-				px: 10,
+				// px: 10,
 				py: 10,
 				bgcolor: [theme.palette.primary.main],
 				color: 'white',
@@ -27,7 +27,8 @@ const PoliciesComponent = () => {
 				sx={{
 					justifyContent: 'center',
 					p: 4,
-					sm: { gap: '1rem' },
+					rowGap: 3,
+					// sm: { gap: '1rem' },
 				}}
 			>
 				{policiesArray.map((policie, i) => (
@@ -39,8 +40,6 @@ const PoliciesComponent = () => {
 							subtitle={policie.subtitle}
 							sx={{
 								position: 'relative',
-
-								padding: `10px 20px 5px `,
 							}}
 						></PoliciesComponentItem>
 						<Divider
@@ -48,8 +47,10 @@ const PoliciesComponent = () => {
 							orientation="vertical"
 							sx={{
 								borderColor: 'rgba(244, 241, 241, 0.17)',
-								width: '5px',
+								// width: '5px',
+								marginRight: theme.spacing(2),
 								marginLeft: theme.spacing(2),
+								display: { lg: 'block', md: 'none' },
 							}}
 							flexItem
 						/>
