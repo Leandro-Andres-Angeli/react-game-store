@@ -43,7 +43,11 @@ const BreadcrumbsComponent = ({ route, navigateToMain }) => {
 			</Link>
 
 			<Link component={NavLink} to={`/${route}`}>
-				{gameGenre && gameGenre.replace(/-/g, ' ')}
+				{gameGenre &&
+					gameGenre
+						.replace(/-/g, ' ')
+						.replace(/ga 2/, 'GA')
+						.replace('%20', ' ')}
 			</Link>
 		</Breadcrumbs>
 	);

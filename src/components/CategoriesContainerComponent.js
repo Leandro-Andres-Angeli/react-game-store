@@ -7,10 +7,11 @@ import Grid from '@mui/material/Grid';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { parseParams } from '../utils/parseParams';
 import GameCard from './CardComponents/GameCard';
-import PaginationSection from './PaginationSection';
+import PaginationNumbersSection from './shared/pagination/PaginationNumbersSection';
+import PaginationArrowsSection from './shared/pagination/PaginationArrowsSection';
 import { AppContext } from '../context/AppContext';
 
-const GenreComponent = () => {
+const GenreComponent = ({ children }) => {
 	const params = useParams();
 
 	const location = useLocation();
@@ -63,11 +64,20 @@ const GenreComponent = () => {
 					</Box>
 				)}
 			</Grid>
-			<PaginationSection
-				total={calcMaxPage()}
-				pageNumber={page}
-				setPage={setPage}
-			></PaginationSection>
+			{!location.pathname.includes('popular') &&
+			!location.pathname.includes('publishers') ? (
+				<PaginationNumbersSection
+					total={calcMaxPage()}
+					pageNumber={page}
+					setPage={setPage}
+				></PaginationNumbersSection>
+			) : (
+				<PaginationArrowsSection
+					nextPage={data.next}
+					prevPage={data.previous}
+					{...{ setPage, page }}
+				></PaginationArrowsSection>
+			)}
 		</Container>
 	);
 };

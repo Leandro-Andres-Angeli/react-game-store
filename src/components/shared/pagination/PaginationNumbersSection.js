@@ -3,7 +3,7 @@ import { grey } from '@mui/material/colors';
 import { useTheme } from '@mui/styles';
 import React from 'react';
 
-const PaginationSection = ({ pageNumber, setPage, total }) => {
+const PaginationNumbersSection = ({ pageNumber, setPage, total }) => {
 	const theme = useTheme();
 
 	return (
@@ -42,4 +42,4 @@ const PaginationSection = ({ pageNumber, setPage, total }) => {
 	);
 };
 
-export default PaginationSection;
+export default PaginationNumbersSection;
