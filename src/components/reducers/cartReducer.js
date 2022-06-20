@@ -3,6 +3,10 @@ import { ACTIONS } from './actions';
 
 export const cartReducer = (state, action) => {
 	switch (action.type) {
+		case ACTIONS.RESET:
+			return {
+				items: [],
+			};
 		case ACTIONS.ADD:
 			const checkIfExists = checkIfExistsFunc(state, action.payload);
 

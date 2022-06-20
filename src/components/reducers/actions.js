@@ -1,1 +1,5 @@
-export const ACTIONS = { ADD: 'add', REMOVE: 'remove', RESET: 'reset' };
+export const ACTIONS = {
+	ADD: 'add',
+	REMOVE: 'remove',
+	RESET: 'reset',
+};

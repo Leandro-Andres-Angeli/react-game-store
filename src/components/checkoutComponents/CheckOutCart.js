@@ -175,6 +175,9 @@ const CheckOutCart = () => {
 								color: 'white',
 								'&:hover': { bgcolor: red[700] },
 							}}
+							onClick={() => {
+								context.dispatchCart({ type: ACTIONS.RESET });
+							}}
 						>
 							<DeleteForeverIcon></DeleteForeverIcon>
 						</Button>
