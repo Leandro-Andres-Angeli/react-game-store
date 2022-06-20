@@ -41,7 +41,7 @@ const PaymentFormComponent = ({
 					<InputController
 						{...{ control }}
 						name={'name'}
-						pattern={`x`.repeat(16)}
+						pattern={'x'}
 						rules={nameRules}
 					></InputController>
 

@@ -8,13 +8,16 @@ const InputCustomMask = React.forwardRef(function TextMaskCustom(props, ref) {
 		<IMaskInput
 			{...other}
 			mask={props.pattern}
+			maxLength={props.pattern === 'x' ? 16 : ''}
 			definitions={{
 				0: /[1-9]/,
-				x: {
-					mask: /^[a-zA-Z\s]*$/,
-				},
+				// x: { maxLength: 2 },
 			}}
 			blocks={{
+				x: {
+					// mask: IMask.MaskedPattern,
+					mask: /^[a-zA-Z\s]*$/,
+				},
 				Y: {
 					mask: IMask.MaskedRange,
 					from: new Date().getFullYear().toString().slice(-2) * 1,
