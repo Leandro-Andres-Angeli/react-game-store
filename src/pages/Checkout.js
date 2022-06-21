@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import { Box } from '@mui/material';
 // import { ThemeProvider } from '@mui/styles'; => wrong import
 import { ThemeProvider } from '@mui/material/styles';
-import { useTheme } from '@mui/styles';
+
 import { grey } from '@mui/material/colors';
 // import { createTheme } from '@mui/system';=>wrong import
 import { createTheme } from '@mui/material/styles';

@@ -11,7 +11,7 @@ import { useTheme } from '@mui/styles';
 
 const Footer = () => {
 	const theme = useTheme();
-	console.log(theme.palette);
+
 	return (
 		<Container
 			maxWidth="xl"
