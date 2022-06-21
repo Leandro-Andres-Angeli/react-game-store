@@ -51,8 +51,7 @@ const PaymentFormComponent = ({
 				</div>
 				<div>
 					<InputController
-						{...{ control }}
-						inputType={inputType.tel}
+						{...{ control, inputType }}
 						name={'cardNumber'}
 						pattern={'0000-0000-0000-0000'}
 						rules={cardRules}

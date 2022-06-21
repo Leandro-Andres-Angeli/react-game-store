@@ -35,7 +35,8 @@ const InputController = ({
 						}}
 						InputProps={{
 							inputComponent: InputCustomMask,
-							inputProps: { pattern, inputType },
+							inputProps: { pattern },
+							type: inputType,
 						}}
 					></TextField>
 				);
