@@ -25,7 +25,7 @@ const PaymentFormComponent = ({
 		console.log(data);
 	};
 
-	const inputType = { text: 'text', tel: 'tel' };
+	const inputType = { tel: 'tel' };
 
 	return (
 		<Grid item xs={12} sm={12} md={6} sx={{ py: 2.5, px: 1.5 }}>
@@ -67,8 +67,7 @@ const PaymentFormComponent = ({
 				<Stack direction="row" spacing={2}>
 					<Box>
 						<InputController
-							{...{ control }}
-							inputType={inputType.tel}
+							{...{ control, inputType }}
 							name={'expirationDate(mm/yy)'}
 							pattern={'m/Y'}
 							rules={expirationDateRules}
@@ -82,7 +81,7 @@ const PaymentFormComponent = ({
 					</Box>
 					<Box>
 						<InputController
-							{...{ control, setFlipped, flipped }}
+							{...{ control, setFlipped, flipped, inputType }}
 							name={'cardSecurityCode'}
 							pattern={'000'}
 							inputType={inputType.tel}
