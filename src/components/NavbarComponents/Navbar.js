@@ -43,7 +43,7 @@ const Navbar = () => {
 			>
 				<Toolbar maxWidth="xl" sx={{ display: 'flex', alignItems: 'center' }}>
 					<Button
-						component={'Link'}
+						component={Link}
 						to="/"
 						sx={{ textDecoration: 'none', color: 'white' }}
 					>
