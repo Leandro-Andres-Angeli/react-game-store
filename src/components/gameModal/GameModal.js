@@ -25,8 +25,8 @@ import { filterGameModal } from '../../customHooks/filterFetch';
 
 const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games/${gameID}?key=${process.env.REACT_APP_API_KEY}`;
-	const gameData = useFetch(URI,filterGameModal)[0];
-	console.log(gameData);
+	const gameData = useFetch(URI, filterGameModal)[0];
+
 	const colRef = useRef();
 
 	const [add, setAdd] = useState(true);

@@ -25,7 +25,7 @@ const PaymentFormComponent = ({
 		console.log(data);
 	};
 
-	useEffect(() => {}, []);
+	const inputType = { text: 'text', tel: 'tel' };
 
 	return (
 		<Grid item xs={12} sm={12} md={6} sx={{ py: 2.5, px: 1.5 }}>
@@ -52,6 +52,7 @@ const PaymentFormComponent = ({
 				<div>
 					<InputController
 						{...{ control }}
+						inputType={inputType.tel}
 						name={'cardNumber'}
 						pattern={'0000-0000-0000-0000'}
 						rules={cardRules}
@@ -68,6 +69,7 @@ const PaymentFormComponent = ({
 					<Box>
 						<InputController
 							{...{ control }}
+							inputType={inputType.tel}
 							name={'expirationDate(mm/yy)'}
 							pattern={'m/Y'}
 							rules={expirationDateRules}
@@ -84,6 +86,7 @@ const PaymentFormComponent = ({
 							{...{ control, setFlipped, flipped }}
 							name={'cardSecurityCode'}
 							pattern={'000'}
+							inputType={inputType.tel}
 							rules={CardSecurityCodeRules}
 						></InputController>
 						{errors.cardSecurityCode ? (

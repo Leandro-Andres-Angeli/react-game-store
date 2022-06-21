@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import { Box, Typography, Divider } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 const PoliciesComponentItem = ({ icon, title, subtitle }) => {
 	return (

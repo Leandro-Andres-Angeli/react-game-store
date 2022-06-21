@@ -12,8 +12,8 @@ const InputController = ({
 	flipped,
 	setFlipped,
 	inputProps,
+	inputType,
 }) => {
-	console.log(inputProps);
 	return (
 		<Controller
 			defaultValue=""
@@ -22,7 +22,6 @@ const InputController = ({
 			render={({ field: { onChange: onChangeReactHookForm, value } }) => {
 				return (
 					<TextField
-					
 						size="small"
 						label={returnLabelName(name)}
 						value={value}
@@ -36,7 +35,7 @@ const InputController = ({
 						}}
 						InputProps={{
 							inputComponent: InputCustomMask,
-							inputProps: { pattern },
+							inputProps: { pattern, inputType },
 						}}
 					></TextField>
 				);

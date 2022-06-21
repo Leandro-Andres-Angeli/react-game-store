@@ -15,7 +15,9 @@ const SnackbarComponent = ({
 			anchorOrigin={{ vertical: `${positionY}`, horizontal: 'center' }}
 			open={closeSnackbar}
 			onClose={setCloseSnackbar}
-			autoHideDuration={msg.includes('favorite') ? 2000 : 6000}
+			autoHideDuration={
+				msg.includes('favorite') ? 2000 : msg.includes('empty') ? 2000 : 4000
+			}
 			message={msg}
 			sx={{
 				zIndex: 1400,

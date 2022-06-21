@@ -1,12 +1,17 @@
 import React from 'react';
 import { IMaskInput } from 'react-imask';
 import IMask from 'imask';
-const InputCustomMask = React.forwardRef(function TextMaskCustom(props, ref) {
+const InputCustomMask = React.forwardRef(function TextMaskCustom(
+	props,
+	ref,
+	inputType
+) {
 	const { onChange, register, pattern, errors, ...other } = props;
 
 	return (
 		<IMaskInput
 			{...other}
+			type={inputType | 'text'}
 			mask={props.pattern}
 			maxLength={props.pattern === 'x' ? 16 : ''}
 			definitions={{
