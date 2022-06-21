@@ -14,6 +14,7 @@ import initialStateCart from './components/reducers/initialStateCart';
 import { cartReducer } from './components/reducers/cartReducer';
 import { favoriteReducer } from './components/reducers/favoriteReducer';
 import initialStateFavorite from './components/reducers/initialStateFavorite';
+import Footer from './components/Footer';
 
 function App() {
 	const routesComponents = routes;
@@ -74,6 +75,7 @@ function App() {
 					)
 				)}
 			</Routes>
+			<Footer></Footer>
 		</AppContext.Provider>
 	);
 }
