@@ -25,7 +25,7 @@ const PaymentFormComponent = ({
 		console.log(data);
 	};
 
-	const inputType = { tel: 'tel' };
+	const inputType = { text: 'text', tel: 'tel' };
 
 	return (
 		<Grid item xs={12} sm={12} md={6} sx={{ py: 2.5, px: 1.5 }}>
@@ -84,7 +84,6 @@ const PaymentFormComponent = ({
 							{...{ control, setFlipped, flipped, inputType }}
 							name={'cardSecurityCode'}
 							pattern={'000'}
-							inputType={inputType.tel}
 							rules={CardSecurityCodeRules}
 						></InputController>
 						{errors.cardSecurityCode ? (
