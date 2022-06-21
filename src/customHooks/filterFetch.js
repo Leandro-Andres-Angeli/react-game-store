@@ -27,3 +27,10 @@ export const filterGameModal = (res) => {
 		background_image_additional: res.data.background_image_additional,
 	};
 };
+export const filterGameSlider = (res) => {
+	return {
+		name: res.data.name,
+
+		background_image: res.data.background_image,
+	};
+};
