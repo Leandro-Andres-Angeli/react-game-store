@@ -21,10 +21,12 @@ import SnackbarComponent from '../../snackbar/SnackbarComponent';
 import CheckoutLink from '../shared/CheckoutLink';
 import CheckoutButton from '../../snackbar/CheckoutButton';
 import CloseButtonSnackbar from '../../snackbar/CloseButtonSnackbar';
+import { filterGameModal } from '../../customHooks/filterFetch';
 
 const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games/${gameID}?key=${process.env.REACT_APP_API_KEY}`;
-	const gameData = useFetch(URI)[0];
+	const gameData = useFetch(URI,filterGameModal)[0];
+	console.log(gameData);
 	const colRef = useRef();
 
 	const [add, setAdd] = useState(true);

@@ -1,9 +1,11 @@
 import { Button, Stack } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import { AppContext } from '../../context/AppContext';
 const CheckoutButtons = ({ handleStep, activeStep, steps }) => {
+	const context = useContext(AppContext);
 	return (
 		<Stack
 			direction="row"
@@ -11,8 +13,7 @@ const CheckoutButtons = ({ handleStep, activeStep, steps }) => {
 			justifyContent={'end'}
 			sx={{
 				button: { color: 'white' },
-
-				inset: ' auto 2rem 2rem',
+				p: 3,
 			}}
 		>
 			{activeStep !== 0 && (
@@ -27,22 +28,24 @@ const CheckoutButtons = ({ handleStep, activeStep, steps }) => {
 					prev
 				</Button>
 			)}
-			<Button
-				variant="contained"
-				color="secondary"
-				onClick={() => {
-					handleStep(activeStep < steps.length ? +1 : 0);
-				}}
-				endIcon={
-					activeStep !== steps.length ? (
-						<ArrowRightIcon />
-					) : (
-						<ThumbUpOffAltIcon />
-					)
-				}
-			>
-				{activeStep !== steps.length ? 'next' : 'confirm order'}
-			</Button>
+			{context.cart.items.length > 0 ? (
+				<Button
+					variant="contained"
+					color="secondary"
+					onClick={() => {
+						handleStep(activeStep < steps.length ? +1 : 0);
+					}}
+					endIcon={
+						activeStep !== steps.length ? (
+							<ArrowRightIcon />
+						) : (
+							<ThumbUpOffAltIcon />
+						)
+					}
+				>
+					{activeStep !== steps.length ? 'next' : 'confirm purchase'}
+				</Button>
+			) : null}
 		</Stack>
 	);
 };

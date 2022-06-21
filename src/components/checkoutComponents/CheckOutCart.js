@@ -177,6 +177,7 @@ const CheckOutCart = () => {
 								<Typography
 									sx={{
 										textTransform: 'uppercase',
+										py: { xs: 2, md: 4 },
 									}}
 								>
 									{' '}
