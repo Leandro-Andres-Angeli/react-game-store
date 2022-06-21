@@ -42,7 +42,11 @@ const Navbar = () => {
 				sx={{ button: { color: 'white' } }}
 			>
 				<Toolbar maxWidth="xl" sx={{ display: 'flex', alignItems: 'center' }}>
-					<Link to="/">
+					<Button
+						component={'Link'}
+						to="/"
+						sx={{ textDecoration: 'none', color: 'white' }}
+					>
 						<Typography
 							variant="h1"
 							sx={{
@@ -69,7 +73,7 @@ const Navbar = () => {
 								hoax
 							</Box>
 						</Typography>
-					</Link>
+					</Button>
 					<LgMenu navbarRoutes={navbarRoutes}></LgMenu>
 					<Button
 						sx={{ marginLeft: 'auto', color: 'white' }}

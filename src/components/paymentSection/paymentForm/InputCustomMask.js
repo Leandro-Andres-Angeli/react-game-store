@@ -3,7 +3,7 @@ import { IMaskInput } from 'react-imask';
 import IMask from 'imask';
 const InputCustomMask = React.forwardRef(function TextMaskCustom(props, ref) {
 	const { onChange, register, pattern, errors, ...other } = props;
-	console.log(other.type);
+
 	return (
 		<IMaskInput
 			{...other}
