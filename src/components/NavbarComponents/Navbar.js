@@ -70,7 +70,7 @@ const Navbar = () => {
 									color: [theme.palette.secondary.main],
 								}}
 							>
-								hoax
+								store
 							</Box>
 						</Typography>
 					</Button>
