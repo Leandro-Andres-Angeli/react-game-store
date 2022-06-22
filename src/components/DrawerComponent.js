@@ -19,7 +19,7 @@ const DrawerComponent = ({ categories }) => {
 							<>
 								<ListItem button key={index} component="li">
 									<Button
-										key={category.name}
+										key={category.id}
 										component={NavLink}
 										onClick={() => {
 											setPage(1);
@@ -39,7 +39,7 @@ const DrawerComponent = ({ categories }) => {
 										{category.name}
 									</Button>
 								</ListItem>
-								<Divider sx={{ bgcolor: '#fafafa33' }} />
+								<Divider key={index + 1} sx={{ bgcolor: '#fafafa33' }} />
 							</>
 					  ))
 					: null}

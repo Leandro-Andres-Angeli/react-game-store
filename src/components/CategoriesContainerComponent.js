@@ -20,7 +20,7 @@ const GenreComponent = () => {
 
 	const URI = `${process.env.REACT_APP_API_BASE_URL}/games?page=${page}&page_size=24&${route}&key=${process.env.REACT_APP_API_KEY}`;
 
-	const [data, setData, Loaded] = useFetch(URI, filterGameCard);
+	const [data, , Loaded] = useFetch(URI, filterGameCard);
 
 	const calcMaxPage = () => {
 		let maxPage = Math.round(data.count / 24);

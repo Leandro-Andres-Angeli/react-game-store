@@ -28,7 +28,7 @@ const Genres = (props) => {
 	const navigateToMain = () => {
 		navigate(`${categories?.results[0].name}`);
 	};
-	// console.log('render');
+
 	let firstLoad = true;
 
 	const initialPage = useCallback(() => {

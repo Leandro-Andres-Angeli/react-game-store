@@ -9,7 +9,7 @@ import { useTheme } from '@mui/system';
 import React from 'react';
 import { useFetch } from '../customHooks/useFetch';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import {filterGameSlider} from '../customHooks/filterFetch';
+import { filterGameSlider } from '../customHooks/filterFetch';
 const SliderItem = ({ gameId, title }) => {
 	const KEY = process.env.REACT_APP_API_KEY;
 	const URI = process.env.REACT_APP_API_BASE_URL;
@@ -18,7 +18,7 @@ const SliderItem = ({ gameId, title }) => {
 	// eslint-disable-next-line no-unused-vars
 	const [data, setData, isLoaded] = useFetch(endPointToFetch, filterGameSlider);
 	const { background_image, name } = data;
-	console.log(data);
+
 	const theme = useTheme();
 	const { grey } = theme.palette;
 
