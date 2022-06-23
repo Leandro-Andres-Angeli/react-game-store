@@ -31,18 +31,23 @@ const ContactForm = () => {
 	const formTheme = createTheme(formThemeStyles);
 	const mailClientId = process.env.REACT_APP_MAIL_SERVICE_ID;
 	const publicKey = process.env.REACT_APP_MAIL_KEY;
-	const [success, setSuccess] = useState(false);
-	const [openSanckbar, setOpenSanckbar] = useState(true);
+	const [success, setSuccess] = useState('');
+	const [openSanckbar, setOpenSanckbar] = useState(false);
 	const mailTemplate = 'template_egtoahy';
 	const onSubmit = (data) => {
 		emailjs
 			.send(mailClientId, mailTemplate, data, publicKey)
 			.then((res) => {
 				if (res.status === 200) {
-					setSuccess(true);
+					setSuccess('e-mail sent ');
 				}
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				setSuccess(
+					`ooops I'm out of calls to email API contact me via  links in  footer  `
+				);
+				console.log(err);
+			});
 		setOpenSanckbar(true);
 	};
 	const InputProps = { rows: 4, type: 'textarea', multiline: true };
@@ -121,23 +126,17 @@ const ContactForm = () => {
 						send
 					</Button>
 				</Box>
-			</Container>
+			</Container>{
+				success &&
 			<SnackbarComponent
 				closeSnackbar={openSanckbar}
-				// setCloseSnackbar={setOpenSanckbar}
-				sx={{
-					border: '2px solid pink',
-					'& .css-1vpwyy6-MuiSnackbar-root .MuiPaper-root': { color: 'red' },
-				}}
+				setCloseSnackbar={setOpenSanckbar}
 				reverseCol={true}
 				snackAction={<CloseButtonSnackbar setCloseSnackbar={setOpenSanckbar} />}
 				positionY={'bottom'}
-				msg={
-					success === true
-						? 'mail sent '
-						: `ooops I'm out of calls to email API contact me via  links in  footer  `
-				}
+				msg={success}
 			></SnackbarComponent>
+		}
 		</ThemeProvider>
 	);
 };

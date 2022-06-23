@@ -19,8 +19,8 @@ const SnackbarComponent = ({
 			}}
 			open={closeSnackbar}
 			onClose={setCloseSnackbar}
-			autoHideDuration={
-				msg.includes('favorite') ? 2000 : msg.includes('empty') ? 2000 : 4000
+			autoHideDuration={3000
+				// msg.includes('favorite') ? 2000 : msg.includes('empty') ? 2000 : 4000
 			}
 			message={msg}
 			sx={{

@@ -17,20 +17,5 @@ const FavoriteSnackAction = ({ setCloseSnackbar }) => {
 	);
 };
 
-// const FavoriteSnackAction = ({ setCloseSnackbar }) => {
-// 	return (
-// 		<IconButton
-// 			size="small"
-// 			aria-label="close"
-// 			color="inherit"
-// 			onClick={() => {
-// 				setCloseSnackbar(false);
-// 			}}
-// 		>
-// 			x
-// 			<Close fontSize="small" />
-// 		</IconButton>
-// 	);
-// };
 
 export default FavoriteSnackAction;
