@@ -3,7 +3,10 @@ import { ACTIONS } from './actions';
 export const favoriteReducer = (favorite, action) => {
 	switch (action.type) {
 		case ACTIONS.ADD:
-			return [...favorite, action.payload];
+			return favorite.filter((favs) => favs.id === action.payload.id).length ===
+				0
+				? [...favorite, action.payload]
+				: favorite;
 
 		case ACTIONS.REMOVE:
 			const filteredArray = favorite.filter(

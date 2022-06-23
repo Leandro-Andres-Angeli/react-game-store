@@ -13,7 +13,7 @@ const AddToFavoriteButton = ({ game, setCloseSnackbar, addState }) => {
 	const [existsInFav, setExistsInFav] = useState();
 
 	const toFavorite = () => {
-		add
+		existsInFav === false
 			? context.dispatchFavorite({
 					type: ACTIONS.ADD,
 					payload: { id: game.id, name: game.name },
@@ -25,7 +25,7 @@ const AddToFavoriteButton = ({ game, setCloseSnackbar, addState }) => {
 
 		setCloseSnackbar(true);
 
-		setAdd(!add);
+		setAdd(existsInFav);
 	};
 
 	useEffect(() => {
