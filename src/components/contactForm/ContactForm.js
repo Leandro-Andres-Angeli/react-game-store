@@ -1,17 +1,20 @@
-import { Box, Typography, TextField, Container, Button } from '@mui/material';
-import { createTheme, useTheme } from '@mui/material/styles';
+import { Box, Typography, Container, Button } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import formStyles from '../../theme/formStyles.js';
 import React from 'react';
+import SendIcon from '@mui/icons-material/Send';
 import emailjs from '@emailjs/browser';
-import { Controller, useForm } from 'react-hook-form';
-import { returnLabelName } from '../../utils/convertNameToLabel.js';
+
+
 import {
 	msgRules,
 	nameRules,
 	validEmail,
 } from '../paymentSection/paymentForm/inputRules.js';
 import ContactFormController from './ContactFormController.js';
+import InputErrorMsg from '../paymentSection/paymentForm/InputErrorMsg.js';
+import { useForm } from 'react-hook-form';
 
 const ContactForm = () => {
 	const {
@@ -60,7 +63,9 @@ const ContactForm = () => {
 							name="name"
 							{...{ control, register }}
 						></ContactFormController>
-						{errors.name && <p>{errors.name.message}</p>}
+						{errors.name && (
+							<InputErrorMsg field={errors.name} mlZero={0}></InputErrorMsg>
+						)}
 					</div>
 					<div>
 						<ContactFormController
@@ -68,7 +73,9 @@ const ContactForm = () => {
 							name="eMail"
 							{...{ control, register }}
 						></ContactFormController>
-						{errors.eMail && <p>{errors.eMail.message}</p>}
+						{errors.eMail && (
+							<InputErrorMsg field={errors.eMail} mlZero={0}></InputErrorMsg>
+						)}
 					</div>
 					<div>
 						<ContactFormController
@@ -76,11 +83,12 @@ const ContactForm = () => {
 							name="message"
 							{...{ control, register, InputProps }}
 						></ContactFormController>
-						{errors.message && <p>{errors.message.message}</p>}
+						{errors.message && (
+							<InputErrorMsg field={errors.message} mlZero={0}></InputErrorMsg>
+						)}
 					</div>
 
 					<Button
-						size="small"
 						variant="contained"
 						sx={{
 							textTransform: 'uppercase',
@@ -90,6 +98,7 @@ const ContactForm = () => {
 						}}
 						type="submit"
 						disabled={!isDirty || !isValid}
+						endIcon={<SendIcon/>}
 					>
 						send
 					</Button>
