@@ -21,10 +21,13 @@ const ContactForm = () => {
 	const {
 		register,
 		handleSubmit,
-
+		reset,
 		control,
 		formState: { errors, isDirty, isValid },
-	} = useForm({ mode: 'all' });
+	} = useForm({
+		mode: 'all',
+		defaultValues: { name: '', eMail: '', subject: '', message: '' },
+	});
 
 	const formThemeStyles = formStyles;
 
@@ -34,7 +37,7 @@ const ContactForm = () => {
 	const [success, setSuccess] = useState('');
 	const [openSanckbar, setOpenSanckbar] = useState(false);
 	const mailTemplate = 'template_egtoahy';
-	const onSubmit = (data) => {
+	const onSubmit = (data, e) => {
 		emailjs
 			.send(mailClientId, mailTemplate, data, publicKey)
 			.then((res) => {
@@ -46,9 +49,9 @@ const ContactForm = () => {
 				setSuccess(
 					`ooops I'm out of calls to email API contact me via  links in  footer  `
 				);
-				console.log(err);
 			});
 		setOpenSanckbar(true);
+		e.target.reset();
 	};
 	const InputProps = { rows: 4, type: 'textarea', multiline: true };
 	return (
@@ -126,17 +129,19 @@ const ContactForm = () => {
 						send
 					</Button>
 				</Box>
-			</Container>{
-				success &&
-			<SnackbarComponent
-				closeSnackbar={openSanckbar}
-				setCloseSnackbar={setOpenSanckbar}
-				reverseCol={true}
-				snackAction={<CloseButtonSnackbar setCloseSnackbar={setOpenSanckbar} />}
-				positionY={'bottom'}
-				msg={success}
-			></SnackbarComponent>
-		}
+			</Container>
+			{success && (
+				<SnackbarComponent
+					closeSnackbar={openSanckbar}
+					setCloseSnackbar={setOpenSanckbar}
+					reverseCol={true}
+					snackAction={
+						<CloseButtonSnackbar setCloseSnackbar={setOpenSanckbar} />
+					}
+					positionY={'bottom'}
+					msg={success}
+				></SnackbarComponent>
+			)}
 		</ThemeProvider>
 	);
 };
