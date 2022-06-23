@@ -221,9 +221,10 @@ const CheckOutCart = () => {
 			<SnackbarComponent
 				msg={'empty cart'}
 				positionY={'bottom'}
-				closeSnackbar={closeSnackbar}
-				onClose={setCloseSnackbar}
-				snackAction={<CloseButtonSnackbar {...{ setCloseSnackbar }} />}
+				{...{ closeSnackbar }}
+				setCloseSnackbar={() => {
+					setCloseSnackbar(false);
+				}}
 			></SnackbarComponent>
 		</>
 	);
