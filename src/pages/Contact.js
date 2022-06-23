@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '@mui/material/Container';
-import ContactForm from '../components/ContactForm';
+import ContactForm from '../components/contactForm/ContactForm';
 
 const Contact = () => {
 	return (

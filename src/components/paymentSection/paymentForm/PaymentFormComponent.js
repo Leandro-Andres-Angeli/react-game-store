@@ -6,7 +6,7 @@ import InputErrorMsg from './InputErrorMsg';
 import InputController from './InputController';
 import {
 	cardRules,
-	CardSecurityCodeRules,
+	cardSecurityCodeRules,
 	expirationDateRules,
 	nameRules,
 } from './inputRules';
@@ -84,7 +84,7 @@ const PaymentFormComponent = ({
 							{...{ control, setFlipped, flipped, inputType }}
 							name={'cardSecurityCode'}
 							pattern={'000'}
-							rules={CardSecurityCodeRules}
+							rules={cardSecurityCodeRules}
 						></InputController>
 						{errors.cardSecurityCode ? (
 							<InputErrorMsg

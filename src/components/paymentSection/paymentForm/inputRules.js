@@ -13,10 +13,25 @@ export const expirationDateRules = {
 		message: 'expiration incomplete',
 	},
 };
-export const CardSecurityCodeRules = {
+export const cardSecurityCodeRules = {
 	required: 'required field',
 	minLength: {
 		value: 3,
 		message: 'code must contain 3 numbers',
+	},
+};
+export const msgRules = {
+	required: 'required field',
+	minLength: {
+		value: 10,
+		message: 'text too short',
+	},
+};
+
+export const validEmail = {
+	required: 'required field',
+	pattern: {
+		value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+		message: 'not valid e-mail',
 	},
 };
