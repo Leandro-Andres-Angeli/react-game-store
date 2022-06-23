@@ -17,13 +17,13 @@ const ContactFormController = ({
 			name={name}
 			rules={rules}
 			render={({
-				field: { onChange, onBlur, value, name, ref },
+				field: { onChange, onBlur, value, name },
 				fieldState: { invalid, isTouched, isDirty, error },
 
 				formState,
 			}) => (
 				<TextFieldComponent
-					{...{ onBlur, onChange, value, ref, InputProps }}
+					{...{ onBlur, onChange, value,  InputProps }}
 					label={name}
 				>
 					{' '}

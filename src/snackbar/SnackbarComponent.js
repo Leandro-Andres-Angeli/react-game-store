@@ -7,12 +7,16 @@ const SnackbarComponent = ({
 	add,
 	snackAction,
 	msg,
+	reverseCol,
 	positionY,
 }) => {
 	return (
 		<Snackbar
 			color="primary"
-			anchorOrigin={{ vertical: `${positionY}`, horizontal: 'center' }}
+			anchorOrigin={{
+				vertical: `${positionY}`,
+				horizontal: 'center',
+			}}
 			open={closeSnackbar}
 			onClose={setCloseSnackbar}
 			autoHideDuration={
@@ -22,7 +26,11 @@ const SnackbarComponent = ({
 			sx={{
 				zIndex: 1400,
 				textTransform: 'uppercase',
-				'.MuiPaper-root': { color: 'white', backgroundColor: '#000000a6' },
+				'.MuiPaper-root': {
+					color: 'white',
+					backgroundColor: '#000000a6',
+					flexDirection: reverseCol ? 'column-reverse' : 'inherit',
+				},
 			}}
 			action={snackAction}
 		/>

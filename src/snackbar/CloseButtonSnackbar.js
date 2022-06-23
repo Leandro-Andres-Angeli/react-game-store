@@ -7,6 +7,7 @@ const FavoriteSnackAction = ({ setCloseSnackbar }) => {
 			size="small"
 			aria-label="close"
 			color="inherit"
+			
 			onClick={() => {
 				setCloseSnackbar(false);
 			}}

@@ -2,10 +2,9 @@ import { Box, Typography, Container, Button } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import formStyles from '../../theme/formStyles.js';
-import React from 'react';
+import React, { useState } from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import emailjs from '@emailjs/browser';
-
 
 import {
 	msgRules,
@@ -16,6 +15,8 @@ import ContactFormController from './ContactFormController.js';
 import InputErrorMsg from '../paymentSection/paymentForm/InputErrorMsg.js';
 import { useForm } from 'react-hook-form';
 
+import SnackbarComponent from '../../snackbar/SnackbarComponent.js';
+import CloseButtonSnackbar from '../../snackbar/CloseButtonSnackbar';
 const ContactForm = () => {
 	const {
 		register,
@@ -24,14 +25,25 @@ const ContactForm = () => {
 		control,
 		formState: { errors, isDirty, isValid },
 	} = useForm({ mode: 'all' });
-	console.log(!!errors);
 
 	const formThemeStyles = formStyles;
-	// console.log(emailjs);
-	const formTheme = createTheme(formThemeStyles);
 
+	const formTheme = createTheme(formThemeStyles);
+	const mailClientId = process.env.REACT_APP_MAIL_SERVICE_ID;
+	const publicKey = process.env.REACT_APP_MAIL_KEY;
+	const [success, setSuccess] = useState(false);
+	const [openSanckbar, setOpenSanckbar] = useState(true);
+	const mailTemplate = 'template_egtoahy';
 	const onSubmit = (data) => {
-		console.log(data);
+		emailjs
+			.send(mailClientId, mailTemplate, data, publicKey)
+			.then((res) => {
+				if (res.status === 200) {
+					setSuccess(true);
+				}
+			})
+			.catch((err) => console.log(err));
+		setOpenSanckbar(true);
 	};
 	const InputProps = { rows: 4, type: 'textarea', multiline: true };
 	return (
@@ -69,6 +81,12 @@ const ContactForm = () => {
 					</div>
 					<div>
 						<ContactFormController
+							name="subject"
+							{...{ control, register }}
+						></ContactFormController>
+					</div>
+					<div>
+						<ContactFormController
 							rules={validEmail}
 							name="eMail"
 							{...{ control, register }}
@@ -98,12 +116,28 @@ const ContactForm = () => {
 						}}
 						type="submit"
 						disabled={!isDirty || !isValid}
-						endIcon={<SendIcon/>}
+						endIcon={<SendIcon />}
 					>
 						send
 					</Button>
 				</Box>
 			</Container>
+			<SnackbarComponent
+				closeSnackbar={openSanckbar}
+				// setCloseSnackbar={setOpenSanckbar}
+				sx={{
+					border: '2px solid pink',
+					'& .css-1vpwyy6-MuiSnackbar-root .MuiPaper-root': { color: 'red' },
+				}}
+				reverseCol={true}
+				snackAction={<CloseButtonSnackbar setCloseSnackbar={setOpenSanckbar} />}
+				positionY={'bottom'}
+				msg={
+					success === true
+						? 'mail sent '
+						: `ooops I'm out of calls to email API contact me via  links in  footer  `
+				}
+			></SnackbarComponent>
 		</ThemeProvider>
 	);
 };

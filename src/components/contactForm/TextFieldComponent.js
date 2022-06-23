@@ -6,20 +6,19 @@ const TextFieldComponent = ({
 	onBlur,
 	onChange,
 	value,
-	ref,
+
 	label,
 	InputProps,
 }) => {
-	
 	return (
 		<TextField
 			label={returnLabelName(label)}
 			fullWidth
 			variant="standard"
-			onBlur={onBlur} 
-			onChange={onChange} 
+			onBlur={onBlur}
+			onChange={onChange}
 			checked={value}
-			inputRef={ref}
+			// inputRef={ref}
 			InputProps={InputProps}
 		/>
 	);
