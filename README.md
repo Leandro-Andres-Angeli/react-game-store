@@ -3,7 +3,7 @@
 React game store made in React 
 
 
-## Stack
+## Resources I used
  - [React](https://reactjs.org)
  - [Material MUI](https://mui.com/)
  - [React Hook Form](https://react-hook-form.com)
