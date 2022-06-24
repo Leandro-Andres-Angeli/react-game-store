@@ -67,7 +67,7 @@ const ContactForm = () => {
 						p: { xs: 1, md: 2 },
 					}}
 				>
-					contact
+					contact me!
 				</Typography>
 				<Box
 					component="form"
