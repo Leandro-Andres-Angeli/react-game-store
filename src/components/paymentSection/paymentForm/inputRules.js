@@ -16,12 +16,8 @@ export const expirationDateRules = {
 		validDate: (v) =>
 			(v.split('/')[0] > new Date().getMonth() + 1 &&
 				v.split('/')[1] !== new Date().getFullYear() - 2000) ||
+			v.split('/')[1] > new Date().getFullYear() - 2000 ||
 			'expired card',
-
-		// &&
-		// 	v.split('/')[1] == new Date().getYear() - 2000
-		// ||
-		// v.split('/')[1] > new Date().getYear() - 2000,
 	},
 };
 export const cardSecurityCodeRules = {
