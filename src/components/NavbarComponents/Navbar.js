@@ -30,9 +30,7 @@ const Navbar = () => {
 		setAnchorElNav(null);
 	};
 
-	useEffect(() => {
-		console.log(cart);
-	}, [cart]);
+
 
 	return (
 		<>

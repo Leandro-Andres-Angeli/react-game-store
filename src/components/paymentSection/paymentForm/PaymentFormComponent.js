@@ -20,11 +20,13 @@ const PaymentFormComponent = ({
 	setFlipped,
 	flipped,
 	formRef,
+	isValid,
 }) => {
-	const onSubmit = (data) => {
+	const onSubmit = (data, e) => {
 		console.log(data);
+		e.target.reset();
 	};
-
+	console.log(isValid);
 	const inputType = { text: 'text', tel: 'tel' };
 
 	return (
@@ -97,7 +99,14 @@ const PaymentFormComponent = ({
 					</Box>
 				</Stack>
 				<Box sx={{ display: 'flex', justifyContent: 'end' }}>
-					<Button type="submit">sub</Button>
+					<Button
+						type="submit"
+						disabled={!isValid}
+						variant="contained"
+						sx={{ color: 'white' }}
+					>
+						confirm card
+					</Button>
 				</Box>
 			</Box>
 		</Grid>

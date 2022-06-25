@@ -8,9 +8,10 @@ const PaymentComponent = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isValid },
 		onChange,
 		control,
+
 		watch,
 		getValues,
 	} = useForm({ mode: 'all' });
@@ -41,6 +42,7 @@ const PaymentComponent = () => {
 						control,
 						setFlipped,
 						flipped,
+						isValid,
 					}}
 				></PaymentFormComponent>
 			</Grid>
