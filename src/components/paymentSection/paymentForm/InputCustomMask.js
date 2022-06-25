@@ -1,8 +1,10 @@
 import React from 'react';
 import { IMaskInput } from 'react-imask';
 import IMask from 'imask';
+
 const InputCustomMask = React.forwardRef(function TextMaskCustom(props, ref) {
 	const { onChange, register, pattern, errors, ...other } = props;
+	const currentYear = new Date().getFullYear().toString().slice(-2) * 1;
 
 	return (
 		<IMaskInput
@@ -18,7 +20,7 @@ const InputCustomMask = React.forwardRef(function TextMaskCustom(props, ref) {
 				},
 				Y: {
 					mask: IMask.MaskedRange,
-					from: new Date().getFullYear().toString().slice(-2) * 1,
+					from: currentYear,
 					to: 99,
 					maxLength: 2,
 				},

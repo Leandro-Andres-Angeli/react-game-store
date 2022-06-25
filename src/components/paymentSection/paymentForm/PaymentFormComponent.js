@@ -23,10 +23,11 @@ const PaymentFormComponent = ({
 	isValid,
 }) => {
 	const onSubmit = (data, e) => {
+		console.log(typeof data[`expirationDate(mm/yy)`]);
 		console.log(data);
 		e.target.reset();
 	};
-	console.log(isValid);
+	console.log(errors);
 	const inputType = { text: 'text', tel: 'tel' };
 
 	return (
