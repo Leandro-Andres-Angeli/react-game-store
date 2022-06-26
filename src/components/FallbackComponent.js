@@ -1,13 +1,7 @@
 import React from 'react';
 import Container from '@mui/material/Container';
-import {
-	Box,
-	CircularProgress,
-	Stack,
-	Typography,
-	useTheme,
-} from '@mui/material';
-
+import { Box } from '@mui/material';
+import './fallbackStyles.css';
 const FallbackComponent = () => {
 	return (
 		<Container
@@ -19,10 +13,12 @@ const FallbackComponent = () => {
 				alignItems: 'center',
 			}}
 		>
-			<Stack direction="row" spacing={2}>
-				<Typography variant="h1">Loading</Typography>
-				<CircularProgress color="secondary" />
-			</Stack>
+			<Box className="lds-ellipsis">
+				<Box></Box>
+				<Box></Box>
+				<Box></Box>
+				<Box></Box>
+			</Box>
 		</Container>
 	);
 };
