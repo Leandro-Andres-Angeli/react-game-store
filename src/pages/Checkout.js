@@ -21,10 +21,9 @@ import ConfirmOrderComponent from '../components/ConfirmOrderComponent';
 const steps = ['checkout', 'payment method'];
 const Checkout = () => {
 	const [activeStep, setActiveStep] = useState(0);
-	const [completed, setCompleted] = useState({});
+	const [completed] = useState({});
 
 	const handleStep = (num) => {
-		// setActiveStep(activeStep + 1);
 		setActiveStep((prev) => num + prev);
 	};
 

@@ -15,7 +15,7 @@ import {
 import { AppContext } from '../context/AppContext';
 import CheckOutListIem from './shared/CheckOutListIem';
 import { calcTotalPrice, calcTotalQuantity } from '../utils/calcTotalCart';
-import { Box } from '@mui/system';
+
 import NoInformationFallback from './checkoutComponents/NoInformationFallback';
 
 const ConfirmOrderComponent = () => {

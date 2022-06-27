@@ -23,8 +23,7 @@ const CategoriesContainerComponent = lazy(() =>
 );
 function App() {
 	const routesComponents = routes;
-	// const genres = useState(GenresList());
-	// console.log(genres);
+	
 	const contextVar = GenresList();
 
 	const [page, setPage] = useState(1);

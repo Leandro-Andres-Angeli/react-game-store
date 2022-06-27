@@ -7,7 +7,7 @@ import PoliciesComponent from '../components/PoliciesComponent';
 
 const Home = () => {
 	const theme = useTheme();
-	console.log(theme);
+
 	return (
 		<Box sx={{ p: 0 }}>
 			<SliderComponent

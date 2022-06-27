@@ -16,8 +16,8 @@ export const favoriteReducer = (favorite, action) => {
 		case ACTIONS.RESET:
 			return [];
 		default:
-			console.log('default');
+			return favorite;
 	}
 
-	return favoriteReducer;
+	// return favoriteReducer;
 };

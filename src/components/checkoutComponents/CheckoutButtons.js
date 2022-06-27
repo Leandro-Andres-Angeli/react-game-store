@@ -24,7 +24,7 @@ const CheckoutButtons = ({ handleStep, activeStep, steps }) => {
 	useEffect(() => {
 		localStorage.setItem('card', JSON.stringify(context.cardData));
 	}, [context.cardData]);
-	console.log(orderAction);
+	
 	return (
 		<>
 			<Stack

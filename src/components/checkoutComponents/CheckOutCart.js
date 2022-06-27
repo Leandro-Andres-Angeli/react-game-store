@@ -19,6 +19,8 @@ import ButtonDeleteListItem from './ButtonDeleteListItem';
 import ButtonEmptyCart from './ButtonEmptyCart';
 import { calcTotalPrice, calcTotalQuantity } from '../../utils/calcTotalCart';
 
+import NoInformationFallback from './NoInformationFallback';
+
 const CheckOutCart = () => {
 	const context = useContext(AppContext);
 
@@ -105,21 +107,10 @@ const CheckOutCart = () => {
 						</List>
 					</CardContent>
 				) : (
-					<CardContent
-						sx={{
-							minHeight: '50vh',
-							display: ' flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-						}}
-					>
-						<Typography
-							sx={{
-								textTransform: 'uppercase',
-							}}
-						>
-							No items in cart
-						</Typography>
+					<CardContent>
+						<NoInformationFallback
+							msg={'no items in cart'}
+						></NoInformationFallback>
 					</CardContent>
 				)}
 			</Card>

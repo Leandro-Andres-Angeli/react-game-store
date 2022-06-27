@@ -51,14 +51,14 @@ const GameModalCTA = ({
 			quantity: parseInt(qtyRef.current.children[0].childNodes[0].value),
 			platform: { id: idPlatform, name: namePlatform },
 		};
-		console.log(idPlatform);
+	
 		if (idPlatform !== 0) {
 			context.dispatchCart({ type: ACTIONS.ADD, payload: payload });
 			setFailAddedtoCart(true);
 		}
 
 		setToggleSnackbarCart(true);
-		console.log(qtyRef.current.children[0].childNodes[0].value);
+		
 	};
 
 	return (

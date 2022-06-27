@@ -26,7 +26,7 @@ const PaymentFormComponent = ({
 }) => {
 	const { cardData, setCardData } = useContext(AppContext);
 	const [closeSnackbar, setCloseSnackbar] = useState(false);
-	console.log(cardData.length);
+
 	const onSubmit = (data, e) => {
 		setCardData({ ...cardData, cardInformation: data });
 
