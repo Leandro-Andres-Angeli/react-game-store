@@ -2,26 +2,23 @@ import {
 	Card,
 	CardContent,
 	List,
-	ListItem,
-	ListItemAvatar,
-	ListItemText,
 	Typography,
 	Divider,
 	Stack,
-	Button,
-	Box,
 } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
-import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+
 import { useTheme } from '@mui/styles';
-import { ACTIONS } from '../reducers/actions';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { red } from '@mui/material/colors';
+
 import SnackbarComponent from '../../snackbar/SnackbarComponent';
-import CloseButtonSnackbar from '../../snackbar/CloseButtonSnackbar';
+import CheckOutListIem from '../shared/CheckOutListIem';
+import ButtonAddListItem from './ButtonAddListItem';
+import ButtonDeleteListItem from './ButtonDeleteListItem';
+import ButtonEmptyCart from './ButtonEmptyCart';
+import { calcTotalPrice, calcTotalQuantity } from '../../utils/calcTotalCart';
+
 const CheckOutCart = () => {
 	const context = useContext(AppContext);
 
@@ -33,24 +30,10 @@ const CheckOutCart = () => {
 	const [closeSnackbar, setCloseSnackbar] = useState(false);
 	useEffect(() => {
 		localStorage.setItem('cart', JSON.stringify(cart));
-		cart.items
-			? setTotalPrice(
-					cart.items.reduce((a, b) => a + b.price * b.quantity, 0) ||
-						cart.items[0]?.price
-			  )
-			: setTotalPrice(0);
+		setTotalPrice(calcTotalPrice(cart));
 
-		setTotalItems(
-			cart.items
-				? cart.items.reduce((a, b) => a + b.quantity, 0) ||
-						cart?.items[0]?.quantity
-				: 0
-		);
+		setTotalItems(calcTotalQuantity(cart));
 	}, [cart]);
-	const emptyCart = () => {
-		context.dispatchCart({ type: ACTIONS.RESET });
-		setCloseSnackbar(true);
-	};
 
 	return (
 		<>
@@ -70,88 +53,20 @@ const CheckOutCart = () => {
 								? cart.items.map((game) => {
 										return (
 											<>
-												<ListItem
-													sx={{
-														flexWrap: 'wrap',
-														button: { minWidth: 3 },
-														paddingBottom: 2,
-													}}
-												>
-													<ListItemAvatar>
-														<VideogameAssetIcon
-															sx={{
-																fontSize: { xs: 64, sm: 64, md: 32 },
-																marginRight: 2,
-															}}
-														/>
-													</ListItemAvatar>
-													<ListItemText
-														sx={{ marginLeft: { xs: 0, sm: 1, md: 1 } }}
-														primary={game.name}
-														secondary={game.platform.name}
-													/>
-													<Stack
-														sx={{
-															' .MuiTypography-root': {
-																fontWeight: 'lighter',
-																textTransform: 'uppercase',
-															},
-															button: { color: 'white' },
-														}}
-														direction="row"
-														spacing={2}
-													>
-														{' '}
-														<Box
-															sx={{
-																display: 'flex',
-																gap: 2,
-																flexWrap: 'wrap',
-																alignItems: 'center',
-															}}
-														>
-															<Typography>
-																Amount :{' '}
-																{(game.quantity * game.price).toFixed(2)} $
-															</Typography>{' '}
-															<Box
-																sx={{
-																	display: 'flex',
-																	columnGap: 1,
-																	alignItems: 'center',
-																}}
-															>
-																<Button
-																	variant="contained"
-																	size="small"
-																	color="primary"
-																	onClick={() => {
-																		context.dispatchCart({
-																			type: ACTIONS.ADD,
-																			payload: { ...game, quantity: 1 },
-																		});
-																	}}
-																>
-																	<AddIcon></AddIcon>
-																</Button>
-																<Typography>Units:{game.quantity} </Typography>{' '}
-																<Button
-																	variant="contained"
-																	size="small"
-																	color="primary"
-																	onClick={() => {
-																		context.dispatchCart({
-																			type: ACTIONS.REMOVE,
-																			payload: game,
-																		});
-																	}}
-																>
-																	<RemoveIcon />
-																</Button>
-															</Box>
-														</Box>
-													</Stack>
-												</ListItem>
+												<CheckOutListIem
+													{...{ game }}
+													buttonAdd={
+														<ButtonAddListItem
+															{...{ game }}
+														></ButtonAddListItem>
+													}
+													buttonRemove={
+														<ButtonDeleteListItem
+															{...{ game }}
+														></ButtonDeleteListItem>
+													}
+												></CheckOutListIem>
+
 												<Divider
 													sx={{ borderColor: 'rgba(253, 253, 253, 0.21)' }}
 												></Divider>
@@ -181,20 +96,11 @@ const CheckOutCart = () => {
 									}}
 								>
 									{' '}
-									total price :{totalPrice ? totalPrice.toFixed(2) : null}{' '}
+									total price :$ {totalPrice
+										? totalPrice.toFixed(2)
+										: null}{' '}
 								</Typography>
-								<Button
-									sx={{
-										bgcolor: red[900],
-										color: 'white',
-										'&:hover': { bgcolor: red[700] },
-									}}
-									onClick={() => {
-										emptyCart();
-									}}
-								>
-									<DeleteForeverIcon></DeleteForeverIcon>
-								</Button>
+								<ButtonEmptyCart {...{ setCloseSnackbar }}></ButtonEmptyCart>
 							</Stack>
 						</List>
 					</CardContent>

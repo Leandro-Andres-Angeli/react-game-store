@@ -15,7 +15,7 @@ import { cartReducer } from './components/reducers/cartReducer';
 import { favoriteReducer } from './components/reducers/favoriteReducer';
 import initialStateFavorite from './components/reducers/initialStateFavorite';
 import Footer from './components/Footer';
-import Container from '@mui/material/Container';
+
 import FallbackComponent from './components/FallbackComponent';
 
 const CategoriesContainerComponent = lazy(() =>
@@ -28,7 +28,9 @@ function App() {
 	const contextVar = GenresList();
 
 	const [page, setPage] = useState(1);
-
+	const [cardData, setCardData] = useState(
+		JSON.parse(localStorage.getItem('card')) || []
+	);
 	let [cart, dispatchCart] = useReducer(cartReducer, initialStateCart);
 	const [favorite, dispatchFavorite] = useReducer(
 		favoriteReducer,
@@ -44,6 +46,8 @@ function App() {
 				dispatchCart,
 				favorite,
 				dispatchFavorite,
+				cardData,
+				setCardData,
 			}}
 		>
 			<Navbar></Navbar>

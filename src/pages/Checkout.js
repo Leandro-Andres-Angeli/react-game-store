@@ -17,7 +17,8 @@ import CartContext from '../context/CartContext';
 import { orderReducer } from '../components/reducers/orderReducer';
 
 import PaymentComponent from '../components/paymentSection/PaymentComponent';
-const steps = ['checkout', 'payment method', 'confirm purchase'];
+import ConfirmOrderComponent from '../components/ConfirmOrderComponent';
+const steps = ['checkout', 'payment method'];
 const Checkout = () => {
 	const [activeStep, setActiveStep] = useState(0);
 	const [completed, setCompleted] = useState({});
@@ -63,7 +64,7 @@ const Checkout = () => {
 							<PaymentComponent />
 						) : (
 							<Container maxWidth="lg">
-								current step {activeStep} final
+								<ConfirmOrderComponent></ConfirmOrderComponent>
 							</Container>
 						)}
 					</Box>

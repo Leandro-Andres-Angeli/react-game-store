@@ -20,7 +20,6 @@ import AddToFavoriteButton from '../shared/AddToFavoriteButton';
 import { AppContext } from '../../context/AppContext';
 import { ACTIONS } from '../reducers/actions';
 
-
 const GameModalCTA = ({
 	gamePlatforms,
 	game,
