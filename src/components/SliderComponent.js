@@ -51,7 +51,7 @@ export default function SliderComponent() {
 			{gamesId.map((gameId, i) => (
 				<SliderItem
 					component="div"
-					key={i}
+					{i}
 					title={'upcoming stock'}
 					gameId={gameId}
 				>
