@@ -49,12 +49,7 @@ export default function SliderComponent() {
 			}}
 		>
 			{gamesId.map((gameId, i) => (
-				<SliderItem
-					component="div"
-					{i}
-					title={'upcoming stock'}
-					gameId={gameId}
-				>
+				<SliderItem component="div" title={'upcoming stock'} gameId={gameId}>
 					{' '}
 				</SliderItem>
 			))}

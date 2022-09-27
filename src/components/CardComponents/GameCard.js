@@ -103,6 +103,7 @@ export const GameCard = ({ game, URI }) => {
 					<CardMedia
 						component="img"
 						height="194"
+						loading={'lazy'}
 						image={game.background_image || 'loading'}
 						alt={game.slug}
 					/>

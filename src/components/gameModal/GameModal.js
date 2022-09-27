@@ -85,6 +85,7 @@ const GameModal = ({ modalState, gameID, gamePlatforms }) => {
 							>
 								<CardMedia
 									component="img"
+									loading="lazy"
 									sx={{ width: '90%', height: '70%', m: `.5rem auto` }}
 									image={gameData?.background_image}
 									alt={gameData?.name}
