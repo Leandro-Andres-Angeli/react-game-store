@@ -17,3 +17,5 @@ React game store made in React
  - [Hamburguer React](https://hamburger-react.netlify.app/)
  - [EmailJS](https://www.emailjs.com)
  - Data Fetched from [RAWG](https://rawg.io/apidocs) DB
+deployed @ https://leandro-angeli-game-store.netlify.app/
+
